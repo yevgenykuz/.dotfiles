@@ -83,8 +83,8 @@ Beautify zsh
     cd ~/temp/nerd-fonts/
     ./install.sh SourceCodePro
 
-Clone to configuration backup repo
-==================================
+Sync with configuration backup repo
+===================================
 
 .. code-block:: bash
 
