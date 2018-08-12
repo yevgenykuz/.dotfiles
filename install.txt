@@ -1,0 +1,65 @@
+###################################
+# Initial setup and configuration #
+###################################
+
+1. Configuration during setup:
+===========================================================
+- Set locale, keyboard, and all language settings to English(US)
+- Set hostname to "megacomp"
+- Set user full name to "Yevgeny Kuznetsov"
+- Set user to "yevgeny"
+- Set password to SUPERSECRETPASSWORD
+- Do not encrypt home directory
+- Set timezone to local timezone
+- Partitioning - use entire disk and set up LVM, set usage amount to 80%
+- Leave HTTP proxy blank
+- Choose no automatic updates
+- Software selection: standard system utilities, OpenSSH server
+- Install GRUB boot loader
+-> Installation complete <-
+
+- Set up static ip edit /etc/network/interfaces with sudo, and then reboot (replace "ens32" with actual interface):
+/etc/network/interfaces ->
+###########################################################
+...
+# The primary network interface
+auto ens32
+iface ens32 inet static
+address 192.168.14.202
+netmask 255.255.255.0
+gateway 192.168.14.1
+dns-nameservers 192.168.14.1 1.1.1.1 8.8.8.8 9.9.9.9
+###########################################################
+sudo reboot
+
+----------------------------------------------------------------------------------------------------------------------
+2. Install this:
+===========================================================
+sudo apt install git zsh curl vim openjdk-8-jre-headless maven openssh-server deluge synaptic gparted python-pip python3-pip screenfetch tree thefuck terminator
+
+----------------------------------------------------------------------------------------------------------------------
+3. Configure zsh as main shell:
+===========================================================
+chsh -s $(which zsh)
+sudo reboot
+
+----------------------------------------------------------------------------------------------------------------------
+4. Continue installing:
+===========================================================
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+mkdir ~/temp
+git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git  ~/temp
+cd ~/temp/nerd-fonts/
+./install.sh SourceCodePro
+
+----------------------------------------------------------------------------------------------------------------------
+5. Get configuration files from git:
+===========================================================
+mkdir ~/configuration_backup
+git clone .... ~/configuration_backup
+copy all files and folder from ~/configuration_backup to their appropriate location
+add +x permissions to scripts in /home/yevgeny/custom_system_scripts
+update_system.sh
+sudo apt auto-remove
+sudo reboot
