@@ -1,5 +1,6 @@
 [global_config]
   geometry_hinting = True
+  title_font = Monospace 12
   title_receive_bg_color = "#ef2929"
   title_transmit_bg_color = "#73d216"
   window_state = maximise
@@ -19,7 +20,7 @@
     background_color = "#282828"
     background_darkness = 0.9
     cursor_color = "#aaaaaa"
-    font = SauceCodePro Nerd Font Medium 16
+    font = SauceCodePro Nerd Font 16
     foreground_color = "#ebdbb2"
     palette = "#282828:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
     scrollback_infinite = True

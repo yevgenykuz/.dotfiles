@@ -80,8 +80,7 @@ Beautify zsh
     git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
     mkdir ~/temp
     git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git  ~/temp
-    cd ~/temp/nerd-fonts/
-    ./install.sh SourceCodePro
+    ~/temp/install.sh SourceCodePro
     rm -rf ~/temp
 
 Sync with configuration backup repo
