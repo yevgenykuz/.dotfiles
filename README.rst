@@ -105,8 +105,14 @@ Install manually from "Software Manager"
 * Spotify
 * Deluge
 * Wireshark
-* Visual Studio Code (flatpak)
 * Bleachbit
+
+Install manually from official sites
+------------------------------------
+* Chrome
+* IntelliJ
+* PyCharm
+* Visual Studio Code
 
 Remove
 ------
