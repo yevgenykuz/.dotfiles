@@ -14,8 +14,8 @@ This is my initial setup procedure.
 Configuration during setup
 ==========================
 
-Ubunutu flavored OS Installation
---------------------------------
+Ubuntu flavored OS Installation
+-------------------------------
 
 * Set locale, keyboard, and all language settings to English(US)
 * Set hostname to "megacomp"
@@ -61,7 +61,7 @@ Install the following
 
 .. code-block:: bash
 
-    sudo apt install git zsh curl vim openjdk-8-jre-headless maven openssh-server deluge synaptic gparted python-pip python3-pip screenfetch tree thefuck terminator
+    sudo apt install git zsh vim openjdk-8-jre-headless maven python-pip python3-pip screenfetch tree thefuck terminator
 
 Configure zsh as main shell
 ---------------------------
@@ -82,6 +82,7 @@ Beautify zsh
     git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git  ~/temp
     cd ~/temp/nerd-fonts/
     ./install.sh SourceCodePro
+    rm -rf ~/temp
 
 Sync with configuration backup repo
 ===================================
@@ -95,6 +96,23 @@ Sync with configuration backup repo
     update_system.sh
     sudo apt auto-remove
     sudo reboot
+
+Linux Mint notes
+================
+
+Install manually from "Software Manager"
+----------------------------------------
+* Gparted
+* Spotify
+* Deluge
+* Wireshark
+* Visual Studio Code (flatpak)
+* Bleachbit
+
+Remove
+------
+* Transmission-gtk
+* Rhytmbox
 
 Meta
 ====
