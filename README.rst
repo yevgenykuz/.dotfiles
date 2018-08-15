@@ -61,7 +61,7 @@ Install the following
 
 .. code-block:: bash
 
-    sudo apt install git zsh vim openjdk-8-jre-headless maven python-pip python3-pip screenfetch tree thefuck terminator ttf-mscorefonts-installer
+    sudo apt install git zsh vim openjdk-8-jdk maven python-pip python3-pip screenfetch tree thefuck terminator ttf-mscorefonts-installer
 
 Configure zsh as main shell
 ---------------------------
