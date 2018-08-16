@@ -90,10 +90,10 @@ Sync with configuration backup repo
 
     mkdir ~/configuration_backup
     git clone https://github.com/yevgenykuz/station-configuration.git ~/configuration_backup
-    copy all files and folder from ~/configuration_backup to their appropriate location
-    add +x permissions to scripts in /home/yevgeny/custom_system_scripts
+    # copy all files and folder from ~/configuration_backup to their appropriate location
+    # add +x permissions to scripts in /home/yevgeny/custom_system_scripts
+    sudo fc-cache -f -v
     update_system.sh
-    sudo apt auto-remove
     sudo reboot
 
 Linux Mint notes
