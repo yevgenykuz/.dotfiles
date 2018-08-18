@@ -104,7 +104,6 @@ Install manually from "Software Manager"
 * Gparted
 * Spotify
 * Deluge
-* Wireshark
 * Bleachbit
 
 Install manually from official sites
