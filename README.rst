@@ -105,6 +105,7 @@ Install manually from "Software Manager"
 * Spotify
 * Deluge
 * Bleachbit
+* Virutalbox
 
 Install manually from official sites
 ------------------------------------
