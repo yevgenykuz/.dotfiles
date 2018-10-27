@@ -106,6 +106,7 @@ Install manually from "Software Manager"
 * Deluge
 * Bleachbit
 * Virutalbox
+* Keepassx
 
 Install manually from official sites
 ------------------------------------
