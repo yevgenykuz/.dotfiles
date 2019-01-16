@@ -88,7 +88,7 @@ Install python modules for *.rst file editing with vscode extention
 
 .. code-block:: bash
 
-    pip install docutils doc8
+    pip install docutils doc8 pygments
 
 Sync with configuration backup repo
 ===================================
