@@ -83,6 +83,13 @@ Beautify zsh
     ~/temp/install.sh SourceCodePro
     rm -rf ~/temp
 
+Install python modules for *.rst file editing with vscode extention
+-------------------------------------------------------------------
+
+.. code-block:: bash
+
+    pip install docutils doc8
+
 Sync with configuration backup repo
 ===================================
 
