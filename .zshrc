@@ -71,6 +71,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases:
 
+# ls:
+alias ll='ls -AF'
+
 # thefuck:
 eval $(thefuck --alias)
 eval $(thefuck --alias FUCK)
