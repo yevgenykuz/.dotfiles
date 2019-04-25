@@ -61,7 +61,7 @@ Install the following
 
 .. code-block:: bash
 
-    sudo apt install git zsh vim openjdk-8-jdk maven python-pip python3-pip python3-dev screenfetch htop tree thefuck terminator ttf-mscorefonts-installer g++ clang cmake treaceroute
+    sudo apt install git zsh vim openjdk-8-jdk open-jdk-8-source maven python-pip python3-pip python3-dev screenfetch htop tree thefuck terminator ttf-mscorefonts-installer g++ clang cmake treaceroute
 
 Configure zsh as main shell
 ---------------------------
