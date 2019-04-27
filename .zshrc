@@ -11,6 +11,10 @@ export EDITOR="$VISUAL"
 # Add local custom scripts to PATH:
 export PATH=$PATH:~/custom_system_scripts
 
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+
 # Theme:
 POWERLEVEL9K_MODE='nerdfont-complete'
 ZSH_THEME="powerlevel9k/powerlevel9k"
@@ -70,9 +74,12 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Aliases:
-
-# ls:
-alias ll='ls -AF'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias shutdown='sudo shutdown -h now'
+alias python='python3'
+alias tree='tree --charset=ASCII'
 
 # thefuck:
 eval $(thefuck --alias)

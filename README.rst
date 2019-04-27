@@ -61,7 +61,7 @@ Install the following
 
 .. code-block:: bash
 
-    sudo apt install git zsh vim openjdk-8-jdk open-jdk-8-source maven python-pip python3-pip python3-dev screenfetch htop tree thefuck terminator ttf-mscorefonts-installer g++ clang cmake treaceroute
+    sudo apt install git zsh vim openjdk-8-jdk open-jdk-8-source maven python-pip python3-pip python3-dev screenfetch htop tree thefuck terminator ttf-mscorefonts-installer g++ clang cmake treaceroute ruby-full build-essential zlib1g-dev
 
 Configure zsh as main shell
 ---------------------------
@@ -90,6 +90,13 @@ Install python modules for *.rst file editing with vscode extention
 
     pip install setuptools wheel docutils doc8 pygments
 
+Install RUBY gems for Jekyll to build personal github.io page
+-------------------------------------------------------------
+
+.. code-block:: bash
+
+    gem install jekyll bundler
+    
 Sync with configuration backup repo
 ===================================
 
