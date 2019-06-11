@@ -18,16 +18,13 @@ Ubuntu flavored OS Installation
 -------------------------------
 
 * Set locale, keyboard, and all language settings to English(US)
-* Set hostname to "megacomp"
-* Set user full name to "Yevgeny Kuznetsov"
-* Set user to "yevgeny"
-* Set password to SUPERSECRETPASSWORD
+* Set hostname and user information
 * Do not encrypt home directory
 * Set timezone to local timezone
 * Partitioning - use entire disk and set up LVM, set usage amount to 80%
 * Leave HTTP proxy blank
-* Choose no automatic updates
-* Software selection: standard system utilities, OpenSSH server
+* Choose no automatic updates (if installing ubuntu server)
+* Software selection: standard system utilities, OpenSSH server (if installing ubuntu server)
 * Install GRUB boot loader
 * **Installation complete**
 
@@ -98,7 +95,7 @@ Beautify zsh
     ~/temp/install.sh SourceCodePro
     rm -rf ~/temp
 
-Install python modules for *.rst file editing with vscode extention
+Install python modules for .rst file editing with vscode extention
 -------------------------------------------------------------------
 
 .. code-block:: bash
