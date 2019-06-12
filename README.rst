@@ -133,6 +133,9 @@ Install manually from "Software Manager"
 * Bleachbit
 * Virutalbox
 * Keepassx
+* Filezilla
+* Sublime
+* VLC
 
 Install manually from official sites
 ------------------------------------
@@ -146,6 +149,15 @@ Remove
 ------
 * Transmission-gtk
 * Rhytmbox
+
+Install extensions (System Settings -> Extensions)
+--------------------------------------------------
+* Transparent panels
+
+Install applets (System Settings -> Applets)
+--------------------------------------------
+* Weather
+* Multi-Core System Monitor
 
 Meta
 ====
