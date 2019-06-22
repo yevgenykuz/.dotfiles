@@ -117,6 +117,7 @@ Sync with configuration backup repo
     mkdir ~/configuration_backup
     git clone https://github.com/yevgenykuz/station-configuration.git ~/configuration_backup
     # copy all files and folder from ~/configuration_backup to their appropriate location
+    # after logging into mozilla account in firefox, move .mozilla/firefox items to generated profile folder
     # add +x permissions to scripts in /home/yevgeny/custom_system_scripts
     sudo fc-cache -f -v
     update_system.sh
