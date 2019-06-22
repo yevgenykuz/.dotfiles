@@ -139,7 +139,6 @@ Install manually from "Software Manager"
 
 Install manually from official sites
 ------------------------------------
-* Chrome
 * IntelliJ
 * PyCharm
 * CLion
