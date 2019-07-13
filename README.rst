@@ -137,6 +137,7 @@ Install manually from "Software Manager"
 * Filezilla
 * Sublime
 * VLC
+* Gimp-plugin-registry
 
 Install manually from official sites
 ------------------------------------
