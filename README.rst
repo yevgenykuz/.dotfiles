@@ -73,7 +73,7 @@ Install the following
 
 .. code-block:: bash
 
-    sudo apt install git zsh vim openjdk-8-jdk open-jdk-8-source maven gradle python-pip python3-pip python3-dev screenfetch htop tree thefuck terminator ttf-mscorefonts-installer g++ clang cmake treaceroute ruby-full build-essential zlib1g-dev teamspeak3-client flashplugin-installer
+    sudo apt install git zsh vim openjdk-8-jdk open-jdk-8-source maven gradle python-pip python3-pip python3-dev screenfetch htop tree thefuck terminator ttf-mscorefonts-installer g++ clang cmake treaceroute ruby-full build-essential zlib1g-dev teamspeak3-client flashplugin-installer xclip
 
 Configure zsh as main shell
 ---------------------------
@@ -139,6 +139,7 @@ Install manually from "Software Manager"
 * VLC
 * Gimp-plugin-registry
 * Remmina
+* Remmina-plugin-rdp
 
 Install manually from official sites
 ------------------------------------
