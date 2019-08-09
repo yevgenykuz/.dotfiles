@@ -138,6 +138,7 @@ Install manually from "Software Manager"
 * Sublime
 * VLC
 * Gimp-plugin-registry
+* Remmina
 
 Install manually from official sites
 ------------------------------------
