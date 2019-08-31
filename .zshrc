@@ -81,6 +81,3 @@ alias shutdown='sudo shutdown -h now'
 alias python='python3'
 alias tree='tree --charset=ASCII'
 
-# thefuck:
-eval $(thefuck --alias)
-eval $(thefuck --alias FUCK)
