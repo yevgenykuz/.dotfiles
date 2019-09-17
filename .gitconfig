@@ -4,3 +4,5 @@
     signingkey = 7124CA8308DA5429
 [commit]
 	gpgsign = true
+[core]
+	autocrlf = input
