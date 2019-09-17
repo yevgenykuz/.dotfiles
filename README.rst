@@ -161,6 +161,14 @@ Create GPG key
 Linux Mint notes
 ================
 
+Load dconf configuration files
+------------------------------
+
+.. code-block:: bash
+
+    # load keybindings:
+    dconf load /org/cinnamon/desktop/keybindings/ < dconf-keybindings-settings.conf
+
 Install manually from "Software Manager"
 ----------------------------------------
 * Gparted
