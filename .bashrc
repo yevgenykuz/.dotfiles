@@ -91,6 +91,8 @@ alias l='ls -alCF'
 alias shutdown='sudo shutdown -h now'
 alias python='python3'
 alias tree='tree --charset=ASCII'
+alias c='xclip'
+alias v='xclip -o'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

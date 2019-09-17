@@ -80,4 +80,6 @@ alias l='ls -alCF'
 alias shutdown='sudo shutdown -h now'
 alias python='python3'
 alias tree='tree --charset=ASCII'
+alias c='xclip'
+alias v='xclip -o'
 
