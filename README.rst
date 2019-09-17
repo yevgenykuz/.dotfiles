@@ -123,6 +123,41 @@ Sync with configuration backup repo
     update_system.sh
     sudo reboot
 
+SSH and GPG keys for GitHub
+===========================
+
+Create SSH key
+--------------
+
+.. code-block:: bash
+
+   ssh-keygen -t rsa -b 4096 -C "yevgenykuz@users.noreply.github.com"
+   # accept default file location, and then type a passphrase
+   # --> Done
+   # copy yout public key to system clipboard:
+   xclip -sel clip < ~/.ssh/id_rsa.pub
+   # paste into github
+
+Create GPG key
+--------------
+
+.. code-block:: bash
+
+    gpg --full-generate-key
+    # select default key king (RSA and RSA)
+    # set key size to 4096
+    # set key expiration 1y
+    # set name to "Yevgeny Kuznetsov"
+    # set email to "yevgenykuz@users.noreply.github.com"
+    # leave comment empty
+    # type a passphrase
+    # --> Done (move mouse during key generation)
+    # get ID for created key (can be found after "sec   4096R/_____ID_____":
+    gpg --list-secret-keys --keyid-format LONG
+    # get public key:
+    gpg --armor --export _____ID_____
+    # copy GPG public key and paste into github
+
 Linux Mint notes
 ================
 

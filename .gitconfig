@@ -1,3 +1,6 @@
 [user]
 	name = yevgenykuz
-	email = yevgenykuz@users.noreply.github.com
+    email = yevgenykuz@users.noreply.github.com
+    signingkey = 7124CA8308DA5429
+[commit]
+	gpgsign = true
