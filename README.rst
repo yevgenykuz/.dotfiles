@@ -154,9 +154,9 @@ Create GPG key
     # --> Done (move mouse during key generation)
     # get ID for created key (can be found after "sec   4096R/_____ID_____":
     gpg --list-secret-keys --keyid-format LONG
-    # get public key:
-    gpg --armor --export _____ID_____
-    # copy GPG public key and paste into github
+    # copy GPG public key to system clipboard:
+    xclip -sel clip < gpg --armor --export _____ID_____
+    # paste into github
 
 Linux Mint notes
 ================
