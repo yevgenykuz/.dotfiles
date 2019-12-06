@@ -85,9 +85,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Aliases
-alias l='ls -alCF'
-alias ll='ls -alF --group-directories-first'
-alias lo='ls -latr'
+alias l='ls -AlCh'
+alias ll='ls -lAh --group-directories-first'
+alias lo='ls -lAtrh'
 alias shutdown='sudo shutdown -h now'
 alias python='python3'
 alias tree='tree --charset=ASCII'
@@ -95,6 +95,19 @@ alias c='xclip'
 alias v='xclip -o'
 alias vimt='vim -p'
 alias vimo='vim -o'
+alias grep='grep --color'
+alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
+alias t='tail -f'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias p='ps -auxf'
+alias dud='du -d 1 -h'
+alias help='man'
+alias fd='find . -type d -name'
+alias ff='find . -type f -name'
+alias h='history'
+alias hgrep="fc -El 0 | grep"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

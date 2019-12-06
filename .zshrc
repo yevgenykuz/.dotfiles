@@ -50,10 +50,20 @@ DISABLE_UPDATE_PROMPT=true    # Update oh-my-zsh automatically
 POWERLEVEL9K_MODE='nerdfont-complete'
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+
+# oh-my-zsh Plugins:
+plugins=(
+  git
+  command-not-found
+)
+
+# Load oh-my-zsh before custom aliases
+source $ZSH/oh-my-zsh.sh
+
 # Aliases:
-alias l='ls -alCF'
-alias ll='ls -alF --group-directories-first'
-alias lo='ls -latr'
+alias l='ls -AlCh'
+alias ll='ls -lAh --group-directories-first'
+alias lo='ls -lAtrh'
 alias shutdown='sudo shutdown -h now'
 alias python='python3'
 alias tree='tree --charset=ASCII'
@@ -61,14 +71,28 @@ alias c='xclip'
 alias v='xclip -o'
 alias vimt='vim -p'
 alias vimo='vim -o'
+alias grep='grep --color'
+alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
+alias t='tail -f'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias p='ps -auxf'
+alias dud='du -d 1 -h'
+alias help='man'
+alias fd='find . -type d -name'
+alias ff='find . -type f -name'
+alias h='history'
+alias hgrep="fc -El 0 | grep"
 
-# oh-my-zsh Plugins:
-plugins=(
-  git
-  command-not-found
-  common-aliases
-)
+# Make zsh know about hosts already accessed by SSH
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
-source $ZSH/oh-my-zsh.sh
+# Open browser on urls
+if [[ -n "$BROWSER" ]]; then
+  _browser_fts=(htm html de org net com at cx nl se dk)
+  for ft in $_browser_fts; do alias -s $ft=$BROWSER; done
+fi
+
 # Load Powerlevel10k theme. Edit ~/.p10k.zsh to customize.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
