@@ -89,7 +89,7 @@ Beautify zsh
 .. code-block:: bash
 
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/themes/powerlevel10k
     mkdir ~/temp
     git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git  ~/temp
     ~/temp/install.sh SourceCodePro

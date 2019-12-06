@@ -21,9 +21,9 @@ set spell spelllang=en
 set number
 " Show command in bottom bar
 set showcmd
-" Highlight current line and line number
-set cursorline 
-" Highlight spelling errors:
+" Highlight current line and line number (uncomment for latest vim version)
+" set cursorline
+" Highlight spelling errors
 hi clear SpellBad
 hi SpellBad cterm=underline
 hi SpellBad gui=undercurl
