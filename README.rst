@@ -132,11 +132,17 @@ Create SSH key
 .. code-block:: bash
 
    ssh-keygen -t rsa -b 4096 -C "yevgenykuz@users.noreply.github.com"
-   # accept default file location, and then type a passphrase
+   # Accept default file location, and then type a passphrase
    # --> Done
-   # copy yout public key to system clipboard:
+   # To use it, copy yout public key to system clipboard:
    xclip -sel clip < ~/.ssh/id_rsa.pub
-   # paste into github
+   # Paste into github
+   # --> Done
+   # To test the SSH key password, load it into your SSH agent:
+   ssh-add
+   # If it was loaded, unload it:
+   ssh-add -d
+   # --> Done
 
 Create GPG key
 --------------
@@ -144,19 +150,23 @@ Create GPG key
 .. code-block:: bash
 
     gpg --full-generate-key
-    # select default key king (RSA and RSA)
-    # set key size to 4096
-    # set key expiration 1y
-    # set name to "Yevgeny Kuznetsov"
-    # set email to "yevgenykuz@users.noreply.github.com"
-    # leave comment empty
-    # type a passphrase
+    # Select default key king (RSA and RSA)
+    # Set key size to 4096
+    # Set key expiration 1y
+    # Set name to "Yevgeny Kuznetsov"
+    # Set email to "yevgenykuz@users.noreply.github.com"
+    # Leave comment empty
+    # Type a passphrase
     # --> Done (move mouse during key generation)
-    # get ID for created key (can be found after "sec   4096R/_____ID_____":
+    # To use it, get ID for created key (can be found after "sec   4096R/_____ID_____":
     gpg --list-secret-keys --keyid-format LONG
-    # copy GPG public key to system clipboard:
+    # Copy GPG public key to system clipboard:
     xclip -sel clip < gpg --armor --export _____ID_____
-    # paste into github
+    # Paste into github
+    # --> Done
+    # To test the GPG key password:
+    echo "Test" | gpg --no-use-agent -o /dev/null --local-user <KEYID> -as - && echo "OK"
+    # --> Done
 
 Linux Mint notes
 ================
