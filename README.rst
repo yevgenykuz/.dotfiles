@@ -73,7 +73,7 @@ Install the following
 
 .. code-block:: bash
 
-    sudo apt install git zsh vim openjdk-8-jdk open-jdk-8-source maven gradle python-pip python3-pip python3-dev screenfetch htop tree terminator ttf-mscorefonts-installer g++ clang cmake treaceroute ruby-full build-essential zlib1g-dev teamspeak3-client flashplugin-installer xclip
+    sudo apt install git zsh vim openjdk-8-jdk open-jdk-8-source maven gradle python-pip python3-pip python3-dev screenfetch htop tree terminator ttf-mscorefonts-installer g++ clang cmake treaceroute ruby-full build-essential zlib1g-dev teamspeak3-client flashplugin-installer xclip ack
 
 Configure zsh as main shell
 ---------------------------
