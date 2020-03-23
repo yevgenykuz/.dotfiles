@@ -53,27 +53,12 @@ Static IP configuration
 Custom Software installation
 ============================
 
-Add custom PPAs:
-----------------
-
-* TeamSpeak 3 client
-
-.. code-block:: bash
-
-    sudo add-apt-repository ppa:materieller/teamspeak3
-
-* Update apt
-
-.. code-block:: bash
-
-    sudo apt update
-
 Install the following
 ---------------------
 
 .. code-block:: bash
 
-    sudo apt install git zsh vim openjdk-8-jdk open-jdk-8-source maven gradle python-pip python3-pip python3-dev screenfetch htop tree terminator ttf-mscorefonts-installer g++ clang cmake treaceroute ruby-full build-essential zlib1g-dev teamspeak3-client flashplugin-installer xclip ack docker.io xfreerdp2-x11
+    sudo apt install git zsh vim openjdk-8-jdk open-jdk-8-source maven gradle python-pip python3-pip python3-dev screenfetch htop tree terminator ttf-mscorefonts-installer g++ clang cmake treaceroute ruby-full build-essential zlib1g-dev flashplugin-installer xclip ack docker.io xfreerdp2-x11
 
 Configure zsh as main shell
 ---------------------------
