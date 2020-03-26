@@ -128,6 +128,8 @@ alias gignored='git ls-files -v \| grep "^[[:lower:]]"'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gdt='git diff-tree --no-commit-id --name-only -r'
+alias gsh='git show'
+alias gsps='git show --pretty=short --show-signature'
 alias gfg='git ls-files \| grep'
 alias glog='git log --oneline --decorate --graph'
 alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"
