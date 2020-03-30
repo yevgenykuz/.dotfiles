@@ -140,8 +140,8 @@ alias grhh='git reset --hard'
 alias gpristine='git reset --hard && git clean -dfx'
 alias gcl='git clone --recurse-submodules'
 alias gcf='git config --list'
-alias workrdp='xfreerdp /multimon /d:DM /u:YevgenyK /v:192.168.14.66 /sec:tls /bpp:32 /audio-mode:1 +fonts -themes -wallpaper'
-alias workrdpsm='xfreerdp /f /d:DM /u:YevgenyK /v:192.168.14.66 /sec:tls /bpp:32 /audio-mode:1 +fonts -themes -wallpaper'
+alias workrdp='xfreerdp /multimon /d:DM /u:YevgenyK /v:192.168.14.66 /sec:tls /bpp:32 /audio-mode:1 +fonts -themes -wallpaper -clipboard'
+alias workrdpsm='xfreerdp /f /d:DM /u:YevgenyK /v:192.168.14.66 /sec:tls /bpp:32 /audio-mode:1 +fonts -themes -wallpaper -clipboard'
 
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
