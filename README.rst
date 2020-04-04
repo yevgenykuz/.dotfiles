@@ -116,7 +116,7 @@ Create SSH key
 
 .. code-block:: bash
 
-   ssh-keygen -t rsa -b 4096 -C "yevgenykuz@users.noreply.github.com"
+   ssh-keygen -t rsa -b 4096 -C "yevgenyku@gmail.com"
    # Accept default file location, and then type a passphrase
    # --> Done
    # To use it, copy yout public key to system clipboard:
@@ -127,6 +127,9 @@ Create SSH key
    ssh-add
    # If it was loaded, unload it:
    ssh-add -d
+   # --> Done
+   # To delete an SSH key:
+   rm ~/.ssh/id_rsa*
    # --> Done
 
 Create GPG key
@@ -139,19 +142,25 @@ Create GPG key
     # Set key size to 4096
     # Set key expiration 1y
     # Set name to "Yevgeny Kuznetsov"
-    # Set email to "yevgenykuz@users.noreply.github.com"
+    # Set email to "yevgenyku@gmail.com"
     # Leave comment empty
     # Type a passphrase
     # --> Done (move mouse during key generation)
     # To use it, get ID for created key (can be found after "sec   4096R/_____ID_____":
     gpg --list-secret-keys --keyid-format LONG
     # Copy GPG public key to system clipboard:
-    xclip -sel clip < gpg --armor --export _____ID_____
+    gpg --armor --export _____ID_____ | xclip -sel clip
     # Paste into github
     # --> Done
     # To test the GPG key password:
     echo "Test" | gpg --no-use-agent -o /dev/null --local-user <KEYID> -as - && echo "OK"
     # --> Done
+    # To delete a GPG key:
+    # Get current key ID:
+    gpg --list-secret-keys --keyid-format LONG
+    # Delete the key:
+    gpg --delete-secret-key ____LONG_ID_ON_SECOND_LINE____
+    # --> Done (confirm multiple times)
 
 Linux Mint notes
 ================
