@@ -180,7 +180,7 @@ Install manually from "Software Manager"
 * Deluge
 * Bleachbit
 * Virutalbox
-* Keepassx
+* Keepassxc (NOT flatpack edition)
 * Filezilla
 * Sublime
 * VLC
