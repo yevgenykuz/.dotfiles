@@ -103,7 +103,7 @@ Sync with configuration backup repo
     git clone https://github.com/yevgenykuz/station-configuration.git ~/configuration_backup
     # copy all files and folder from ~/configuration_backup to their appropriate location
     # after logging into mozilla account in firefox, move .mozilla/firefox items to generated profile folder
-    # add +x permissions to scripts in /home/yevgeny/custom_system_scripts
+    # add +x permissions to scripts in ~/custom_system_scripts
     sudo fc-cache -f -v
     update_system.sh
     sudo reboot
@@ -124,24 +124,26 @@ JDK
 ---
 
 .. code-block:: bash
+
   sdk install java 11.0.6.hs-adpt
   # remove temporary .bin file
   # set as default java
   sdk install java 8.0.242.hs-adpt
   # remove tmp .bin file
   # do not set as default java
-  # jdks can be found at: /home/yevgeny/.sdkman/candidates/java
+  # jdks can be found at: ~/.sdkman/candidates/java
 
 Maven and Gradle
 ----------------
 
 .. code-block:: bash
+
   sdk install maven
   sdk default maven
-  # maven can be found at: /home/yevgeny/.sdkman/candidates/maven
+  # maven can be found at: ~/.sdkman/candidates/maven
   sdk install gradle
   sdk default gradle
-  # gradle can be found at: /home/yevgeny/.sdkman/candidates/gradle
+  # gradle can be found at: ~/.sdkman/candidates/gradle
 
 SSH and GPG keys for GitHub
 ===========================
