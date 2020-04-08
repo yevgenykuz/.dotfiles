@@ -108,6 +108,15 @@ Sync with configuration backup repo
     update_system.sh
     sudo reboot
 
+Install SDKMAN!
+===============
+
+.. code-block:: bash
+
+  curl -s "https://get.sdkman.io" | bash
+  # make sure SDKMAN_DIR is exported in the end of both .zshrc and .bashrc
+  # restart terminal to use
+    
 SSH and GPG keys for GitHub
 ===========================
 
