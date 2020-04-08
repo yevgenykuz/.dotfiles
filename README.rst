@@ -58,7 +58,7 @@ Install the following
 
 .. code-block:: bash
 
-    sudo apt install git zsh vim openjdk-8-jdk open-jdk-8-source maven gradle python-pip python3-pip python3-dev screenfetch htop tree terminator ttf-mscorefonts-installer g++ clang cmake treaceroute ruby-full build-essential zlib1g-dev flashplugin-installer xclip ack docker.io xfreerdp2-x11
+    sudo apt install git zsh vim python-pip python3-pip python3-dev screenfetch htop tree terminator ttf-mscorefonts-installer g++ clang cmake treaceroute ruby-full build-essential zlib1g-dev flashplugin-installer xclip ack docker.io xfreerdp2-x11
 
 Configure zsh as main shell
 ---------------------------
@@ -108,15 +108,41 @@ Sync with configuration backup repo
     update_system.sh
     sudo reboot
 
-Install SDKMAN!
-===============
+Install SDKMAN! and Java tools
+==============================
+
+SDKMAN!
+-------
 
 .. code-block:: bash
 
   curl -s "https://get.sdkman.io" | bash
   # make sure SDKMAN_DIR is exported in the end of both .zshrc and .bashrc
   # restart terminal to use
-    
+
+JDK
+---
+
+.. code-block:: bash
+  sdk install java 11.0.6.hs-adpt
+  # remove temporary .bin file
+  # set as default java
+  sdk install java 8.0.242.hs-adpt
+  # remove tmp .bin file
+  # do not set as default java
+  # jdks can be found at: /home/yevgeny/.sdkman/candidates/java
+
+Maven and Gradle
+----------------
+
+.. code-block:: bash
+  sdk install maven
+  sdk default maven
+  # maven can be found at: /home/yevgeny/.sdkman/candidates/maven
+  sdk install gradle
+  sdk default gradle
+  # gradle can be found at: /home/yevgeny/.sdkman/candidates/gradle
+
 SSH and GPG keys for GitHub
 ===========================
 
