@@ -55,8 +55,8 @@ Create SSH and GPG keys
 
 See `Appendix: SSH and GPG keys`_.
 
-Sync with configuration backup repo
-===================================
+Sync with dotfiles (this) repo
+==============================
 
 .. code-block:: bash
 
