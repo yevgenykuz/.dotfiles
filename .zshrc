@@ -5,8 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Path to  oh-my-zsh installation.
-export ZSH="/home/yevgeny/.oh-my-zsh"
+# Path to oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
 # Colourful terminal:
 export TERM=xterm-256color
@@ -16,11 +16,19 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # Add local custom scripts to PATH:
-export PATH=$PATH:~/custom_system_scripts
+export PATH="$HOME/.dotfiles/scripts:$PATH"
 
 # Install Ruby Gems to ~/gems:
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
+
+# Add Go to PATH:
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/go
+export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+
+# Set fzf installation directory path
+export FZF_BASE=$HOME/.fzf
 
 # zsh options:
 setopt AUTO_CD  # Perform cd <command> if command is a directory name and not an actual command
@@ -53,8 +61,29 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # oh-my-zsh Plugins:
 plugins=(
-  git
+  zsh-syntax-highlighting
   command-not-found
+  history-substring-search
+  alias-finder
+  git
+  git-extras
+  tmux
+  fd
+  ripgrep
+  fzf
+  thefuck
+  sdk
+  mvn
+  gradle
+  nmap
+  systemadmin
+  timer
+  sublime
+  pip
+  golang
+  docker
+  docker-compose
+  kubectl
 )
 
 # Load oh-my-zsh before custom aliases
@@ -66,7 +95,9 @@ alias ll='ls -lAh --group-directories-first'
 alias lo='ls -lAtrh'
 alias shutdown='sudo shutdown -h now'
 alias python='python3'
-alias tree='tree --charset=ASCII'
+alias pip=pip3
+alias tree='tree -aC -I .git --dirsfirst'
+alias diff='diff --color=auto'
 alias c='xclip'
 alias v='xclip -o'
 alias vimt='vim -p'
@@ -80,66 +111,11 @@ alias mv='mv -i'
 alias p='ps -auxf'
 alias dud='du -d 1 -h'
 alias help='man'
-alias fd='find . -type d -name'
-alias ff='find . -type f -name'
+alias fd='fdfind'
+alias findd='find . -type d -name'
+alias findf='find . -type f -name'
 alias h='history'
 alias hgrep='fc -El 0 | grep'
-alias gst='git status'
-alias gss='git status -s'
-alias ga='git add'
-alias gaa='git add --all'
-alias gcmsg='git commit -m'
-alias gcsm='git commit -s -m'
-alias gco='git checkout'
-alias gcb='git checkout -b'
-alias gcm='git checkout master'
-alias gb='git branch'
-alias gbnm='git branch --no-merged'
-alias gbr='git branch --remote'
-alias gfa='git fetch --all --prune'
-alias gl='git pull'
-alias ggum='git pull --rebase origin master'
-alias gm='git merge'
-alias gmom='git merge origin/master'
-alias gmt='git mergetool --no-prompt'
-alias gma='git merge --abort'
-alias grb='git rebase'
-alias grbi='git rebase -i'
-alias grbm='git rebase master'
-alias grba='git rebase --abort'
-alias grbc='git rebase --continue'
-alias gsta='git stash push'
-alias gstall='git stash --all'
-alias gstaa='git stash apply'
-alias gstp='git stash pop'
-alias gstl='git stash list'
-alias gsts='git stash show --text'
-alias gstc='git stash clear'
-alias gstd='git stash drop'
-alias gts='git tag -s'
-alias gtv='git tag \| sort -V'
-alias gp='git push'
-alias gpd='git push --dry-run'
-alias gpf='git push --force-with-lease'
-alias gpf!='git push --force'
-alias gpoat='git push origin --all && git push origin --tags'
-alias gignore='git update-index --assume-unchanged'
-alias gignored='git ls-files -v \| grep "^[[:lower:]]"'
-alias gd='git diff'
-alias gds='git diff --staged'
-alias gdt='git diff-tree --no-commit-id --name-only -r'
-alias gsh='git show'
-alias gsps='git show --pretty=short --show-signature'
-alias gfg='git ls-files \| grep'
-alias glog='git log --oneline --decorate --graph'
-alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"
-alias glols="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --stat"
-alias glod="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset"
-alias gbl='git blame -b -w'
-alias grhh='git reset --hard'
-alias gpristine='git reset --hard && git clean -dfx'
-alias gcl='git clone --recurse-submodules'
-alias gcf='git config --list'
 alias workrdp='xfreerdp /multimon /d:DM /u:YevgenyK /v:192.168.14.66 /sec:tls /bpp:32 /audio-mode:1 +fonts -themes -wallpaper -clipboard'
 alias workrdpsm='xfreerdp /f /d:DM /u:YevgenyK /v:192.168.14.66 /sec:tls /bpp:32 /audio-mode:1 +fonts -themes -wallpaper -clipboard'
 
