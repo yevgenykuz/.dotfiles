@@ -61,7 +61,7 @@ Sync with dotfiles (this) repo
 .. code-block:: bash
 
     rm -rf ~/.dotfiles
-    git clone https://github.com/yevgenykuz/.dotfiles.git ~/.dotfiles
+    git clone git@github.com:yevgenykuz/.dotfiles.git ~/.dotfiles
     chmod +x ~/.dotfiles/install.sh
     chmod +x ~/.dotfiles/scripts/*.sh
     # after logging into Mozilla account in Firefox, move all items from ~/.dotfiles/.mozilla/firefox/RANDOM_PROFILE_STRING to generated profile folder in ~/.mozilla/firefox
