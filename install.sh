@@ -52,7 +52,11 @@ function install_packages() {
 
   sudo apt-get update
   sudo bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::options::=--force-confdef -o DPkg::options::=--force-confold upgrade -y'
-  sudo apt-get install -y "${packages[@]}"
+  sudo apt-get install -y "${packages[@]}" || echo -e " Try cleaning dpkg cache:\n\
+  sudo dpkg -i --force-overwrite PROBLEMATIC_PACKAGE_FROM_ERROR_MESSAGE\n\
+  To fix broken packages run:\n\
+  sudo apt -f install\n\
+  Then, run the install.sh script again"
   sudo apt-get autoremove -y
   sudo apt-get autoclean
 }
