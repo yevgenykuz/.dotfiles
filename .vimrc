@@ -69,7 +69,7 @@ call plug#end()
 "}}}
 
 " Theme, status line, UI layout -----------------------------------------------------------------------------------{{{
-colorscheme gruvbox										" Set color scheme
+silent! colorscheme gruvbox										" Set color scheme
 set background=dark										" Set color scheme background
 let g:airline_theme='gruvbox'							" vim-airline configuration
 set encoding=UTF-8
@@ -184,7 +184,7 @@ let g:is_posix = 1
 "}}}
 
 " Tabs, indentation, spacing --------------------------------------------------------------------------------------{{{
-set tabstop=2									" 2 space tab
+set tabstop=2       " 2 space tab
 set expandtab									" Use spaces for tabs
 set softtabstop=2								" Delete and insert the entire tab
 set shiftwidth=2								" Shift the entire tab when using indentation commands in normal mode 
@@ -216,8 +216,8 @@ set foldlevel=99
 "}}}
 
 " Completion and snippets -----------------------------------------------------------------------------------------{{{
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#source('ultisnips', 'rank', 9999) 								" Snippets first
+silent! let g:deoplete#enable_at_startup = 1
+silent! call deoplete#custom#source('ultisnips', 'rank', 9999) 								" Snippets first
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
