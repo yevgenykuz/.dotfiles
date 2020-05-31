@@ -104,6 +104,7 @@ Install from "Software Manager"
 * Gimp-plugin-registry
 * Remmina
 * Remmina-plugin-rdp
+* MyPaint
 
 Install from official sites
 ---------------------------
