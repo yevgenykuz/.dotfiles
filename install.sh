@@ -255,6 +255,7 @@ fi
 umask g-w,o-w
 
 install_corsair_drivers
+install_logitech_software
 install_packages
 install_bat
 install_fd
