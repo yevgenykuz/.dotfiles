@@ -55,6 +55,13 @@ Create SSH and GPG keys
 
 See `Appendix: SSH and GPG keys`_.
 
+Install git
+===========
+
+.. code-block:: bash
+
+    sudo apt install -y git
+
 Sync with dotfiles (this) repo
 ==============================
 
