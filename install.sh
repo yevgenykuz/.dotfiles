@@ -61,39 +61,6 @@ function install_packages() {
   sudo apt-get autoclean
 }
 
-# Install SDKMAN and Java JDK and build tools:
-function install_java() {
-  echo "Installing SDKMAN! and basic Java dependencies"
-  # Install SDKMAN!
-  curl -s "https://get.sdkman.io?rcupdate=false" | bash
-  source "$HOME/.sdkman/bin/sdkman-init.sh"
-  # Install JDKs
-  yes | sdk install java 8.0.252.hs-adpt || true
-  yes | sdk install java 11.0.7.hs-adpt || true
-  sdk default java 11.0.7.hs-adpt || true
-  # jdks can be found at: ~/.sdkman/candidates/java
-  # Install maven and gradle
-  yes | sdk install maven || true
-  sdk default maven || true
-  # maven can be found at: ~/.sdkman/candidates/maven
-  sdk install gradle
-  yes | sdk gradle maven || true
-  sdk default gradle || true
-  # gradle can be found at: ~/.sdkman/candidates/gradle
-}
-
-# Install go:
-function install_go() {
-  local v=1.14.2
-  ! command -v go &>/dev/null || [[ "$(go --version)" != *" $v" ]] || return 0
-  echo "Installing Go $v"
-  dwfile="go${v}.linux-amd64.tar.gz"
-  curl -O "https://storage.googleapis.com/golang/${dwfile}"
-  sudo rm -rf /usr/local/go
-  sudo tar -C /usr/local -xzf $dwfile
-  rm $dwfile
-}
-
 # Install tmux plugin manager:
 function install_tmux_pm() {
   ! command -v tmux &>/dev/null || return 0
@@ -106,18 +73,35 @@ function install_tmux_pm() {
 # Install RUBY gems for Jekyll for personal github.io page:
 function install_ruby_gems_for_jekyll() {
   echo "Installing RUBY gems for Jekyll for personal github.io page"
-  gem install jekyll bundler || echo "Failed installing RUBY gems" && return 
+  sudo gem install jekyll bundler || echo "Failed installing RUBY gems" && return 
 }
 
 # Load dconf configuration files:
 function load_dconf_files() {
   echo "Loading dconf configuration files"
   # load key bindings:
-  dconf load /org/cinnamon/desktop/keybindings/ < $HOME/.dotfiles/dconf-files/dconf-keybindings-settings.conf
+  dconf load /org/cinnamon/desktop/keybindings/ < $HOME/.dotfiles/dconf-files/dconf-keybindings-settings.dconf
   # load gnome-terminal profile:
   dconf load /org/gnome/terminal/legacy/profiles:/ < $HOME/.dotfiles/dconf-files/gnome-terminal-profiles.dconf
   # load cinnamon terminal launcher configuration:
   dconf load /org/cinnamon/desktop/applications/terminal/ < $HOME/.dotfiles/dconf-files/cinnamon-gnome-terminal-launcher.dconf
+}
+
+# Install SDKMAN and Java JDK and build tools (must be run from zsh):
+function install_java() {
+  zsh $HOME/.dotfiles/sdkman.sh
+}
+
+# Install go:
+function install_go() {
+  local v=1.14.2
+  ! command -v go &>/dev/null || [[ "$(go --version)" != *" $v" ]] || return 0
+  echo "Installing Go $v"
+  dwfile="go${v}.linux-amd64.tar.gz"
+  curl -O "https://storage.googleapis.com/golang/${dwfile}"
+  sudo rm -rf /usr/local/go
+  sudo tar -C /usr/local -xzf $dwfile
+  rm $dwfile
 }
 
 # Edit desktop shortcuts to start GNOME terminal and VIM maximized:
@@ -155,7 +139,7 @@ function beautify_shell() {
 function copy_custom_fonts() {
   echo "Copying custom fonts"
   mkdir -p $HOME/.local/share/fonts
-  yes | cp -fa $HOME/.dotfiles/.local/share/fonts/. $HOME/.local/share/fonts
+  yes | cp -fa $HOME/.dotfiles/.local/share/fonts/. $HOME/.local/share/fonts && echo "Done"
   sudo fc-cache -f -v
 }
 
@@ -171,7 +155,7 @@ function create_links() {
   declare -A src2dest
   src2dest[".bashrc"]="$HOME/.bashrc"
   src2dest[".zshrc"]="$HOME/.zshrc"
-  src2dest[".p10k.zsh"]="$HOME/.zsh"
+  src2dest[".p10k.zsh"]="$HOME/.p10k.zsh"
   src2dest[".gitconfig"]="$HOME/.gitconfig"
   src2dest[".ssh/config"]="$HOME/.ssh/config"
   src2dest[".tmux.conf"]="$HOME/.tmux.conf"
@@ -220,10 +204,10 @@ umask g-w,o-w
 install_corsair_drivers
 install_logitech_software
 install_packages
-install_java
-install_go
 install_tmux_pm
 install_ruby_gems_for_jekyll
+install_java
+install_go
 load_dconf_files
 edit_gnome_terminal_shortcuts
 beautify_shell
