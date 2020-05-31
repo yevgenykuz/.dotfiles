@@ -29,20 +29,20 @@ function install_packages() {
     vim nano man
     build-essential zlib1g-dev x11-utils xz-utils
     zip unzip unrar p7zip-full p7zip-rar gzip pigz bzip2
-    python-pip python3-pip python3-dev python3-venv
+    python3-pip python3-dev python3-venv
     pandoc python3-docutils rst2pdf
     g++ clang cmake
     ruby-full
-    xclip treaceroute
+    xclip traceroute
     silversearcher-ag ack gawk
     htop tree
     dos2unix jq
     ascii screenfetch
     dconf-cli dconf-editor
-    tmux xfreerdp2-x11 dbus-x11
+    tmux freerdp2-x11 dbus-x11
     flashplugin-installer ttf-mscorefonts-installer
     docker.io
-    # fd-find bat fzf ripgrep - uncomment when moving to an OS version based on >20.04 LTS
+    fd-find bat fzf ripgrep
   )
 
   sudo apt-get update
@@ -50,52 +50,6 @@ function install_packages() {
   sudo apt-get install -y "${packages[@]}"
   sudo apt-get autoremove -y
   sudo apt-get autoclean
-}
-
-# For Ubuntu < 19 LTS - remove when moving to an OS version based on >20.04 LTS:
-function install_bat() {
-  local v="0.15.0"
-  ! command -v bat &>/dev/null || [[ "$(bat --version)" != *" $v" ]] || return 0
-  echo "Installing bat $v"
-  local deb
-  deb="$(mktemp)"
-  curl -fsSL "https://github.com/sharkdp/bat/releases/download/v${v}/bat_${v}_amd64.deb" > "$deb"
-  sudo dpkg -i "$deb"
-  rm "$deb"
-}
-
-# For Ubuntu < 19 LTS - remove when moving to an OS version based on >20.04 LTS:
-function install_fd() {
-  local v="8.0.0"
-  ! command -v fd &>/dev/null || [[ "$(fd --version)" != *" $v" ]] || return 0
-  echo "Installing fd-find $v"
-  local deb
-  deb="$(mktemp)"
-  curl -fsSL "https://github.com/sharkdp/fd/releases/download/v${v}/fd_${v}_amd64.deb" > "$deb"
-  sudo dpkg -i "$deb"
-  rm "$deb"
-}
-
-# For Ubuntu < 19 LTS - remove when moving to an OS version based on >20.04 LTS:
-function install_ripgrep() {
-  local v="11.0.2"
-  ! command -v rg &>/dev/null || [[ "$(rg --version)" != *" $v" ]] || return 0
-  echo "Installing ripgrep $v"
-  local deb
-  deb="$(mktemp)"
-  curl -fsSL "https://github.com/BurntSushi/ripgrep/releases/download/v${v}/fd_${v}_amd64.deb" > "$deb"
-  sudo dpkg -i "$deb"
-  rm "$deb"
-}
-
-# For Ubuntu < 19 LTS - remove when moving to an OS version based on >20.04 LTS:
-function install_fzf() {
-  ! command -v fzf &>/dev/null || return 0
-  echo "Installing latest fzf"
-  FZF_DIR="${HOME}/.fzf"
-  rm -rf $FZF_DIR 2>/dev/null || true
-  git clone --depth=1 https://github.com/junegunn/fzf.git $FZF_DIR
-  $FZF_DIR/install --key-bindings --completion --no-update-rc
 }
 
 # Install SDKMAN and Java JDK and build tools:
@@ -257,10 +211,6 @@ umask g-w,o-w
 install_corsair_drivers
 install_logitech_software
 install_packages
-install_bat
-install_fd
-install_ripgrep
-install_fzf
 install_java
 install_go
 install_tmux_pm

@@ -1,7 +1,7 @@
 Initial setup and configuration
 ###############################
 
-| This is my initial setup procedure of a Linux Mint machine with Cinnamon.
+| This is my initial setup procedure of a Linux Mint >20 machine with Cinnamon.
 | Perform the steps in the following order.
 
 -----
@@ -72,7 +72,7 @@ Sync with dotfiles (this) repo
     git clone git@github.com:yevgenykuz/.dotfiles.git ~/.dotfiles
     # otherwise, use https:
     git clone https://github.com/yevgenykuz/.dotfiles.git ~/.dotfiles
-    # make sure all .sh files have execute permission:
+    # make sure all .sh files have execute permission. If not, give it with:
     chmod +x ~/.dotfiles/install.sh
     chmod +x ~/.dotfiles/scripts/*.sh
     # after logging into Mozilla account in Firefox, move all items from ~/.dotfiles/.mozilla/firefox/RANDOM_PROFILE_STRING to generated profile folder in ~/.mozilla/firefox
