@@ -6,11 +6,18 @@
 # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
 set -xueE -o pipefail
 
-# Install corsair unofficial driver (https://github.com/ckb-next/ckb-next):
+# Install Corsair unofficial driver (https://github.com/ckb-next/ckb-next):
 function install_corsair_drivers() {
   sudo add-apt-repository -y ppa:tatokis/ckb-next
   sudo apt-get update
   sudo apt install -y ckb-next
+}
+
+# Install Logitech unofficial management software (https://github.com/pwr-Solaar/Solaar):
+function install_logitech_software() {
+  sudo add-apt-repository -y ppa:solaar-unifying/stable
+  sudo apt-get update
+  sudo apt install -y solaar
 }
 
 # Install Debian packages:
