@@ -68,7 +68,11 @@ Sync with dotfiles (this) repo
 .. code-block:: bash
 
     rm -rf ~/.dotfiles
+    # if you've set up an SSH key and have access to this repository, you can use ssh:
     git clone git@github.com:yevgenykuz/.dotfiles.git ~/.dotfiles
+    # otherwise, use https:
+    git clone https://github.com/yevgenykuz/.dotfiles.git ~/.dotfiles
+    # make sure all .sh files have execute permission:
     chmod +x ~/.dotfiles/install.sh
     chmod +x ~/.dotfiles/scripts/*.sh
     # after logging into Mozilla account in Firefox, move all items from ~/.dotfiles/.mozilla/firefox/RANDOM_PROFILE_STRING to generated profile folder in ~/.mozilla/firefox
