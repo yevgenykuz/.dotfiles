@@ -20,6 +20,11 @@ function install_logitech_software() {
   sudo apt install -y solaar
 }
 
+# Accept EULA for Microsoft fonts before installation:
+function accept_eula() {
+  echo msttcorefonts msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+}
+
 # Install Debian packages:
 function install_packages() {
   echo "Installing packages with apt"
