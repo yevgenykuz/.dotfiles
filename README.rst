@@ -85,7 +85,6 @@ Run install.sh
 
 .. code-block:: bash
 
-    chmod +x ~/.dotfiles/install.sh
     bash ~/.dotfiles/install.sh
 
 Manual package installation and configuration
