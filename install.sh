@@ -41,7 +41,7 @@ function install_packages() {
     xclip traceroute
     silversearcher-ag ack gawk
     htop tree
-    dos2unix jq
+    dos2unix jq thefuck
     ascii screenfetch
     dconf-cli dconf-editor
     tmux freerdp2-x11 dbus-x11
@@ -180,7 +180,7 @@ function create_links() {
 # Run vim :PlugInstall to install vim plugins:
 function install_vim_plugins() {
   echo "Installing VIM plugins"
-  vim +BundleInstall +qall!
+  vim +PlugInstall +qall!
 }
 
 # Run script:
