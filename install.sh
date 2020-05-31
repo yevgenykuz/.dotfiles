@@ -162,7 +162,7 @@ function create_links() {
   src2dest[".vimrc"]="$HOME/.vimrc"
   
   dir=$(dirname "$0")
-  backup_dir=$HOME/dotfiles_backup
+  backup_dir=$HOME/.dotfiles_backup
   mkdir -p $backup_dir
   for key in "${!src2dest[@]}"; do
     [ -L "${src2dest[$key]}" ] && rm "${src2dest[$key]}"
