@@ -111,8 +111,8 @@ alias findd='find . -type d -name'
 alias findf='find . -type f -name'
 alias h='history'
 alias hgrep='fc -El 0 | grep'
-alias workrdp='xfreerdp /multimon /d:DM /u:YevgenyK /v:192.168.14.66 /sec:tls /bpp:32 /audio-mode:1 +fonts -themes -wallpaper -clipboard'
-alias workrdpsm='xfreerdp /f /d:DM /u:YevgenyK /v:192.168.14.66 /sec:tls /bpp:32 /audio-mode:1 +fonts -themes -wallpaper -clipboard'
+alias workrdp='xfreerdp /multimon /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls /audio-mode:1 +fonts -themes -wallpaper -clipboard'
+alias workrdpsm='xfreerdp /f /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls /audio-mode:1 +fonts -themes -wallpaper -clipboard'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
