@@ -114,6 +114,7 @@ function install_go() {
 # Edit desktop shortcuts to start GNOME terminal and VIM maximized:
 function edit_gnome_terminal_shortcuts() {
   echo "Editing gnome-terminal shortcuts"
+  mkdir -p $HOME/.local/share/applications
   # Edit system menu shortcut:
   cp /usr/share/applications/org.gnome.Terminal.desktop $HOME/.local/share/applications/gnome-terminal.desktop
   sed -i 's/Exec=gnome-terminal/Exec=gnome-terminal --window --maximize/g' $HOME/.local/share/applications/gnome-terminal.desktop
