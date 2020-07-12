@@ -91,7 +91,7 @@ set splitright    										" hsplit goes to the right
 noremap <F7> :tabe 										" Create a new tab
 noremap <F8> :tabp<CR> 									" Move to next tab
 let NERDTreeShowHidden=1
-nomap <F11> :NERDTreeToggle<CR>							" Toggle NERDTree
+noremap <F11> :NERDTreeToggle<CR>							" Toggle NERDTree
 nnoremap <F12> :TagbarToggle<CR>						" Toggle structure on right side
 "}}}
 
