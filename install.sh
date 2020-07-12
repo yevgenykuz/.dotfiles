@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Use this script to automate initial environment setup.
-# It is written for an Ubuntu flavored Linux system, and was tested with Linux Mint 20.
+# It is written for an Ubuntu flavored Linux system, and was tested with Linux Mint 20.04.
 
 # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
 set -xueE -o pipefail
@@ -59,6 +59,12 @@ function install_packages() {
   Then, run the install.sh script again"
   sudo apt-get autoremove -y
   sudo apt-get autoclean
+}
+
+# Change batcat command to bat:
+function update_bat_command() {
+  mkdir -p ~/.local/bin
+  ln -sf /usr/bin/batcat ~/.local/bin/bat
 }
 
 # Install tmux plugin manager:
@@ -204,6 +210,7 @@ umask g-w,o-w
 install_corsair_drivers
 install_logitech_software
 install_packages
+update_bat_command
 install_tmux_pm
 install_ruby_gems_for_jekyll
 install_java
