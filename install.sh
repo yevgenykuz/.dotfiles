@@ -115,12 +115,12 @@ function install_go() {
 function edit_gnome_terminal_shortcuts() {
   echo "Editing gnome-terminal shortcuts"
   # Edit system menu shortcut:
-  cp /usr/share/applications/gnome-terminal.desktop $HOME/.local/share/applications/
+  cp /usr/share/applications/org.gnome.Terminal.desktop $HOME/.local/share/applications/gnome-terminal.desktop
   sed -i 's/Exec=gnome-terminal/Exec=gnome-terminal --window --maximize/g' $HOME/.local/share/applications/gnome-terminal.desktop
   # Edit quick-launch panel shortcut:
-  cp $HOME/.local/share/applications/gnome-terminal.desktop $HOME/.local/share/applications/org.gnome.Terminal.desktop
-  perl -i -0777 -pe 's/Name=New Terminal\nExec=gnome-terminal --window --maximize/Name=New Terminal\nExec=gnome-terminal/g' $HOME/.local/share/applications/org.gnome.terminal.desktop
-  perl -i -0777 -pe 's/X-AppStream-Ignore=true/NoDisplay=true\nTerminal=false/g' $HOME/.local/share/applications/org.gnome.terminal.desktop
+  cp /usr/share/applications/org.gnome.Terminal.desktop $HOME/.local/share/applications/org.gnome.Terminal.desktop
+  perl -i -0777 -pe 's/Name=New Window\nExec=gnome-terminal --window/Name=New Terminal\nExec=gnome-terminal --window --maximize/g' $HOME/.local/share/applications/org.gnome.Terminal.desktop
+  perl -i -0777 -pe 's/X-Ubuntu-Gettext-Domain=gnome-terminal/X-Ubuntu-Gettext-Domain=gnome-terminal\nNoDisplay=true\nTerminal=false/g' $HOME/.local/share/applications/org.gnome.Terminal.desktop
   # Edit VIM shortcut:
   cp /usr/share/applications/vim.desktop $HOME/.local/share/applications/
   perl -i -0777 -pe "s/Exec=vim %F\nTerminal=true/Exec=gnome-terminal --window --maximize -e 'vim %F'\nTerminal=false/g" $HOME/.local/share/applications/vim.desktop
