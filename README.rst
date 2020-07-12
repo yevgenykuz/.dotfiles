@@ -23,10 +23,10 @@ Ubuntu flavored OS installation - setup guidelines
 * Do not encrypt home directory
 * Set timezone to local timezone
 * Partitioning - use entire disk and set up LVM, set usage amount to 80%
-* Leave HTTP proxy blank
+* Do not set HTTP proxy (if asked)
 * Choose no automatic updates (if installing Ubuntu server)
 * Software selection: standard system utilities, OpenSSH server (if installing Ubuntu server)
-* Install GRUB boot loader
+* Install GRUB boot loader (if asked)
 
 Static IP configuration
 -----------------------
@@ -86,6 +86,7 @@ Run install.sh
 .. code-block:: bash
 
     bash ~/.dotfiles/install.sh
+    # this script may take some time, resulting in multiple requests for sudo password
 
 Manual package installation and configuration
 =============================================
@@ -126,6 +127,10 @@ Install applets (System Settings -> Applets)
 * Multi-Core System Monitor
 * Redshift
 * Spices Update
+
+Further manual steps
+--------------------
+* Complete Linux Mint system report tasks
 
 Appendix: SSH and GPG keys
 ==========================
