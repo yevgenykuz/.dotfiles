@@ -15,8 +15,8 @@ Initial setup and configuration
 Initial configuration
 =====================
 
-Ubuntu flavored OS installation - setup guidelines
---------------------------------------------------
+Linux Mint OS installation - setup guidelines
+---------------------------------------------
 
 * Set locale, keyboard, and all language settings to English(US)
 * Set hostname and user information
@@ -24,8 +24,6 @@ Ubuntu flavored OS installation - setup guidelines
 * Set timezone to local timezone
 * Partitioning - use entire disk and set up LVM, set usage amount to 80%
 * Do not set HTTP proxy (if asked)
-* Choose no automatic updates (if installing Ubuntu server)
-* Software selection: standard system utilities, OpenSSH server (if installing Ubuntu server)
 * Install GRUB boot loader (if asked)
 
 Static IP configuration
