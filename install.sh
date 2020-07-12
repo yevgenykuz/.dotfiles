@@ -21,7 +21,7 @@ function install_logitech_software() {
 }
 
 # Accept EULA for Microsoft fonts before installation:
-function accept_eula() {
+function accept_ms_eula() {
   echo msttcorefonts msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
 }
 
@@ -209,6 +209,7 @@ umask g-w,o-w
 
 install_corsair_drivers
 install_logitech_software
+accept_ms_eula
 install_packages
 update_bat_command
 install_tmux_pm
