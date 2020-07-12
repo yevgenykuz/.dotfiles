@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Use this script to automate initial environment setup.
-# It is written for an Ubuntu flavored Linux system, and was test with Linux Mint 19.3.
+# It is written for an Ubuntu flavored Linux system, and was tested with Linux Mint 20.
 
 # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
 set -xueE -o pipefail
@@ -94,7 +94,7 @@ function install_java() {
 
 # Install go:
 function install_go() {
-  local v=1.14.2
+  local v=1.14.4
   ! command -v go &>/dev/null || [[ "$(go --version)" != *" $v" ]] || return 0
   echo "Installing Go $v"
   dwfile="go${v}.linux-amd64.tar.gz"
