@@ -90,7 +90,7 @@ alias ll='ls -lAh --group-directories-first'
 alias lo='ls -lAtrh'
 alias shutdown='sudo shutdown -h now'
 alias python='python3'
-alias pip=pip3
+alias pip='pip3'
 alias tree='tree -aC -I .git --dirsfirst'
 alias diff='diff --color=auto'
 alias c='xclip'
