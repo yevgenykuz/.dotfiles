@@ -31,7 +31,7 @@ function install_packages() {
   local packages=(
     curl wget
     git zsh gnome-terminal
-    vim nano man
+    vim nano man feh
     build-essential zlib1g-dev x11-utils xz-utils
     zip unzip unrar p7zip-full p7zip-rar gzip pigz bzip2
     python3-pip python3-dev python3-venv
