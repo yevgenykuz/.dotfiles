@@ -40,7 +40,7 @@ function install_packages() {
     ruby-full
     xclip traceroute
     silversearcher-ag ack gawk
-    htop tree
+    htop tree blueman
     dos2unix jq thefuck
     ascii screenfetch
     dconf-cli dconf-editor
@@ -48,6 +48,10 @@ function install_packages() {
     flashplugin-installer ttf-mscorefonts-installer
     docker.io awscli ec2-ami-tools
     fd-find bat fzf ripgrep
+  )
+
+  local packages_to_remove=(
+    blueberry
   )
 
   sudo apt-get update
@@ -58,6 +62,7 @@ function install_packages() {
   To fix broken packages run:\n\
   sudo apt -f install\n\
   Then, run the install.sh script again"
+  sudo apt-get remove -y "${packages_to_remove[@]}"
   sudo apt-get autoremove -y
   sudo apt-get autoclean
 }
