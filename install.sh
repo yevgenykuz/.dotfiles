@@ -46,7 +46,7 @@ function install_packages() {
     dconf-cli dconf-editor
     tmux freerdp2-x11 dbus-x11
     flashplugin-installer ttf-mscorefonts-installer
-    docker.io awscli
+    docker.io awscli ec2-ami-tools
     fd-find bat fzf ripgrep
   )
 
