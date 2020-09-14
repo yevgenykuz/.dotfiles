@@ -77,7 +77,6 @@ plugins=(
   gradle
   nmap
   systemadmin
-  timer
   sublime
   pip
   golang
