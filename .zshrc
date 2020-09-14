@@ -76,7 +76,6 @@ plugins=(
   mvn
   gradle
   nmap
-  systemadmin
   sublime
   pip
   golang
