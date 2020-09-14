@@ -71,8 +71,8 @@ Sync with dotfiles (this) repo
     # otherwise, use https:
     git clone https://github.com/yevgenykuz/.dotfiles.git ~/.dotfiles
     # make sure all .sh files have execute permission. If not, give it with:
-    chmod +x ~/.dotfiles/install.sh
-    chmod +x ~/.dotfiles/scripts/*.sh
+    chmod +x ~/.dotfiles/*.sh
+    chmod +x -R ~/.dotfiles/scripts
     # after logging into Mozilla account in Firefox and syncing, move all items from ~/.dotfiles/.mozilla/firefox/RANDOM_PROFILE_STRING to generated profile folder in ~/.mozilla/firefox
 
 Automatic package installation and configuration
