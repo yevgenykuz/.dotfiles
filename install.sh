@@ -8,6 +8,7 @@ set -ueE -o pipefail
 
 # Install Corsair unofficial driver (https://github.com/ckb-next/ckb-next):
 function install_corsair_drivers() {
+  echo "-----> Install Corsair unofficial driver"
   sudo add-apt-repository -y ppa:tatokis/ckb-next
   sudo apt-get update
   sudo apt install -y ckb-next
@@ -15,6 +16,7 @@ function install_corsair_drivers() {
 
 # Install Logitech unofficial management software (https://github.com/pwr-Solaar/Solaar):
 function install_logitech_software() {
+  echo "-----> Install Logitech unofficial management software"
   sudo add-apt-repository -y ppa:solaar-unifying/stable
   sudo apt-get update
   sudo apt install -y solaar
@@ -22,12 +24,13 @@ function install_logitech_software() {
 
 # Accept EULA for Microsoft fonts before installation:
 function accept_ms_eula() {
+  echo "-----> Accept EULA for Microsoft fonts"
   echo msttcorefonts msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
 }
 
 # Install Debian packages:
 function install_packages() {
-  echo "Installing packages with apt"
+  echo "-----> Install packages with apt"
   local packages=(
     curl wget
     git zsh gnome-terminal
@@ -69,6 +72,7 @@ function install_packages() {
 
 # Change batcat command to bat:
 function update_bat_command() {
+  echo "-----> Install packages with apt"
   mkdir -p ~/.local/bin
   ln -sf /usr/bin/batcat ~/.local/bin/bat
 }
@@ -76,7 +80,7 @@ function update_bat_command() {
 # Install tmux plugin manager:
 function install_tmux_pm() {
   ! command -v tmux &>/dev/null || return 0
-  echo "Installing latest tmux plugin manager"
+  echo "-----> Install tmux plugin manager"
   TMUX_DIR=${HOME}/.tmux
   rm -rf "${TMUX_DIR}/plugins/tpm" 2>/dev/null || true
   git clone --depth=1 https://github.com/tmux-plugins/tpm ${TMUX_DIR}/plugins/tpm
@@ -84,13 +88,13 @@ function install_tmux_pm() {
 
 # Install RUBY gems for Jekyll for personal github.io page:
 function install_ruby_gems_for_jekyll() {
-  echo "Installing RUBY gems for Jekyll for personal github.io page"
+  echo "-----> Install RUBY gems for Jekyll"
   sudo gem install jekyll bundler || echo "Failed installing RUBY gems" && return 
 }
 
 # Load dconf configuration files:
 function load_dconf_files() {
-  echo "Loading dconf configuration files"
+  echo "-----> Load dconf configuration files"
   # load key bindings:
   dconf load /org/cinnamon/desktop/keybindings/ < $HOME/.dotfiles/dconf-files/dconf-keybindings-settings.dconf
   # load gnome-terminal profile:
@@ -101,6 +105,7 @@ function load_dconf_files() {
 
 # Install SDKMAN and Java JDK and build tools (must be run from zsh):
 function install_java() {
+  echo "-----> Install SDKMAN and Java JDK and build tools"
   zsh $HOME/.dotfiles/sdkman.sh
 }
 
@@ -108,7 +113,7 @@ function install_java() {
 function install_go() {
   local v=1.15.2
   ! command -v go &>/dev/null || [[ "$(go version)" != *"$v"* ]] || return 0
-  echo "Installing Go $v"
+  echo "-----> Install Golang $v"
   dwfile="go${v}.linux-amd64.tar.gz"
   curl -O "https://storage.googleapis.com/golang/${dwfile}"
   sudo rm -rf /usr/local/go
@@ -118,7 +123,7 @@ function install_go() {
 
 # Edit desktop shortcuts to start GNOME terminal and VIM maximized:
 function edit_gnome_terminal_shortcuts() {
-  echo "Editing gnome-terminal shortcuts"
+  echo "-----> Edit gnome-terminal shortcuts"
   mkdir -p $HOME/.local/share/applications
   # Edit system menu shortcut:
   cp /usr/share/applications/org.gnome.Terminal.desktop $HOME/.local/share/applications/gnome-terminal.desktop
@@ -134,7 +139,7 @@ function edit_gnome_terminal_shortcuts() {
 
 # Beautify ZSH:
 function beautify_shell() {
-  echo "Beautifying shell"
+  echo "-----> Beautify shell"
   # Get shell font
   mkdir -p $HOME/.local/share/fonts
   cd $HOME/.local/share/fonts
@@ -150,7 +155,7 @@ function beautify_shell() {
 
 # Copy custom fonts:
 function copy_custom_fonts() {
-  echo "Copying custom fonts"
+  echo "-----> Copy custom fonts"
   mkdir -p $HOME/.local/share/fonts
   yes | cp -fa $HOME/.dotfiles/.local/share/fonts/. $HOME/.local/share/fonts && echo "Done"
   sudo fc-cache -f -v
@@ -158,13 +163,13 @@ function copy_custom_fonts() {
 
 # Set ZSH as default shell:
 function change_shell() {
-  echo "Changing shell to zsh"
+  echo "-----> Change shell to zsh"
   chsh -s $(which zsh) || echo "Failed changing shell" && return 
 }
 
 # Link $HOME dotfiles to .dotfiles folder:
 function create_links() {
-  echo "Creating symlinks"
+  echo "-----> Create symlinks"
   declare -A src2dest
   src2dest[".bashrc"]="$HOME/.bashrc"
   src2dest[".zshrc"]="$HOME/.zshrc"
@@ -180,19 +185,19 @@ function create_links() {
   for key in "${!src2dest[@]}"; do
     [ -L "${src2dest[$key]}" ] && rm "${src2dest[$key]}"
     if [ -f "${src2dest[$key]}" ] || [ -d "${src2dest[$key]}" ]; then
-      echo "Backing up original file at ${src2dest[$key]}"
+      echo "Backing up original file: ${src2dest[$key]}"
       temp_dir=$(dirname ${src2dest[$key]})
       mkdir -p "$backup_dir/$temp_dir"
       mv -f "${src2dest[$key]}" "$backup_dir/$temp_dir"
     fi
     ln -sr "$dir/$key" "${src2dest[$key]}" || echo "Can not create symlink. File still exists at ${src2dest[$key]}"
   done
-  rmdir $backup_dir || echo Old dotfiles where backed up to $backup_dir
+  rmdir $backup_dir || echo "Old dotfiles where backed up to $backup_dir"
 }
 
 # Run vim :PlugInstall to install vim plugins:
 function install_vim_plugins() {
-  echo "Installing VIM plugins"
+  echo "-----> Install VIM plugins"
   vim +PlugInstall +qall!
 }
 
