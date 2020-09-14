@@ -181,6 +181,7 @@ function create_links() {
   
   dir=$(dirname "$0")
   backup_dir=$HOME/.dotfiles_backup
+  rm -rf $backup_dir
   mkdir -p $backup_dir
   for key in "${!src2dest[@]}"; do
     [ -L "${src2dest[$key]}" ] && rm "${src2dest[$key]}"
