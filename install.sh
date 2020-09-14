@@ -61,7 +61,7 @@ function install_packages() {
   sudo dpkg -i --force-overwrite PROBLEMATIC_PACKAGE_FROM_ERROR_MESSAGE\n\
   To fix broken packages run:\n\
   sudo apt -f install\n\
-  Then, run the install.sh script again"
+  Then, run the install.sh script again" && return 1
   sudo apt-get remove -y "${packages_to_remove[@]}"
   sudo apt-get autoremove -y
   sudo apt-get autoclean
