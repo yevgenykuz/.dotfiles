@@ -142,8 +142,7 @@ function beautify_shell() {
   echo "-----> Beautify shell"
   # Get shell font
   mkdir -p $HOME/.local/share/fonts
-  cd $HOME/.local/share/fonts
-  curl -fLo "Sauce Code Pro Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete.ttf?raw=true
+  curl -fLo "$HOME/.local/share/fonts/Sauce Code Pro Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete.ttf?raw=true
   # Install oh-my-zsh
   [ ! -d "$HOME/.oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || true
   # Install Zsh syntax highlighting
