@@ -4,7 +4,7 @@
 # It is written for an Ubuntu flavored Linux system, and was tested with Linux Mint 20.04.
 
 # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
-set -xueE -o pipefail
+set -ueE -o pipefail
 
 # Install Corsair unofficial driver (https://github.com/ckb-next/ckb-next):
 function install_corsair_drivers() {
