@@ -107,7 +107,7 @@ function install_java() {
 # Install go:
 function install_go() {
   local v=1.15.2
-  ! command -v go &>/dev/null || [[ "$(go --version)" != *" $v" ]] || return 0
+  ! command -v go &>/dev/null || [[ "$(go version)" != *"$v"* ]] || return 0
   echo "Installing Go $v"
   dwfile="go${v}.linux-amd64.tar.gz"
   curl -O "https://storage.googleapis.com/golang/${dwfile}"
