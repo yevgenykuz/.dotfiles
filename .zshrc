@@ -27,9 +27,6 @@ export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
 export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 
-# Set fzf installation directory path
-export FZF_BASE=$HOME/.fzf
-
 # zsh options:
 setopt AUTO_CD  # Perform cd <command> if command is a directory name and not an actual command
 setopt NOMATCH  # Print an error if a pattern has no matches
