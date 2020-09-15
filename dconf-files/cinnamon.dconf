@@ -1,0 +1,198 @@
+[/]
+alttab-switcher-delay=100
+applet-cache-updated=1600591453
+desklet-cache-updated=1596307260
+desktop-effects=false
+desktop-effects-close-effect='traditional'
+desktop-effects-close-time=120
+desktop-effects-close-transition='easeOutQuad'
+desktop-effects-map-effect='traditional'
+desktop-effects-map-time=100
+desktop-effects-map-transition='easeOutQuad'
+desktop-effects-maximize-effect='none'
+desktop-effects-maximize-time=100
+desktop-effects-maximize-transition='easeInExpo'
+desktop-effects-minimize-effect='traditional'
+desktop-effects-minimize-time=160
+desktop-effects-minimize-transition='easeInQuad'
+desktop-effects-on-dialogs=false
+desktop-effects-on-menus=false
+desktop-effects-style='cinnamon'
+desktop-effects-tile-effect='none'
+desktop-effects-tile-time=100
+desktop-effects-tile-transition='easeInQuad'
+desktop-effects-unmaximize-effect='none'
+desktop-effects-unmaximize-time=100
+desktop-effects-unmaximize-transition='easeNone'
+enable-indicators=true
+enabled-applets=['panel1:left:1:menu@cinnamon.org:1', 'panel1:right:2:notifications@cinnamon.org:6', 'panel1:right:5:removable-drives@cinnamon.org:7', 'panel1:right:9:network@cinnamon.org:9', 'panel1:right:12:calendar@cinnamon.org:12', 'panel1:right:8:sound@cinnamon.org:13', 'panel1:right:3:multicore-sys-monitor@ccadeptic23:18', 'panel1:right:13:trash@cinnamon.org:20', 'panel1:right:11:weather@mockturtl:24', 'panel1:left:2:grouped-window-list@cinnamon.org:25', 'panel1:right:4:systray@cinnamon.org:31', 'panel1:right:10:keyboard@cinnamon.org:40', 'panel1:right:7:xapp-status@cinnamon.org:41', 'panel1:right:1:SpicesUpdate@claudiux:43', 'panel1:right:6:qredshift@quintao:45']
+enabled-desklets=@as []
+enabled-extensions=['!transparent-panels@germanfr']
+extension-cache-updated=1600591453
+favorite-apps=['cinnamon-settings.desktop', 'mintinstall.desktop', 'org.gnome.Calculator.desktop']
+hotcorner-layout=['expo:false:0', 'scale:false:0', 'scale:false:0', 'desktop:false:0']
+next-applet-id=46
+panel-edit-mode=false
+panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
+panels-autohide=['1:false']
+panels-enabled=['1:0:top']
+panels-height=['1:24']
+workspace-osd-duration=400
+workspace-osd-x=50
+workspace-osd-y=50
+
+[cinnamon-session]
+quit-delay-toggle=true
+quit-time-delay=60
+
+[desktop/a11y/applications]
+screen-keyboard-enabled=true
+screen-reader-enabled=false
+
+[desktop/a11y/keyboard]
+bouncekeys-delay=300
+mousekeys-accel-time=300
+mousekeys-init-delay=300
+mousekeys-max-speed=10
+slowkeys-delay=300
+
+[desktop/a11y/mouse]
+dwell-click-enabled=false
+dwell-threshold=10
+dwell-time=1.2
+secondary-click-enabled=false
+secondary-click-time=1.2
+
+[desktop/applications/calculator]
+exec='gnome-calculator'
+
+[desktop/applications/terminal]
+exec='gnome-terminal --window --maximize'
+
+[desktop/interface]
+clock-show-date=false
+clock-show-seconds=false
+cursor-blink-time=1200
+cursor-size=24
+cursor-theme='DMZ-White'
+first-day-of-week=0
+gtk-theme='Mint-Y-Dark'
+icon-theme='Mint-Y-Dark'
+scaling-factor=uint32 0
+text-scaling-factor=1.3000000000000003
+toolkit-accessibility=true
+
+[desktop/keybindings]
+custom-list=['custom0', 'custom1', 'custom2', 'custom3', 'custom4']
+looking-glass-keybinding=['<Shift><Super>l']
+
+[desktop/keybindings/custom-keybindings/custom0]
+binding=['<Primary><Shift>q']
+command='xkill'
+name='xkill'
+
+[desktop/keybindings/custom-keybindings/custom1]
+binding=['AudioPlay']
+command='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause'
+name='spotify play-pause'
+
+[desktop/keybindings/custom-keybindings/custom2]
+binding=['AudioStop']
+command='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop'
+name='spotify stop'
+
+[desktop/keybindings/custom-keybindings/custom3]
+binding=['AudioNext']
+command='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next'
+name='spotify next'
+
+[desktop/keybindings/custom-keybindings/custom4]
+binding=['AudioPrev']
+command='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous'
+name='spotify previous'
+
+[desktop/keybindings/media-keys]
+next=@as []
+play=@as []
+previous=@as []
+screensaver=['<Super>l', 'XF86ScreenSaver']
+stop=@as []
+terminal=['<Primary><Super>t']
+www=['XF86WWW', '<Super>w']
+
+[desktop/keybindings/wm]
+begin-move=@as []
+show-desktop=['<Super>d']
+switch-group=['<Alt>grave']
+switch-to-workspace-left=['<Primary><Shift>Left']
+switch-to-workspace-right=['<Primary><Shift>Right']
+
+[desktop/media-handling]
+autorun-never=false
+autorun-x-content-ignore=['x-content/image-dcf']
+autorun-x-content-open-folder=['x-content/bootable-media']
+autorun-x-content-start-app=['x-content/unix-software', 'x-content/bootable-media', 'x-content/audio-player', 'x-content/image-dcf']
+
+[desktop/notifications]
+remove-old=true
+
+[desktop/privacy]
+recent-files-max-age=30
+
+[desktop/screensaver]
+layout-group=0
+lock-delay=uint32 15
+lock-enabled=true
+screensaver-name=''
+xscreensaver-hack='xspirograph'
+
+[desktop/session]
+idle-delay=uint32 0
+
+[desktop/sound]
+event-sounds=false
+
+[desktop/wm/preferences]
+button-layout=':minimize,maximize,close'
+min-window-opacity=30
+theme='Mint-Y-Dark'
+
+[muffin]
+resize-threshold=24
+tile-hud-threshold=25
+
+[settings-daemon/peripherals/keyboard]
+delay=uint32 500
+numlock-state='on'
+repeat-interval=uint32 30
+
+[settings-daemon/peripherals/mouse]
+double-click=400
+drag-threshold=8
+motion-threshold=1
+
+[settings-daemon/peripherals/touchpad]
+motion-threshold=1
+
+[settings-daemon/peripherals/wacom/ef635a010d284bc38d762d2b9f0e65ac-usb:056a:0374]
+area=[-1, -1, -1, -1]
+display=['DEL', '41056', '843137356']
+is-absolute=true
+rotation='none'
+
+[settings-daemon/peripherals/wacom/ef635a010d284bc38d762d2b9f0e65ac-usb:056a:0374/0xfffff]
+buttonmapping=[1, 2, 3, 0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+pressurecurve=[0, 75, 25, 100]
+
+[settings-daemon/plugins/xsettings]
+buttons-have-icons=false
+
+[sounds]
+plug-enabled=false
+tile-enabled=false
+unplug-enabled=false
+
+[theme]
+name='Linux Mint'
+symbolic-relative-size=0.67000000000000004
+theme-cache-updated=1596307260

@@ -94,16 +94,16 @@ Install from official sites
 * IntelliJ
 * PyCharm
 
-Install extensions (System Settings -> Extensions)
---------------------------------------------------
-* Transparent panels
 
-Install applets (System Settings -> Applets)
---------------------------------------------
-* Weather
-* Multi-Core System Monitor
-* Redshift
-* Spices Update
+Manual system settings configuration
+------------------------------------
+The following can be found under the relevant category in "System Settings".
+
+* [Keyboard] Add keyboard layouts and set switching shortcut to "Alt+Shift"
+* [Preferred Applications] Configure preferred applications
+* [Applets/Extensions] Configure applets and extensions
+* [Desktop] Remove "Computer" and "Home" shortcuts from desktop
+
 
 Misc.
 -----

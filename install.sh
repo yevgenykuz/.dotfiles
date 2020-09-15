@@ -48,7 +48,8 @@ function install_packages() {
     ascii screenfetch
     dconf-cli dconf-editor
     tmux freerdp2-x11 dbus-x11
-    flashplugin-installer ttf-mscorefonts-installer
+    flashplugin-installer
+    ttf-mscorefonts-installer fonts-symbola
     docker.io awscli ec2-ami-tools
     fd-find bat fzf ripgrep
     gparted deluge bleachbit filezilla
@@ -92,21 +93,60 @@ function install_tmux_pm() {
   git clone --depth=1 https://github.com/tmux-plugins/tpm ${TMUX_DIR}/plugins/tpm
 }
 
-# Install RUBY gems for Jekyll for personal github.io page:
-function install_ruby_gems_for_jekyll() {
-  echo "-----> Install RUBY gems for Jekyll"
-  sudo gem install jekyll bundler || echo "Failed installing RUBY gems" && return 
+# Install custom applets and extensions:
+function install_applets_and_extensions() {
+  echo "-----> Install custom applets and extensions"
+  local applets=(
+    multicore-sys-monitor@ccadeptic23 qredshift@quintao SpicesUpdate@claudiux weather@mockturtl
+  )
+  local extensions=(
+    transparent-panels@germanfr
+  )
+  # applets - download, extract and delete zip:
+  pushd ${HOME}/.local/share/cinnamon/applets
+  for i in "${applets[@]}"
+  do
+    [ ! -d "$i" ] && wget "https://cinnamon-spices.linuxmint.com/files/applets/$i.zip" && unzip -q "$i.zip" && rm -f "$i.zip" || true
+  done
+  popd
+  # extensions - download, extract and delete zip:
+  pushd ${HOME}/.local/share/cinnamon/extensions
+  for i in "${extensions[@]}"
+  do
+    [ ! -d "$i" ] && wget "https://cinnamon-spices.linuxmint.com/files/extensions/$i.zip" && unzip -q "$i.zip" && rm -f "$i.zip" || true
+  done
+  popd
 }
 
 # Load dconf configuration files:
 function load_dconf_files() {
   echo "-----> Load dconf configuration files"
-  # load key bindings:
-  dconf load /org/cinnamon/desktop/keybindings/ < $HOME/.dotfiles/dconf-files/dconf-keybindings-settings.dconf
   # load gnome-terminal profile:
   dconf load /org/gnome/terminal/legacy/profiles:/ < $HOME/.dotfiles/dconf-files/gnome-terminal-profiles.dconf
-  # load cinnamon terminal launcher configuration:
-  dconf load /org/cinnamon/desktop/applications/terminal/ < $HOME/.dotfiles/dconf-files/cinnamon-gnome-terminal-launcher.dconf
+  # load cinnamon configuration (key-bindings, panels, enabled applets, terminal launcher configuration):
+  dconf load /org/cinnamon/ < $HOME/.dotfiles/dconf-files/cinnamon.dconf
+}
+
+# Edit desktop shortcuts to start GNOME terminal and VIM maximized:
+function edit_gnome_terminal_shortcuts() {
+  echo "-----> Edit gnome-terminal shortcuts"
+  mkdir -p $HOME/.local/share/applications
+  # Edit system menu shortcut:
+  cp /usr/share/applications/org.gnome.Terminal.desktop $HOME/.local/share/applications/gnome-terminal.desktop
+  sed -i 's/Exec=gnome-terminal/Exec=gnome-terminal --window --maximize/g' $HOME/.local/share/applications/gnome-terminal.desktop
+  # Edit quick-launch panel shortcut:
+  cp /usr/share/applications/org.gnome.Terminal.desktop $HOME/.local/share/applications/org.gnome.Terminal.desktop
+  perl -i -0777 -pe 's/Name=New Window\nExec=gnome-terminal --window/Name=New Terminal\nExec=gnome-terminal --window --maximize/g' $HOME/.local/share/applications/org.gnome.Terminal.desktop
+  perl -i -0777 -pe 's/X-Ubuntu-Gettext-Domain=gnome-terminal/X-Ubuntu-Gettext-Domain=gnome-terminal\nNoDisplay=true\nTerminal=false/g' $HOME/.local/share/applications/org.gnome.Terminal.desktop
+  # Edit VIM shortcut:
+  cp /usr/share/applications/vim.desktop $HOME/.local/share/applications/
+  perl -i -0777 -pe "s/Exec=vim %F\nTerminal=true/Exec=gnome-terminal --window --maximize -e 'vim %F'\nTerminal=false/g" $HOME/.local/share/applications/vim.desktop
+}
+
+# Install RUBY gems for Jekyll for personal github.io page:
+function install_ruby_gems_for_jekyll() {
+  echo "-----> Install RUBY gems for Jekyll"
+  sudo gem install jekyll bundler || echo "Failed installing RUBY gems" && return 
 }
 
 # Install SDKMAN and Java JDK and build tools (must be run from zsh):
@@ -125,22 +165,6 @@ function install_go() {
   sudo rm -rf /usr/local/go
   sudo tar -C /usr/local -xzf $dwfile
   rm $dwfile
-}
-
-# Edit desktop shortcuts to start GNOME terminal and VIM maximized:
-function edit_gnome_terminal_shortcuts() {
-  echo "-----> Edit gnome-terminal shortcuts"
-  mkdir -p $HOME/.local/share/applications
-  # Edit system menu shortcut:
-  cp /usr/share/applications/org.gnome.Terminal.desktop $HOME/.local/share/applications/gnome-terminal.desktop
-  sed -i 's/Exec=gnome-terminal/Exec=gnome-terminal --window --maximize/g' $HOME/.local/share/applications/gnome-terminal.desktop
-  # Edit quick-launch panel shortcut:
-  cp /usr/share/applications/org.gnome.Terminal.desktop $HOME/.local/share/applications/org.gnome.Terminal.desktop
-  perl -i -0777 -pe 's/Name=New Window\nExec=gnome-terminal --window/Name=New Terminal\nExec=gnome-terminal --window --maximize/g' $HOME/.local/share/applications/org.gnome.Terminal.desktop
-  perl -i -0777 -pe 's/X-Ubuntu-Gettext-Domain=gnome-terminal/X-Ubuntu-Gettext-Domain=gnome-terminal\nNoDisplay=true\nTerminal=false/g' $HOME/.local/share/applications/org.gnome.Terminal.desktop
-  # Edit VIM shortcut:
-  cp /usr/share/applications/vim.desktop $HOME/.local/share/applications/
-  perl -i -0777 -pe "s/Exec=vim %F\nTerminal=true/Exec=gnome-terminal --window --maximize -e 'vim %F'\nTerminal=false/g" $HOME/.local/share/applications/vim.desktop
 }
 
 # Beautify ZSH:
@@ -231,11 +255,12 @@ accept_ms_eula
 install_packages
 update_bat_command
 install_tmux_pm
+install_applets_and_extensions
+load_dconf_files
+edit_gnome_terminal_shortcuts
 install_ruby_gems_for_jekyll
 install_java
 install_go
-load_dconf_files
-edit_gnome_terminal_shortcuts
 beautify_shell
 copy_custom_fonts
 change_shell
