@@ -51,20 +51,26 @@ function install_packages() {
     flashplugin-installer ttf-mscorefonts-installer
     docker.io awscli ec2-ami-tools
     fd-find bat fzf ripgrep
+    gparted deluge bleachbit filezilla
+    remmina remmina-plugin-rdp
+    spotify-client vlc
+    mypaint gimp-plugin-registry
+    virtualbox sublime-text
+    keepassxc
   )
 
   local packages_to_remove=(
-    blueberry
+    blueberry rhythmbox transmission-gtk transmission-common
   )
 
   sudo apt-get update
   sudo bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::options::=--force-confdef -o DPkg::options::=--force-confold upgrade -y'
   sudo apt-get upgrade -y
-  sudo apt-get install -y "${packages[@]}" || echo -e " Try cleaning dpkg cache:\n\
+  sudo apt-get install -y "${packages[@]}" || (echo -e " Try cleaning dpkg cache:\n\
   sudo dpkg -i --force-overwrite PROBLEMATIC_PACKAGE_FROM_ERROR_MESSAGE\n\
   To fix broken packages run:\n\
   sudo apt -f install\n\
-  Then, run the install.sh script again" && return 1
+  Then, run the install.sh script again" && return 1)
   sudo apt-get remove -y "${packages_to_remove[@]}"
   sudo apt-get autoremove -y
   sudo apt-get autoclean

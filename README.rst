@@ -89,31 +89,10 @@ Run install.sh
 Manual package installation and configuration
 =============================================
 
-Install from "Software Manager"
--------------------------------
-* Gparted
-* Spotify
-* Deluge
-* Bleachbit
-* Virutalbox
-* Keepassxc (NOT flatpack edition)
-* Filezilla
-* Sublime
-* VLC
-* Gimp-plugin-registry
-* Remmina
-* Remmina-plugin-rdp
-* MyPaint
-
 Install from official sites
 ---------------------------
 * IntelliJ
 * PyCharm
-
-Remove
-------
-* Transmission-gtk
-* Rhytmbox
 
 Install extensions (System Settings -> Extensions)
 --------------------------------------------------
@@ -126,8 +105,8 @@ Install applets (System Settings -> Applets)
 * Redshift
 * Spices Update
 
-Further manual steps
---------------------
+Misc.
+-----
 * Complete Linux Mint system report tasks
 
 Appendix: SSH and GPG keys
