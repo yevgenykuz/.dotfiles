@@ -77,9 +77,45 @@ function install_packages() {
   sudo apt-get autoclean
 }
 
+# Install Debian packages of WSL:
+function install_packages_in_wsl() {
+  echo "-----> Install packages with apt in WSL"
+  local packages=(
+    curl wget
+    git zsh gnome-terminal
+    vim nano man feh
+    build-essential zlib1g-dev x11-utils xz-utils
+    zip unzip unrar p7zip-full p7zip-rar gzip pigz bzip2
+    python3-pip python3-dev python3-venv
+    pandoc python3-docutils rst2pdf
+    g++ clang cmake
+    ruby-full
+    xclip traceroute
+    silversearcher-ag ack gawk
+    htop tree
+    dos2unix jq thefuck
+    ascii screenfetch
+    dconf-cli
+    tmux dbus-x11
+    awscli ec2-ami-tools
+    fd-find bat fzf ripgrep
+  )
+
+  sudo apt-get update
+  sudo bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::options::=--force-confdef -o DPkg::options::=--force-confold upgrade -y'
+  sudo apt-get upgrade -y
+  sudo apt-get install -y "${packages[@]}" || (echo -e " Try cleaning dpkg cache:\n\
+  sudo dpkg -i --force-overwrite PROBLEMATIC_PACKAGE_FROM_ERROR_MESSAGE\n\
+  To fix broken packages run:\n\
+  sudo apt -f install\n\
+  Then, run the install.sh script again" && return 1)
+  sudo apt-get autoremove -y
+  sudo apt-get autoclean
+}
+
 # Change batcat command to bat:
 function update_bat_command() {
-  echo "-----> Install packages with apt"
+  echo "-----> Update bat command"
   mkdir -p ~/.local/bin
   ln -sf /usr/bin/batcat ~/.local/bin/bat
 }
@@ -247,17 +283,31 @@ if [[ ! -f $HOME/.ssh/id_rsa || ! -f $HOME/.ssh/id_rsa.pub ]]; then
   exit 1
 fi
 
+# Check if WSL:
+if [[ "$(</proc/version)" == *[Mm]icrosoft* ]] 2>/dev/null; then
+  readonly WSL=1
+  echo "WSL detected"
+else
+  readonly WSL=0
+fi
+
 umask g-w,o-w
 
-install_corsair_drivers
-install_logitech_software
-accept_ms_eula
-install_packages
+if (( ! WSL )); then
+  install_corsair_drivers
+  install_logitech_software
+  accept_ms_eula
+  install_packages
+else
+  install_packages_in_wsl
+fi
 update_bat_command
 install_tmux_pm
-install_applets_and_extensions
-load_dconf_files
-edit_gnome_terminal_shortcuts
+if (( ! WSL )); then
+  install_applets_and_extensions
+  load_dconf_files
+  edit_gnome_terminal_shortcuts
+fi
 install_ruby_gems_for_jekyll
 install_java
 install_go
