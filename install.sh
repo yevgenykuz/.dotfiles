@@ -50,7 +50,8 @@ function install_packages() {
     tmux freerdp2-x11 dbus-x11
     flashplugin-installer
     ttf-mscorefonts-installer fonts-symbola
-    docker.io awscli ec2-ami-tools
+    docker.io docker-compose
+    awscli ec2-ami-tools
     fd-find bat fzf ripgrep
     gparted deluge bleachbit filezilla
     remmina remmina-plugin-rdp
