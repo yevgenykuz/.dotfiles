@@ -43,7 +43,7 @@ function install_packages() {
     ruby-full
     xclip traceroute
     silversearcher-ag ack gawk
-    htop tree blueman
+    htop tree hardinfo blueman
     dos2unix jq thefuck
     ascii screenfetch
     dconf-cli dconf-editor
@@ -93,7 +93,7 @@ function install_packages_in_wsl() {
     ruby-full
     xclip traceroute
     silversearcher-ag ack gawk
-    htop tree
+    htop tree hardinfo
     dos2unix jq thefuck
     ascii screenfetch
     dconf-cli
