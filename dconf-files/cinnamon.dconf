@@ -122,6 +122,7 @@ www=['XF86WWW', '<Super>w']
 
 [desktop/keybindings/wm]
 begin-move=@as []
+begin-resize=@as []
 show-desktop=['<Super>d']
 switch-group=['<Alt>grave']
 switch-to-workspace-left=['<Primary><Shift>Left']
