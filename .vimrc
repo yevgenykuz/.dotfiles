@@ -229,7 +229,6 @@ let g:UltiSnipsSnippetDirectories=['mysnippets', 'UltiSnips']
 
 " Spelling --------------------------------------------------------------------------------------------------------{{{
 set spell spelllang=en 													" Enable spell checking
-set spell spellfile=$HOME/.dotfiles/.vim/spell/en.utf-8.add
 hi clear SpellBad 														" Highlight spelling errors
 hi SpellBad cterm=underline
 hi SpellBad gui=undercurl

@@ -262,9 +262,15 @@ function create_links() {
   rmdir $backup_dir || echo "Old dotfiles where backed up to $backup_dir"
 }
 
+# Create vim undo directory for temporary vim files:
+function create_vim_undo_dir() {
+  echo "-----> Create vim undo directory"
+  mkdir -p "$HOME/.vim/undodir"
+}
+
 # Run vim :PlugInstall to install vim plugins:
 function install_vim_plugins() {
-  echo "-----> Install VIM plugins"
+  echo "-----> Install vim plugins"
   vim +PlugInstall +qall!
 }
 
@@ -316,6 +322,7 @@ beautify_shell
 copy_custom_fonts
 change_shell
 create_links
+create_vim_undo_dir
 install_vim_plugins
 
 echo "Success"
