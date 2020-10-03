@@ -130,37 +130,3 @@ autocmd BufReadPost *
 " Automatically remove trailing white spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
 "}}}
-
-
-
-" TBD --------------------------------------------------------------------------------------------------------------{{{
-" Faster redraw
-"set ttyfast
-" Make backspace work in insert mode
-"set backspace=indent,eol,start
-" Turn filetype detection, and relevant plugin and indent rules files loading
-"filetype plugin indent on
-" Show command in bottom bar
-"set showcmd
-" Highlight current line and line number (uncomment for latest vim version)
-" set cursorline
-" Highlight spelling errors
-"hi clear SpellBad
-"hi SpellBad cterm=underline
-"hi SpellBad gui=undercurl
-" Enable vim command completion
-"set wildmenu
-" Highlight matching parenthesis and jump to them
-"set showmatch
-" Custom keys
-" Toggle highlighting on/off for current search matches
-"noremap <F4> :set hlsearch! hlsearch?<CR>
-" Toggle pasting without changing indentation
-"set pastetoggle=<F5>
-" Fix indentation
-"map <F6> gg=G<C-o><C-o>
-" Create a new tab
-"map <F7> :tabe
-" Move to next tab
-"map <F8> :tabp<CR>
-"}}}
