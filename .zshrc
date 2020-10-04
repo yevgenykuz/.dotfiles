@@ -27,20 +27,34 @@ export GOROOT=/usr/local/go
 export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 
 # zsh options:
-setopt AUTO_CD  # Perform cd <command> if command is a directory name and not an actual command
-setopt NOMATCH  # Print an error if a pattern has no matches
-setopt NOTIFY   # Report background jobs status immediately
-setopt INC_APPEND_HISTORY   # Save commands to history list incrementally (and not when shell exists)
-setopt SHARE_HISTORY  # Share command history list between shells
-setopt HIST_EXPIRE_DUPS_FIRST   # Remove duplicates first from internal history list
-setopt HIST_IGNORE_DUPS   # Don't save duplicated commands to the history list
-setopt HIST_IGNORE_ALL_DUPS   # Remove older duplicates from the history list
-setopt HIST_FIND_NO_DUPS    # Ignore duplicates when searching in the history list
-setopt HIST_SAVE_NO_DUPS    # Don't write duplicates when saving history list
-setopt HIST_REDUCE_BLANKS   # Trim extra blanks from commands in the history list
-setopt HIST_VERIFY    # When selecting a line from history, load it to the buffer completely before execution
-setopt INTERACTIVE_COMMENTS   # Allow comments even in interactive shells
-setopt MAGIC_EQUAL_SUBST    # Assign multiple parameters, i.e, in "echo foo=~/bar:~/rod", replace both occurrences of ~
+# Perform cd <command> if command is a directory name and not an actual command
+setopt AUTO_CD
+# Print an error if a pattern has no matches
+setopt NOMATCH
+# Report background jobs status immediately
+setopt NOTIFY
+# Save commands to history list incrementally (and not when shell exists)
+setopt INC_APPEND_HISTORY
+# Share command history list between shells
+setopt SHARE_HISTORY
+# Remove duplicates first from internal history list
+setopt HIST_EXPIRE_DUPS_FIRST
+# Don't save duplicated commands to the history list
+setopt HIST_IGNORE_DUPS
+# Remove older duplicates from the history list
+setopt HIST_IGNORE_ALL_DUPS
+# Ignore duplicates when searching in the history list
+setopt HIST_FIND_NO_DUPS
+# Don't write duplicates when saving history list
+setopt HIST_SAVE_NO_DUPS
+# Trim extra blanks from commands in the history list
+setopt HIST_REDUCE_BLANKS
+# When selecting a line from history, load it to the buffer completely before execution
+setopt HIST_VERIFY
+# Allow comments even in interactive shells
+setopt INTERACTIVE_COMMENTS
+# Assign multiple parameters, i.e, in "echo foo=~/bar:~/rod", replace both occurrences of ~
+setopt MAGIC_EQUAL_SUBST
 
 HISTFILE="$HOME/.zsh_history"   # History file location
 HIST_STAMPS=mm/dd/yyyy    # History list time stamp format
@@ -111,11 +125,14 @@ alias findf='find . -type f -name'
 alias h='history'
 alias hgrep='fc -El 0 | grep'
 alias gdo='git diff @{upstream}'
-alias workrdp='xfreerdp /multimon /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls /audio-mode:1 +fonts -themes -wallpaper -clipboard'
-alias workrdpsm='xfreerdp /f /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls /audio-mode:1 +fonts -themes -wallpaper -clipboard'
+alias workrdp='xfreerdp /multimon /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls \
+/audio-mode:1 +fonts -themes -wallpaper -clipboard'
+alias workrdpsm='xfreerdp /f /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls \
+/audio-mode:1 +fonts -themes -wallpaper -clipboard'
 
 # Make zsh know about hosts already accessed by SSH
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts \
+'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # Open browser on urls
 if [[ -n "$BROWSER" ]]; then

@@ -25,7 +25,8 @@ function install_logitech_software() {
 # Accept EULA for Microsoft fonts before installation:
 function accept_ms_eula() {
   echo "-----> Accept EULA for Microsoft fonts"
-  echo msttcorefonts msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+  echo msttcorefonts msttcorefonts/accepted-mscorefonts-eula select true | \
+  sudo debconf-set-selections
 }
 
 # Install Debian packages:
@@ -66,7 +67,8 @@ function install_packages() {
   )
 
   sudo apt-get update
-  sudo bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::options::=--force-confdef -o DPkg::options::=--force-confold upgrade -y'
+  sudo bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::options::=--force-confdef \
+  -o DPkg::options::=--force-confold upgrade -y'
   sudo apt-get upgrade -y
   sudo apt-get install -y "${packages[@]}" || (echo -e " Try cleaning dpkg cache:\n\
   sudo dpkg -i --force-overwrite PROBLEMATIC_PACKAGE_FROM_ERROR_MESSAGE\n\
@@ -103,7 +105,8 @@ function install_packages_in_wsl() {
   )
 
   sudo apt-get update
-  sudo bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::options::=--force-confdef -o DPkg::options::=--force-confold upgrade -y'
+  sudo bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::options::=--force-confdef \
+  -o DPkg::options::=--force-confold upgrade -y'
   sudo apt-get upgrade -y
   sudo apt-get install -y "${packages[@]}" || (echo -e " Try cleaning dpkg cache:\n\
   sudo dpkg -i --force-overwrite PROBLEMATIC_PACKAGE_FROM_ERROR_MESSAGE\n\
@@ -134,14 +137,16 @@ function install_applets_and_extensions() {
   pushd ${HOME}/.local/share/cinnamon/applets
   for i in "${applets[@]}"
   do
-    [ ! -d "$i" ] && wget "https://cinnamon-spices.linuxmint.com/files/applets/$i.zip" && unzip -q "$i.zip" && rm -f "$i.zip" || true
+    [ ! -d "$i" ] && wget "https://cinnamon-spices.linuxmint.com/files/applets/$i.zip" && \
+    unzip -q "$i.zip" && rm -f "$i.zip" || true
   done
   popd
   # extensions - download, extract and delete zip:
   pushd ${HOME}/.local/share/cinnamon/extensions
   for i in "${extensions[@]}"
   do
-    [ ! -d "$i" ] && wget "https://cinnamon-spices.linuxmint.com/files/extensions/$i.zip" && unzip -q "$i.zip" && rm -f "$i.zip" || true
+    [ ! -d "$i" ] && wget "https://cinnamon-spices.linuxmint.com/files/extensions/$i.zip" && \
+    unzip -q "$i.zip" && rm -f "$i.zip" || true
   done
   popd
 }
@@ -150,8 +155,10 @@ function install_applets_and_extensions() {
 function load_dconf_files() {
   echo "-----> Load dconf configuration files"
   # load gnome-terminal profile:
-  dconf load /org/gnome/terminal/legacy/profiles:/ < $HOME/.dotfiles/dconf-files/gnome-terminal-profiles.dconf
-  # load cinnamon configuration (key-bindings, panels, enabled applets, terminal launcher configuration):
+  dconf load /org/gnome/terminal/legacy/profiles:/ < \
+  $HOME/.dotfiles/dconf-files/gnome-terminal-profiles.dconf
+  # load cinnamon configuration (key-bindings, panels, enabled applets, terminal launcher
+  # configuration):
   dconf load /org/cinnamon/ < $HOME/.dotfiles/dconf-files/cinnamon.dconf
 }
 
@@ -160,15 +167,23 @@ function edit_gnome_terminal_shortcuts() {
   echo "-----> Edit gnome-terminal shortcuts"
   mkdir -p $HOME/.local/share/applications
   # Edit system menu shortcut:
-  cp /usr/share/applications/org.gnome.Terminal.desktop $HOME/.local/share/applications/gnome-terminal.desktop
-  sed -i 's/Exec=gnome-terminal/Exec=gnome-terminal --window --maximize/g' $HOME/.local/share/applications/gnome-terminal.desktop
+  cp /usr/share/applications/org.gnome.Terminal.desktop \
+  $HOME/.local/share/applications/gnome-terminal.desktop
+  sed -i 's/Exec=gnome-terminal/Exec=gnome-terminal --window --maximize/g' \
+  $HOME/.local/share/applications/gnome-terminal.desktop
   # Edit quick-launch panel shortcut:
-  cp /usr/share/applications/org.gnome.Terminal.desktop $HOME/.local/share/applications/org.gnome.Terminal.desktop
-  perl -i -0777 -pe 's/Name=New Window\nExec=gnome-terminal --window/Name=New Terminal\nExec=gnome-terminal --window --maximize/g' $HOME/.local/share/applications/org.gnome.Terminal.desktop
-  perl -i -0777 -pe 's/X-Ubuntu-Gettext-Domain=gnome-terminal/X-Ubuntu-Gettext-Domain=gnome-terminal\nNoDisplay=true\nTerminal=false/g' $HOME/.local/share/applications/org.gnome.Terminal.desktop
+  cp /usr/share/applications/org.gnome.Terminal.desktop \
+  $HOME/.local/share/applications/org.gnome.Terminal.desktop
+  perl -i -0777 -pe 's/Name=New Window\nExec=gnome-terminal \
+  --window/Name=New Terminal\nExec=gnome-terminal --window --maximize/g' \
+  $HOME/.local/share/applications/org.gnome.Terminal.desktop
+  perl -i -0777 -pe 's/X-Ubuntu-Gettext-Domain=gnome-terminal/X-Ubuntu-Gettext-Domain=\
+  gnome-terminal\nNoDisplay=true\nTerminal=false/g' \
+  $HOME/.local/share/applications/org.gnome.Terminal.desktop
   # Edit VIM shortcut:
   cp /usr/share/applications/vim.desktop $HOME/.local/share/applications/
-  perl -i -0777 -pe "s/Exec=vim %F\nTerminal=true/Exec=gnome-terminal --window --maximize -e 'vim %F'\nTerminal=false/g" $HOME/.local/share/applications/vim.desktop
+  perl -i -0777 -pe "s/Exec=vim %F\nTerminal=true/Exec=gnome-terminal --window --maximize -e \
+  'vim %F'\nTerminal=false/g" $HOME/.local/share/applications/vim.desktop
 }
 
 # Install RUBY gems for Jekyll for personal github.io page:
@@ -200,14 +215,20 @@ function beautify_shell() {
   echo "-----> Beautify shell"
   # Get shell font
   mkdir -p $HOME/.local/share/fonts
-  curl -fLo "$HOME/.local/share/fonts/Sauce Code Pro Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete.ttf?raw=true
+  curl -fLo "$HOME/.local/share/fonts/Sauce Code Pro Nerd Font Complete.ttf" \
+  https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete\
+  /Sauce%20Code%20Pro%20Nerd%20Font%20Complete.ttf?raw=true
   # Install oh-my-zsh
-  [ ! -d "$HOME/.oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || true
+  [ ! -d "$HOME/.oh-my-zsh" ] && \
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+  "" --unattended || true
   # Install Zsh syntax highlighting
   rm -rf $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting 2>/dev/null || true
-  git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting
+  git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git \
+  $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting
   # Install powerlevel10k theme
-  [ ! -d "$HOME/.oh-my-zsh/themes/powerlevel10k" ] && git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/themes/powerlevel10k || true
+  [ ! -d "$HOME/.oh-my-zsh/themes/powerlevel10k" ] && git clone --depth=1 \
+  https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/themes/powerlevel10k || true
 }
 
 # Copy custom fonts:
@@ -248,7 +269,8 @@ function create_links() {
       mkdir -p "$backup_dir/$temp_dir"
       mv -f "${src2dest[$key]}" "$backup_dir/$temp_dir"
     fi
-    ln -sr "$dir/$key" "${src2dest[$key]}" || echo "Can not create symlink. File still exists at ${src2dest[$key]}"
+    ln -sr "$dir/$key" "${src2dest[$key]}" || echo "Can not create symlink. File still exists at \
+    ${src2dest[$key]}"
   done
   rmdir $backup_dir || echo "Old dotfiles where backed up to $backup_dir"
 }

@@ -3,7 +3,8 @@
 echo "Installing SDKMAN! and basic Java dependencies"
 # Install SDKMAN!
 curl -s "https://get.sdkman.io?rcupdate=false" | bash
-source "$HOME/.sdkman/bin/sdkman-init.sh" || sdk version || echo "Try running \"source \"$HOME/.sdkman/bin/sdkman-init.sh\"\""
+source "$HOME/.sdkman/bin/sdkman-init.sh" || sdk version || echo "Try running \"source \
+\"$HOME/.sdkman/bin/sdkman-init.sh\"\""
 # Install JDKs
 yes | sdk install java 8.0.265.hs-adpt || true
 yes | sdk install java 11.0.8.hs-adpt || true

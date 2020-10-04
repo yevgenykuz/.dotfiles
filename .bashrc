@@ -57,7 +57,8 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\
+    \[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -112,12 +113,15 @@ alias findf='find . -type f -name'
 alias h='history'
 alias hgrep='fc -El 0 | grep'
 alias gdo='git diff @{upstream}'
-alias workrdp='xfreerdp /multimon /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls /audio-mode:1 +fonts -themes -wallpaper -clipboard'
-alias workrdpsm='xfreerdp /f /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls /audio-mode:1 +fonts -themes -wallpaper -clipboard'
+alias workrdp='xfreerdp /multimon /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls \
+/audio-mode:1 +fonts -themes -wallpaper -clipboard'
+alias workrdpsm='xfreerdp /f /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls \
+/audio-mode:1 +fonts -themes -wallpaper -clipboard'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" \
+"$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -141,7 +145,8 @@ fi
 
 # Terminal colors:
 export TERM=xterm-256color
-export PS1="\[\e[00;32m\]\u\[\e[0m\]\[\e[00;37m\]@\h:\[\e[0m\]\[\e[00;36m\][\w]\[\e[0m\]\[\e[00;37m\]\\$\[\e[0m\]"
+export PS1="\[\e[00;32m\]\u\[\e[0m\]\[\e[00;37m\]@\h:\
+\[\e[0m\]\[\e[00;36m\][\w]\[\e[0m\]\[\e[00;37m\]\\$\[\e[0m\]"
 
 # Add local custom scripts to PATH:
 export PATH="$HOME/.dotfiles/scripts:$PATH"
