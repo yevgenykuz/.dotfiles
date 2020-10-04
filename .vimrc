@@ -1,4 +1,4 @@
-" Plugins using Plug -----------------------------------------------------------------------------------------------{{{
+" Plugins using Plug ---------------------------------------------------------------------------{{{
 " Install vim-plug plugin manager
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -16,8 +16,6 @@ Plug 'vim-airline/vim-airline-themes'
 " Navigation tree:
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
-" Icons
-Plug 'ryanoasis/vim-devicons'
 " git integration
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
@@ -26,10 +24,15 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jremmen/vim-ripgrep'
 " fzf integration
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" tmux integration
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+" Icons (load last)
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 "}}}
 
-" Key mappings -----------------------------------------------------------------------------------------------------{{{
+" Key mappings ---------------------------------------------------------------------------------{{{
 " Change leader key to space
 let mapleader = " "
 " Toggle highlighting on/off for current search matches
@@ -42,7 +45,7 @@ noremap <F8> :tabp<CR>
 noremap <F10> :NERDTreeToggle<CR>
 "}}}
 
-" Color ------------------------------------------------------------------------------------------------------------{{{
+" Color ----------------------------------------------------------------------------------------{{{
 " Enable syntax processing
 syntax on
 " Set color scheme
@@ -53,7 +56,7 @@ set background=dark
 let g:airline_theme='gruvbox'
 "}}}
 
-" Tabs -------------------------------------------------------------------------------------------------------------{{{
+" Tabs -----------------------------------------------------------------------------------------{{{
 " Set tab to be 2 characters (2 spaces)
 set tabstop=2 softtabstop=2
 " Use spaces for tabs
@@ -64,19 +67,20 @@ set shiftwidth=2
 set smartindent
 "}}}
 
-" Layout -----------------------------------------------------------------------------------------------------------{{{
+" Layout ---------------------------------------------------------------------------------------{{{
 " Show line numbers
 set nu
 " Don't wrap lines when too long
 set nowrap
-" Draw a wrapping column for 120 characters
-set colorcolumn=120
-"highlight ColorColumn ctermbg=0 guibg=lightgrey
+" Draw a wrapping column for 100 characters
+set colorcolumn=100
 " Make navigation tree show hidden files
 let NERDTreeShowHidden=1
 "}}}
 
-" System -----------------------------------------------------------------------------------------------------------{{{
+" System ---------------------------------------------------------------------------------------{{{
+" Set encoding to UTF-8
+set encoding=UTF-8
 " Disable bell sound
 set noerrorbells
 " Disable temp files
@@ -87,9 +91,13 @@ set undodir =~/.vim/undodir
 set undofile
 " Mouse support
 set mouse=a
+" Give more space for displaying messages
+set cmdheight=2
+" Devicons and airline race condition fix: https://github.com/ryanoasis/vim-devicons/issues/266
+set t_RV=
 "}}}
 
-" Spell checks -----------------------------------------------------------------------------------------------------{{{
+" Spell checks ---------------------------------------------------------------------------------{{{
 " Enable spell checking
 set spell spelllang=en
 " Highlight spelling errors
@@ -102,7 +110,7 @@ autocmd FileType gitcommit setlocal spell
 set complete+=kspell
 "}}}
 
-" Search -----------------------------------------------------------------------------------------------------------{{{
+" Search ---------------------------------------------------------------------------------------{{{
 " Ignore case until an upper case is typed in search
 set smartcase
 " Show match as characters are entered
@@ -117,7 +125,7 @@ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
 "}}}
 
-" Editing ----------------------------------------------------------------------------------------------------------{{{
+" Editing --------------------------------------------------------------------------------------{{{
 " Make backspace work in insert mode
 set backspace=indent,eol,start
 " When editing a file, always jump to the last known cursor position.
