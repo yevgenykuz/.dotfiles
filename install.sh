@@ -117,13 +117,6 @@ Then, run the install.sh script again" && return 1)
   sudo apt-get autoclean
 }
 
-# Change batcat command to bat:
-function update_bat_command() {
-  echo "-----> Update bat command"
-  mkdir -p ~/.local/bin
-  ln -sf /usr/bin/batcat ~/.local/bin/bat
-}
-
 # Install custom applets and extensions:
 function install_applets_and_extensions() {
   echo "-----> Install custom applets and extensions"
@@ -287,8 +280,8 @@ function install_vim_plugins() {
   vim +PlugInstall +qall!
 }
 
-# Install tmux plugin manager:
-function install_tmux_pm() {
+# Install tmux plugin manager and plugins on initial setup:
+function install_tmux_plugins() {
   if [[ "$TMUX" != "" ]]; then
     return 0;
   fi
@@ -325,17 +318,13 @@ fi
 
 umask g-w,o-w
 
-if (( ! WSL )); then
+if (( WSL )); then
+  install_packages_in_wsl
+else
   install_corsair_drivers
   install_logitech_software
   accept_ms_eula
   install_packages
-else
-  install_packages_in_wsl
-fi
-update_bat_command
-install_tmux_pm
-if (( ! WSL )); then
   install_applets_and_extensions
   load_dconf_files
   edit_gnome_terminal_shortcuts
@@ -349,6 +338,7 @@ change_shell
 create_links
 create_vim_undo_dir
 install_vim_plugins
+install_tmux_plugins
 
 echo "Success"
 echo "Please reboot to apply all changes"
