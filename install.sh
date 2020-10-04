@@ -55,7 +55,7 @@ function install_packages() {
     awscli ec2-ami-tools
     fd-find bat fzf ripgrep
     gparted deluge bleachbit filezilla
-    remmina remmina-plugin-rdp
+    remmina remmina-plugin-rdp remmina-plugin-vnc
     spotify-client vlc
     mypaint gimp-plugin-registry
     virtualbox sublime-text
