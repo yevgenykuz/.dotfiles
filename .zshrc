@@ -129,7 +129,7 @@ fi
 # Attach to tmux if zsh was not started from tmux itself nor from JetBrains tools
 # Attaching will work because tmux server is started on boot by the 'tmux-continuum' tmux plugin
 if [[ "$TMUX" = "" && "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]]; then
-  tmux attach;
+  tmux -u attach;
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
