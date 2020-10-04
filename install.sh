@@ -121,15 +121,6 @@ function update_bat_command() {
   ln -sf /usr/bin/batcat ~/.local/bin/bat
 }
 
-# Install tmux plugin manager:
-function install_tmux_pm() {
-  ! command -v tmux &>/dev/null || return 0
-  echo "-----> Install tmux plugin manager"
-  TMUX_DIR=${HOME}/.tmux
-  rm -rf "${TMUX_DIR}/plugins/tpm" 2>/dev/null || true
-  git clone --depth=1 https://github.com/tmux-plugins/tpm ${TMUX_DIR}/plugins/tpm
-}
-
 # Install custom applets and extensions:
 function install_applets_and_extensions() {
   echo "-----> Install custom applets and extensions"
@@ -183,7 +174,7 @@ function edit_gnome_terminal_shortcuts() {
 # Install RUBY gems for Jekyll for personal github.io page:
 function install_ruby_gems_for_jekyll() {
   echo "-----> Install RUBY gems for Jekyll"
-  sudo gem install jekyll bundler || echo "Failed installing RUBY gems" && return 
+  sudo gem install jekyll bundler || echo "Failed installing RUBY gems" && return
 }
 
 # Install SDKMAN and Java JDK and build tools (must be run from zsh):
@@ -230,7 +221,7 @@ function copy_custom_fonts() {
 # Set ZSH as default shell:
 function change_shell() {
   echo "-----> Change shell to zsh"
-  chsh -s $(which zsh) || echo "Failed changing shell" && return 
+  chsh -s $(which zsh) || echo "Failed changing shell" && return
 }
 
 # Link $HOME dotfiles to .dotfiles folder:
@@ -244,7 +235,7 @@ function create_links() {
   src2dest[".ssh/config"]="$HOME/.ssh/config"
   src2dest[".tmux.conf"]="$HOME/.tmux.conf"
   src2dest[".vimrc"]="$HOME/.vimrc"
-  
+
   dir=$(dirname "$0")
   backup_dir=$HOME/.dotfiles_backup
   rm -rf $backup_dir
@@ -272,6 +263,18 @@ function create_vim_undo_dir() {
 function install_vim_plugins() {
   echo "-----> Install vim plugins"
   vim +PlugInstall +qall!
+}
+
+# Install tmux plugin manager:
+function install_tmux_pm() {
+  if [[ "$TMUX" != "" ]]; then
+    return 0;
+  fi
+  echo "-----> Install tmux plugin manager"
+  TMUX_DIR=${HOME}/.tmux
+  rm -rf "${TMUX_DIR}/plugins/tpm" 2>/dev/null || true
+  git clone --depth=1 https://github.com/tmux-plugins/tpm ${TMUX_DIR}/plugins/tpm && \
+  bash ${TMUX_DIR}/plugins/tpm/bin/install_plugins
 }
 
 # Run script:
@@ -326,4 +329,4 @@ create_vim_undo_dir
 install_vim_plugins
 
 echo "Success"
-echo "Please log out and log in again to apply changes"
+echo "Please reboot to apply all changes"
