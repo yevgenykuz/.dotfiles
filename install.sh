@@ -282,7 +282,7 @@ function install_vim_plugins() {
 
 # Install tmux plugin manager and plugins on initial setup:
 function install_tmux_plugins() {
-  if [[ "$TMUX" != "" ]]; then
+  if [[ -v TMUX && "$TMUX" != "" ]]; then
     return 0;
   fi
   echo "-----> Install tmux plugin manager"
