@@ -10,7 +10,6 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Colourful terminal:
 export TERM=xterm-256color
-
 # Set vim as default:
 export VISUAL=vim
 export EDITOR="$VISUAL"
@@ -55,7 +54,6 @@ DISABLE_UPDATE_PROMPT=true    # Update oh-my-zsh automatically
 POWERLEVEL9K_MODE='nerdfont-complete'
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-
 # oh-my-zsh Plugins:
 plugins=(
   zsh-syntax-highlighting
@@ -64,7 +62,6 @@ plugins=(
   alias-finder
   git
   git-extras
-  tmux
   fd
   ripgrep
   fzf
@@ -80,6 +77,8 @@ plugins=(
   docker-compose
   kubectl
 )
+
+# oh-my-zsh plugin configuration must be set before sourcing oh-my-zsh-sh
 
 # Load oh-my-zsh before custom aliases
 source $ZSH/oh-my-zsh.sh
