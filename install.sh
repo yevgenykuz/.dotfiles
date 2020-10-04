@@ -98,7 +98,7 @@ function install_packages_in_wsl() {
     htop tree hardinfo
     dos2unix jq thefuck
     ascii screenfetch
-    dconf-cli
+    dconf-cli xdg-utils
     tmux dbus-x11
     awscli ec2-ami-tools
     fd-find bat fzf ripgrep
