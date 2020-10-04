@@ -126,6 +126,12 @@ fi
 # Load Powerlevel10k theme. Edit ~/.p10k.zsh to customize.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Attach to tmux if zsh was not started from tmux itself nor from JetBrains tools
+# Attaching will work because tmux server is started on boot by the 'tmux-continuum' tmux plugin
+if [[ "$TMUX" = "" && "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]]; then
+  tmux attach;
+fi
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh" || true
