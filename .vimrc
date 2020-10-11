@@ -35,12 +35,18 @@ call plug#end()
 " Key mappings ---------------------------------------------------------------------------------{{{
 " Change leader key to space
 let mapleader = " "
+" Open a new empty buffer
+nmap <leader>t :enew<cr>
+" Move to the next buffer
+nmap <leader><Right> :bnext<CR>
+" Move to the previous buffer
+nmap <leader><Left> :bprevious<CR>
+" Close the current buffer and move to the previous one
+nmap <leader><Down> :bp <BAR> bd #<CR>
+" Show all open buffers and their status
+nmap <leader><Up> :ls<CR>
 " Toggle highlighting on/off for current search matches
 noremap <F4> :set hlsearch! hlsearch?<CR>
-" Create a new tab
-noremap <F7> :tabe
-" Move to the next tab
-noremap <F8> :tabp<CR>
 " Toggle navigation tree
 noremap <F10> :NERDTreeToggle<CR>
 "}}}
@@ -76,6 +82,8 @@ set nowrap
 set colorcolumn=100
 " Make navigation tree show hidden files
 let NERDTreeShowHidden=1
+" Show buffer list
+let g:airline#extensions#tabline#enabled = 1
 "}}}
 
 " System ---------------------------------------------------------------------------------------{{{
@@ -89,10 +97,10 @@ set nobackup
 " Define undo directory
 set undodir =~/.vim/undodir
 set undofile
+" Allow switching between buffers without writing
+set hidden
 " Mouse support
 set mouse=a
-" Give more space for displaying messages
-set cmdheight=2
 " Devicons and airline race condition fix: https://github.com/ryanoasis/vim-devicons/issues/266
 set t_RV=
 "}}}
@@ -137,4 +145,16 @@ autocmd BufReadPost *
       \ endif
 " Automatically remove trailing white spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
+"}}}
+
+" NERDTree customization -----------------------------------------------------------------------{{{
+" Make sure vim does not open files and other buffers on NerdTree window
+" If more than one window and previous buffer was NERDTree, go back to it.
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+let g:plug_window = 'noautocmd vertical topleft new'
+" Close NERDTree after opening a file in it
+let g:NERDTreeQuitOnOpen = 1
+" Close vim if the only window left is NERDTree
+autocmd BufEnter
+      \ * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "}}}

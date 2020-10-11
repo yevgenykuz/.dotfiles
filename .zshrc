@@ -98,6 +98,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Aliases:
+alias cls='clear'
 alias l='ls -AlCh'
 alias ll='ls -lAh --group-directories-first'
 alias lo='ls -lAtrh'
@@ -106,10 +107,8 @@ alias python='python3'
 alias pip='pip3'
 alias tree='tree -aC -I .git --dirsfirst'
 alias diff='diff --color=auto'
-alias c='xclip'
-alias v='xclip -o'
-alias vimt='vim -p'
-alias vimo='vim -o'
+alias c='xclip -sel primary -f | xclip -sel clipboard' # usage: echo "COPY_THIS" | c
+alias v='xclip -o -sel clipboard'
 alias grep='grep --color'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 alias t='tail -f'
