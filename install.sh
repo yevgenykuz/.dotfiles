@@ -72,6 +72,12 @@ To fix broken packages run:\n\
 sudo apt -f install\n\
 Then, run the install.sh script again" && return 1)
 
+  sudo apt-get autoremove -y
+  sudo apt-get autoclean
+}
+
+# Remove unused packages:
+function remove_packages() {
   local packages_to_remove=(
     blueberry rhythmbox transmission-gtk transmission-common
   )
@@ -326,6 +332,7 @@ umask g-w,o-w
 
 if (( WSL )); then
   install_packages_in_wsl
+  remove_packages
   install_ruby_gems_for_jekyll
   install_java
   install_go
@@ -354,6 +361,7 @@ else
         install_logitech_software
         accept_ms_eula
         install_packages
+        remove_packages
         install_applets_and_extensions
         load_dconf_files
         edit_gnome_terminal_shortcuts
@@ -373,6 +381,7 @@ else
         echo "Minimal installation"
         accept_ms_eula
         install_packages
+        remove_packages
         edit_gnome_terminal_shortcuts
         install_ruby_gems_for_jekyll
         install_java
