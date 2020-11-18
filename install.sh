@@ -61,11 +61,7 @@ function install_packages() {
     virtualbox sublime-text
     keepassxc
   )
-
-  local packages_to_remove=(
-    blueberry rhythmbox transmission-gtk transmission-common
-  )
-
+  
   sudo apt-get update
   sudo bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::options::=--force-confdef \
 -o DPkg::options::=--force-confold upgrade -y'
@@ -75,7 +71,17 @@ sudo dpkg -i --force-overwrite PROBLEMATIC_PACKAGE_FROM_ERROR_MESSAGE\n\
 To fix broken packages run:\n\
 sudo apt -f install\n\
 Then, run the install.sh script again" && return 1)
-  sudo apt-get remove -y "${packages_to_remove[@]}"
+
+  local packages_to_remove=(
+    blueberry rhythmbox transmission-gtk transmission-common
+  )
+  
+  for pkg in "${packages_to_remove[@]}"; do
+    $(dpkg --status $pkg &> /dev/null)
+    if [[ $? -eq 0 ]]; then
+      sudo apt-get remove -y $pkg
+    fi
+  done
   sudo apt-get autoremove -y
   sudo apt-get autoclean
 }
