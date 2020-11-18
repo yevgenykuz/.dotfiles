@@ -53,7 +53,8 @@ function install_packages() {
     ttf-mscorefonts-installer fonts-symbola
     docker.io docker-compose
     awscli ec2-ami-tools
-    fd-find bat fzf ripgrep
+    fd-find bat fzf 
+    #ripgrep
     gparted deluge bleachbit filezilla
     remmina remmina-plugin-rdp remmina-plugin-vnc
     spotify-client vlc
@@ -113,7 +114,8 @@ function install_packages_in_wsl() {
     dconf-cli xdg-utils
     tmux dbus-x11
     awscli ec2-ami-tools
-    fd-find bat fzf ripgrep
+    fd-find bat fzf 
+    #ripgrep
   )
 
   sudo apt-get update
@@ -304,6 +306,12 @@ function install_tmux_plugins() {
 bash ${TMUX_DIR}/plugins/tpm/bin/install_plugins
 }
 
+# Manually install ripgrep until https://bugs.launchpad.net/ubuntu/+source/rust-bat/+bug/1868517 is solved
+function install_ripgrep() {
+  sudo apt-get download ripgrep
+  sudo dpkg --force-overwrite -i ripgrep*.deb
+}
+
 # Run script:
 if [[ "$(id -u)" == 0 ]]; then
   echo "$BASH_SOURCE: Please run as non-root" >&2
@@ -343,6 +351,7 @@ if (( WSL )); then
   create_vim_undo_dir
   install_vim_plugins
   install_tmux_plugins
+  install_ripgrep
 else
   # Selection menu:
   COLUMNS=1
@@ -375,6 +384,7 @@ else
         create_vim_undo_dir
         install_vim_plugins
         install_tmux_plugins
+        install_ripgrep
         break
         ;;
       "Minimal installation, suitable for virtual machines")
@@ -393,6 +403,7 @@ else
         create_vim_undo_dir
         install_vim_plugins
         install_tmux_plugins
+        install_ripgrep
         break
         ;;
       "Exit")
