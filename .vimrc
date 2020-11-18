@@ -55,7 +55,7 @@ noremap <F10> :NERDTreeToggle<CR>
 " Enable syntax processing
 syntax on
 " Set color scheme
-colorscheme gruvbox
+silent! colorscheme gruvbox
 " Set color scheme background
 set background=dark
 " Set color scheme for status bar
