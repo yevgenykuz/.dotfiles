@@ -77,18 +77,45 @@ Then, run the install.sh script again" && return 1)
   sudo apt-get autoclean
 }
 
-# Remove unused packages:
-function remove_packages() {
-  local packages_to_remove=(
-    blueberry rhythmbox transmission-gtk transmission-common
+# Install minimal Debian packages:
+function install_minimal_packages() {
+  echo "-----> Install minimal packages with apt"
+  local packages=(
+    curl wget
+    git zsh gnome-terminal
+    vim nano man feh
+    build-essential zlib1g-dev x11-utils xz-utils
+    zip unzip unrar p7zip-full p7zip-rar gzip pigz bzip2
+    python3-pip python3-dev python3-venv
+    pandoc python3-docutils rst2pdf
+    g++ clang cmake
+    ruby-full
+    xclip traceroute
+    silversearcher-ag ack gawk
+    htop tree hardinfo
+    dos2unix jq thefuck
+    ascii screenfetch
+    dconf-cli dconf-editor
+    tmux freerdp2-x11 dbus-x11
+    flashplugin-installer
+    ttf-mscorefonts-installer fonts-symbola
+    docker.io docker-compose
+    awscli ec2-ami-tools
+    fd-find bat fzf 
+    #ripgrep
+    gparted deluge bleachbit filezilla
   )
   
-  for pkg in "${packages_to_remove[@]}"; do
-    $(dpkg --status $pkg &> /dev/null)
-    if [[ $? -eq 0 ]]; then
-      sudo apt-get remove -y $pkg
-    fi
-  done
+  sudo apt-get update
+  sudo bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::options::=--force-confdef \
+-o DPkg::options::=--force-confold upgrade -y'
+  sudo apt-get upgrade -y
+  sudo apt-get install -y "${packages[@]}" || (echo -e " Try cleaning dpkg cache:\n\
+sudo dpkg -i --force-overwrite PROBLEMATIC_PACKAGE_FROM_ERROR_MESSAGE\n\
+To fix broken packages run:\n\
+sudo apt -f install\n\
+Then, run the install.sh script again" && return 1)
+
   sudo apt-get autoremove -y
   sudo apt-get autoclean
 }
@@ -127,6 +154,22 @@ sudo dpkg -i --force-overwrite PROBLEMATIC_PACKAGE_FROM_ERROR_MESSAGE\n\
 To fix broken packages run:\n\
 sudo apt -f install\n\
 Then, run the install.sh script again" && return 1)
+  sudo apt-get autoremove -y
+  sudo apt-get autoclean
+}
+
+# Remove unused packages:
+function remove_packages() {
+  local packages_to_remove=(
+    blueberry rhythmbox transmission-gtk transmission-common
+  )
+  
+  for pkg in "${packages_to_remove[@]}"; do
+    $(dpkg --status $pkg &> /dev/null)
+    if [[ $? -eq 0 ]]; then
+      sudo apt-get remove -y $pkg
+    fi
+  done
   sudo apt-get autoremove -y
   sudo apt-get autoclean
 }
@@ -390,7 +433,7 @@ else
       "Minimal installation, suitable for virtual machines")
         echo "Minimal installation"
         accept_ms_eula
-        install_packages
+        install_minimal_packages
         remove_packages
         edit_gnome_terminal_shortcuts
         install_ruby_gems_for_jekyll
