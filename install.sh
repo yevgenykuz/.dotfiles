@@ -326,25 +326,73 @@ umask g-w,o-w
 
 if (( WSL )); then
   install_packages_in_wsl
+  install_ruby_gems_for_jekyll
+  install_java
+  install_go
+  beautify_shell
+  copy_custom_fonts
+  change_shell
+  create_links
+  create_vim_undo_dir
+  install_vim_plugins
+  install_tmux_plugins
 else
-  install_corsair_drivers
-  install_logitech_software
-  accept_ms_eula
-  install_packages
-  install_applets_and_extensions
-  load_dconf_files
-  edit_gnome_terminal_shortcuts
+  # Selection menu:
+  COLUMNS=1
+  echo "Options:"
+  PS3="Please select a number and press Enter: "
+  options=(
+  "Full installation, visual aspects like applets and themes, i/o drivers, cinnamon configuration"
+  "Minimal installation, suitable for virtual machines"
+  "Exit")
+  select opt in "${options[@]}"
+  do
+    case $opt in
+      "Full installation, visual aspects like applets and themes, i/o drivers, cinnamon configuration")
+        echo "Full installation"
+        install_corsair_drivers
+        install_logitech_software
+        accept_ms_eula
+        install_packages
+        install_applets_and_extensions
+        load_dconf_files
+        edit_gnome_terminal_shortcuts
+        install_ruby_gems_for_jekyll
+        install_java
+        install_go
+        beautify_shell
+        copy_custom_fonts
+        change_shell
+        create_links
+        create_vim_undo_dir
+        install_vim_plugins
+        install_tmux_plugins
+        break
+        ;;
+      "Minimal installation, suitable for virtual machines")
+        echo "Minimal installation"
+        accept_ms_eula
+        install_packages
+        edit_gnome_terminal_shortcuts
+        install_ruby_gems_for_jekyll
+        install_java
+        install_go
+        beautify_shell
+        copy_custom_fonts
+        change_shell
+        create_links
+        create_vim_undo_dir
+        install_vim_plugins
+        install_tmux_plugins
+        break
+        ;;
+      "Exit")
+        exit 0
+        ;;
+      *) echo "Invalid option $REPLY";;
+    esac
+  done
 fi
-install_ruby_gems_for_jekyll
-install_java
-install_go
-beautify_shell
-copy_custom_fonts
-change_shell
-create_links
-create_vim_undo_dir
-install_vim_plugins
-install_tmux_plugins
 
 echo "Success"
 echo "Please reboot to apply all changes"
