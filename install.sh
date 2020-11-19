@@ -181,10 +181,8 @@ function remove_packages() {
   )
   
   for pkg in "${packages_to_remove[@]}"; do
-    $(dpkg --status $pkg &> /dev/null)
-    if [[ $? -eq 0 ]]; then
-      sudo apt-get remove -y $pkg
-    fi
+    $(dpkg --status $pkg &> /dev/null) || continue
+    sudo apt-get remove -y $pkg
   done
   sudo apt-get autoremove -y
   sudo apt-get autoclean
