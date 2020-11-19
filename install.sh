@@ -59,8 +59,7 @@ function install_packages() {
     remmina remmina-plugin-rdp remmina-plugin-vnc
     spotify-client vlc
     mypaint gimp-plugin-registry
-    virtualbox sublime-text
-    keepassxc
+    virtualbox keepassxc
   )
   
   sudo apt-get update
