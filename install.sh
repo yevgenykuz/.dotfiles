@@ -6,6 +6,14 @@
 # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
 set -ueE -o pipefail
 
+# Check if SSH key was created
+function check_ssh_key() {
+  if [[ ! -f $HOME/.ssh/id_rsa || ! -f $HOME/.ssh/id_rsa.pub ]]; then
+    echo "$BASH_SOURCE: Please put your ssh keys at ~/.ssh and retry" >&2
+    exit 1
+  fi
+}
+
 # Install Corsair unofficial driver (https://github.com/ckb-next/ckb-next):
 function install_corsair_drivers() {
   echo "-----> Install Corsair unofficial driver"
@@ -374,11 +382,6 @@ if [ ! -d $HOME ]; then
   exit 1
 fi
 
-if [[ ! -f $HOME/.ssh/id_rsa || ! -f $HOME/.ssh/id_rsa.pub ]]; then
-  echo "$BASH_SOURCE: Please put your ssh keys at ~/.ssh and retry" >&2
-  exit 1
-fi
-
 # Check if WSL:
 if [[ "$(</proc/version)" == *[Mm]icrosoft* ]] 2>/dev/null; then
   readonly WSL=1
@@ -417,6 +420,7 @@ else
     case $opt in
       "Full installation, visual aspects like applets and themes, i/o drivers, cinnamon configuration")
         echo "Full installation"
+        check_ssh_key
         install_corsair_drivers
         install_logitech_software
         install_spotify
