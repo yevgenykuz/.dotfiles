@@ -22,6 +22,15 @@ function install_logitech_software() {
   sudo apt install -y solaar
 }
 
+# Install Spotify (https://www.spotify.com/us/download/linux/):
+function install_spotify() {
+  echo "-----> Install Spotify"
+  curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
+  echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+  sudo apt-get update
+  sudo apt install -y spotify-client
+}
+
 # Accept EULA for Microsoft fonts before installation:
 function accept_ms_eula() {
   echo "-----> Accept EULA for Microsoft fonts"
@@ -57,7 +66,7 @@ function install_packages() {
     #ripgrep
     gparted deluge bleachbit filezilla
     remmina remmina-plugin-rdp remmina-plugin-vnc
-    spotify-client vlc
+    vlc
     mypaint gimp-plugin-registry
     virtualbox keepassxc
   )
@@ -410,6 +419,7 @@ else
         echo "Full installation"
         install_corsair_drivers
         install_logitech_software
+        install_spotify
         accept_ms_eula
         install_packages
         remove_packages
