@@ -446,7 +446,6 @@ else
         accept_ms_eula
         install_minimal_packages
         remove_packages
-        edit_gnome_terminal_shortcuts
         install_ruby_gems_for_jekyll
         install_java
         install_go
