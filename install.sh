@@ -33,7 +33,7 @@ function install_logitech_software() {
 # Install Spotify (https://www.spotify.com/us/download/linux/):
 function install_spotify() {
   echo "-----> Install Spotify"
-  curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
+  curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
   echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
   sudo apt-get update
   sudo apt install -y spotify-client
@@ -52,7 +52,7 @@ function install_packages() {
   local packages=(
     curl wget
     git zsh gnome-terminal
-    vim nano man feh
+    vim-gtk3 nano man feh
     build-essential zlib1g-dev x11-utils xz-utils
     zip unzip unrar p7zip-full p7zip-rar gzip pigz bzip2
     python3-pip python3-dev python3-venv
@@ -70,7 +70,7 @@ function install_packages() {
     ttf-mscorefonts-installer fonts-symbola
     docker.io docker-compose
     awscli ec2-ami-tools
-    fd-find bat fzf 
+    fd-find bat fzf
     #ripgrep
     gparted deluge bleachbit filezilla
     remmina remmina-plugin-rdp remmina-plugin-vnc
@@ -78,7 +78,7 @@ function install_packages() {
     mypaint gimp-plugin-registry
     virtualbox keepassxc
   )
-  
+
   sudo apt-get update
   sudo bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::options::=--force-confdef \
 -o DPkg::options::=--force-confold upgrade -y'
@@ -99,7 +99,7 @@ function install_minimal_packages() {
   local packages=(
     curl wget
     git zsh gnome-terminal
-    vim nano man feh
+    vim-gtk3 nano man feh
     build-essential zlib1g-dev x11-utils xz-utils
     zip unzip unrar p7zip-full p7zip-rar gzip pigz bzip2
     python3-pip python3-dev python3-venv
@@ -117,11 +117,11 @@ function install_minimal_packages() {
     ttf-mscorefonts-installer fonts-symbola
     docker.io docker-compose
     awscli ec2-ami-tools
-    fd-find bat fzf 
+    fd-find bat fzf
     #ripgrep
     gparted deluge bleachbit filezilla
   )
-  
+
   sudo apt-get update
   sudo bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::options::=--force-confdef \
 -o DPkg::options::=--force-confold upgrade -y'
@@ -142,7 +142,7 @@ function install_packages_in_wsl() {
   local packages=(
     curl wget
     git zsh gnome-terminal
-    vim nano man feh
+    vim-gtk3 nano man feh
     build-essential zlib1g-dev x11-utils xz-utils
     zip unzip unrar p7zip-full p7zip-rar gzip pigz bzip2
     python3-pip python3-dev python3-venv
@@ -157,7 +157,7 @@ function install_packages_in_wsl() {
     dconf-cli xdg-utils
     tmux dbus-x11
     awscli ec2-ami-tools
-    fd-find bat fzf 
+    fd-find bat fzf
     #ripgrep
   )
 
@@ -179,7 +179,7 @@ function remove_packages() {
   local packages_to_remove=(
     blueberry rhythmbox transmission-gtk transmission-common
   )
-  
+
   for pkg in "${packages_to_remove[@]}"; do
     $(dpkg --status $pkg &> /dev/null) || continue
     sudo apt-get remove -y $pkg

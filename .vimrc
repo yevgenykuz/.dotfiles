@@ -99,6 +99,8 @@ set undodir =~/.vim/undodir
 set undofile
 " Allow switching between buffers without writing
 set hidden
+" Integrate system clipboard
+set clipboard=unnamedplus
 " Mouse support
 set mouse=a
 " Devicons and airline race condition fix: https://github.com/ryanoasis/vim-devicons/issues/266
