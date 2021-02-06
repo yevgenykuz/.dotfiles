@@ -27,6 +27,13 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " tmux integration
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+" Whitespaces - better highlighting and auto removal
+Plug 'ntpeters/vim-better-whitespace'
+" Markdown - syntax
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+" Markdown - live preview with local nodejs server
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " Icons (load last)
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -45,8 +52,18 @@ nmap <leader><Left> :bprevious<CR>
 nmap <leader><Down> :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader><Up> :ls<CR>
+" Toggle paste mode to prevent auto indentation and comments
+set pastetoggle=<F3>
 " Toggle highlighting on/off for current search matches
 noremap <F4> :set hlsearch! hlsearch?<CR>
+" Toggle spell check
+map <F5> :setlocal spell!<CR>
+" Toggle relative line numbers and regular line numbers
+nmap <F6> :set invrelativenumber<CR>
+" Toggle visually showing all white space characters
+noremap <F7> :set list!<CR>
+inoremap <F7> <C-o>:set list!<CR>
+cnoremap <F7> <C-c>:set list!<CR>
 " Toggle navigation tree
 noremap <F10> :NERDTreeToggle<CR>
 "}}}
@@ -159,4 +176,17 @@ let g:NERDTreeQuitOnOpen = 1
 " Close vim if the only window left is NERDTree
 autocmd BufEnter
       \ * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"}}}
+
+" vim-better-whitespace ------------------------------------------------------------------------{{{
+let g:strip_whitespace_confirm=0
+let g:strip_whitelines_at_eof=1
+let g:strip_whitespace_on_save=1
+"}}}
+
+" Markdown plugins -----------------------------------------------------------------------------{{{
+" markdown-preview - refresh slower for less CPU load
+let g:mkdp_refresh_slow=1
+" markdown-preview - custom CSS for github preview
+let g:mkdp_markdown_css='~/.dotfiles/.local/lib/github-markdown-css/gh-md.css'
 "}}}

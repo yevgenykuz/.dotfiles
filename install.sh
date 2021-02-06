@@ -250,7 +250,7 @@ $HOME/.local/share/applications/org.gnome.Terminal.desktop
 'vim %F'\nTerminal=false/g" $HOME/.local/share/applications/vim.desktop
 }
 
-# Install RUBY gems for Jekyll for personal github.io page:
+# Install RUBY gems for Jekyll for old personal github.io page:
 function install_ruby_gems_for_jekyll() {
   echo "-----> Install RUBY gems for Jekyll"
   sudo gem install jekyll bundler || echo "Failed installing RUBY gems" && return
@@ -363,6 +363,13 @@ function install_tmux_plugins() {
 bash ${TMUX_DIR}/plugins/tpm/bin/install_plugins
 }
 
+# Install nvm and then node:
+function install_nvm_and_node() {
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+  source ~/.zshrc
+  nvm install node
+}
+
 # Manually install ripgrep until https://bugs.launchpad.net/ubuntu/+source/rust-bat/+bug/1868517 is solved
 function install_ripgrep() {
   sudo apt-get download ripgrep
@@ -403,6 +410,7 @@ if (( WSL )); then
   create_vim_undo_dir
   install_vim_plugins
   install_tmux_plugins
+  install_nvm_and_node
   install_ripgrep
 else
   # Selection menu:
@@ -438,6 +446,7 @@ else
         create_vim_undo_dir
         install_vim_plugins
         install_tmux_plugins
+        install_nvm_and_node
         install_ripgrep
         break
         ;;
@@ -456,6 +465,7 @@ else
         create_vim_undo_dir
         install_vim_plugins
         install_tmux_plugins
+        install_nvm_and_node
         install_ripgrep
         break
         ;;
