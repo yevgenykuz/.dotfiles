@@ -188,5 +188,5 @@ let g:strip_whitespace_on_save=1
 " markdown-preview - refresh slower for less CPU load
 let g:mkdp_refresh_slow=1
 " markdown-preview - custom CSS for github preview
-let g:mkdp_markdown_css='~/.dotfiles/.local/lib/github-markdown-css/gh-md.css'
+let g:mkdp_markdown_css='~/.dotfiles/.local/github-markdown-css/gh-md.css'
 "}}}
