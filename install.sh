@@ -258,7 +258,7 @@ function install_java() {
 
 # Install go:
 function install_go() {
-  local v=1.15.5
+  local v=1.16
   ! command -v go &>/dev/null || [[ "$(go version)" != *"$v"* ]] || return 0
   echo "-----> Install Golang $v"
   dwfile="go${v}.linux-amd64.tar.gz"
