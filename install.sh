@@ -408,9 +408,9 @@ if (( WSL )); then
   change_shell
   create_links
   create_vim_undo_dir
+  install_nvm_and_node
   install_vim_plugins
   install_tmux_plugins
-  install_nvm_and_node
   install_ripgrep
 else
   # Selection menu:
@@ -444,9 +444,9 @@ else
         change_shell
         create_links
         create_vim_undo_dir
+        install_nvm_and_node
         install_vim_plugins
         install_tmux_plugins
-        install_nvm_and_node
         install_ripgrep
         break
         ;;
@@ -463,9 +463,9 @@ else
         change_shell
         create_links
         create_vim_undo_dir
+        install_nvm_and_node
         install_vim_plugins
         install_tmux_plugins
-        install_nvm_and_node
         install_ripgrep
         break
         ;;
