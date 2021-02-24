@@ -339,6 +339,13 @@ ${src2dest[$key]}"
   rmdir $backup_dir || echo "Old dotfiles where backed up to $backup_dir"
 }
 
+# Install nvm and then npm and yarn:
+function install_nvm_npm_yarn() {
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+  . ~/.nvm/nvm.sh install node
+  npm install --global yarn
+}
+
 # Create vim undo directory for temporary vim files:
 function create_vim_undo_dir() {
   echo "-----> Create vim undo directory"
@@ -361,13 +368,6 @@ function install_tmux_plugins() {
   rm -rf "${TMUX_DIR}/plugins/tpm" 2>/dev/null || true
   git clone --depth=1 https://github.com/tmux-plugins/tpm ${TMUX_DIR}/plugins/tpm && \
 bash ${TMUX_DIR}/plugins/tpm/bin/install_plugins
-}
-
-# Install nvm and then node:
-function install_nvm_and_node() {
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-  source ~/.zshrc
-  nvm install node
 }
 
 # Manually install ripgrep until https://bugs.launchpad.net/ubuntu/+source/rust-bat/+bug/1868517 is solved
@@ -407,8 +407,8 @@ if (( WSL )); then
   copy_custom_fonts
   change_shell
   create_links
+  install_nvm_npm_yarn
   create_vim_undo_dir
-  install_nvm_and_node
   install_vim_plugins
   install_tmux_plugins
   install_ripgrep
@@ -443,8 +443,8 @@ else
         copy_custom_fonts
         change_shell
         create_links
+        install_nvm_npm_yarn
         create_vim_undo_dir
-        install_nvm_and_node
         install_vim_plugins
         install_tmux_plugins
         install_ripgrep
@@ -462,8 +462,8 @@ else
         copy_custom_fonts
         change_shell
         create_links
+        install_nvm_npm_yarn
         create_vim_undo_dir
-        install_nvm_and_node
         install_vim_plugins
         install_tmux_plugins
         install_ripgrep
