@@ -369,7 +369,7 @@ bash ${TMUX_DIR}/plugins/tpm/bin/install_plugins
 
 # Manually install ripgrep until https://bugs.launchpad.net/ubuntu/+source/rust-bat/+bug/1868517 is solved
 function install_ripgrep() {
-  sudo apt-get download ripgrep
+  apt-get download ripgrep
   sudo dpkg --force-overwrite -i ripgrep*.deb
 }
 
