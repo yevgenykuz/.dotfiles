@@ -58,7 +58,7 @@ function install_packages() {
     python3-pip python3-dev python3-venv
     pandoc python3-docutils rst2pdf
     g++ clang cmake
-    ruby-full
+    ruby-full hugo
     xclip traceroute
     silversearcher-ag ack gawk
     htop tree hardinfo blueman
@@ -105,7 +105,7 @@ function install_minimal_packages() {
     python3-pip python3-dev python3-venv
     pandoc python3-docutils rst2pdf
     g++ clang cmake
-    ruby-full
+    ruby-full hugo
     xclip traceroute
     silversearcher-ag ack gawk
     htop tree hardinfo
@@ -148,7 +148,7 @@ function install_packages_in_wsl() {
     python3-pip python3-dev python3-venv
     pandoc python3-docutils rst2pdf
     g++ clang cmake
-    ruby-full
+    ruby-full hugo
     xclip traceroute
     silversearcher-ag ack gawk
     htop tree hardinfo
@@ -250,12 +250,6 @@ $HOME/.local/share/applications/org.gnome.Terminal.desktop
 'vim %F'\nTerminal=false/g" $HOME/.local/share/applications/vim.desktop
 }
 
-# Install RUBY gems for Jekyll for old personal github.io page:
-function install_ruby_gems_for_jekyll() {
-  echo "-----> Install RUBY gems for Jekyll"
-  sudo gem install jekyll bundler || echo "Failed installing RUBY gems" && return
-}
-
 # Install SDKMAN and Java JDK and build tools (must be run from zsh):
 function install_java() {
   echo "-----> Install SDKMAN and Java JDK and build tools"
@@ -342,7 +336,10 @@ ${src2dest[$key]}"
 # Install nvm and then npm and yarn:
 function install_nvm_npm_yarn() {
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-  . ~/.nvm/nvm.sh install node
+  source ~/.nvm/nvm.sh
+  nvm install 14
+  nvm alias default
+  nvm use default
   npm install --global yarn
 }
 
@@ -400,7 +397,6 @@ umask g-w,o-w
 if (( WSL )); then
   install_packages_in_wsl
   remove_packages
-  install_ruby_gems_for_jekyll
   install_java
   install_go
   beautify_shell
@@ -436,7 +432,6 @@ else
         install_applets_and_extensions
         load_dconf_files
         edit_gnome_terminal_shortcuts
-        install_ruby_gems_for_jekyll
         install_java
         install_go
         beautify_shell
@@ -455,7 +450,6 @@ else
         accept_ms_eula
         install_minimal_packages
         remove_packages
-        install_ruby_gems_for_jekyll
         install_java
         install_go
         beautify_shell
