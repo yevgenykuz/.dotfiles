@@ -374,6 +374,7 @@ bash ${TMUX_DIR}/plugins/tpm/bin/install_plugins
 function install_ripgrep() {
   apt-get download ripgrep
   sudo dpkg --force-overwrite -i ripgrep*.deb
+  rm -f ripgrep*
 }
 
 # Run script:
