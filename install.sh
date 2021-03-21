@@ -254,7 +254,7 @@ $HOME/.local/share/applications/org.gnome.Terminal.desktop
 function install_java() {
   echo "-----> Install SDKMAN and Java JDK and build tools"
   zsh $HOME/.dotfiles/sdkman.sh
-  sudo ln -s $HOME/.sdkman/candidates/java/current/bin/* /usr/bin/ 2>/dev/null
+  sudo ln -s $HOME/.sdkman/candidates/java/current/bin/* /usr/bin/ 2>/dev/null || true
 }
 
 # Install go:
