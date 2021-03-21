@@ -336,9 +336,11 @@ ${src2dest[$key]}"
 
 # Install nvm and then npm and yarn:
 function install_nvm_npm_yarn() {
+  local node_version=14
+  ! command -v node &>/dev/null || [[ "$(node -v)" != *"$node_version"* ]] || return 0
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
   source ~/.nvm/nvm.sh
-  nvm install 14
+  nvm install ${node_version}
   nvm alias default
   nvm use default
   npm install --global yarn
