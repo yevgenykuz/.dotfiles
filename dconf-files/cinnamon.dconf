@@ -66,9 +66,6 @@ secondary-click-time=1.2
 [desktop/applications/calculator]
 exec='gnome-calculator'
 
-[desktop/applications/terminal]
-exec='gnome-terminal --window --maximize'
-
 [desktop/interface]
 clock-show-date=false
 clock-show-seconds=false
@@ -83,7 +80,7 @@ text-scaling-factor=1.3000000000000003
 toolkit-accessibility=true
 
 [desktop/keybindings]
-custom-list=['custom0', 'custom1', 'custom2', 'custom3', 'custom4']
+custom-list=['custom5', 'custom4', 'custom3', 'custom2', 'custom1', 'custom0']
 looking-glass-keybinding=['<Shift><Super>l']
 
 [desktop/keybindings/custom-keybindings/custom0]
@@ -111,13 +108,18 @@ binding=['AudioPrev']
 command='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous'
 name='spotify previous'
 
+[desktop/keybindings/custom-keybindings/custom5]
+binding=['<Primary><Super>t']
+command='gnome-terminal --maximize'
+name='Launch Terminal Maximized'
+
 [desktop/keybindings/media-keys]
 next=@as []
 play=@as []
 previous=@as []
 screensaver=['<Super>l', 'XF86ScreenSaver']
 stop=@as []
-terminal=['<Primary><Super>t']
+terminal=@as []
 www=['XF86WWW', '<Super>w']
 
 [desktop/keybindings/wm]
