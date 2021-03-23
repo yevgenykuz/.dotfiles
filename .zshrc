@@ -10,6 +10,8 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Colourful terminal:
 export TERM=xterm-256color
+# Force UTF-8
+export LC_CTYPE=en_US.UTF-8
 # Set vim as default:
 export VISUAL=vim
 export EDITOR="$VISUAL"
