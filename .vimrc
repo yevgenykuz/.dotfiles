@@ -34,6 +34,8 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 " Markdown - live preview with local nodejs server
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+" Go programming
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Icons (load last)
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
