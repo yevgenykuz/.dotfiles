@@ -36,6 +36,8 @@ Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " Go programming
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Use tab for auto-completion
+Plug 'ervandew/supertab'
 " Icons (load last)
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -95,8 +97,10 @@ set smartindent
 " Layout ---------------------------------------------------------------------------------------{{{
 " Show line numbers
 set nu
-" Don't wrap lines when too long
+" Don't wrap lines when too long (without new line character)
 set nowrap
+" Add new line characters when lines are too long
+set tw=100
 " Draw a wrapping column for 100 characters
 set colorcolumn=100
 " Make navigation tree show hidden files
@@ -122,6 +126,11 @@ set hidden
 set clipboard=unnamedplus
 " Mouse support
 set mouse=a
+" Write contents of file automatically if :make is called
+set autowrite
+" Show vim autocomplete pop-up (instead of scratch buffer) and don't auto type
+set completeopt=longest,menuone,popup
+set completepopup=align:menu,border:off
 " Devicons and airline race condition fix: https://github.com/ryanoasis/vim-devicons/issues/266
 set t_RV=
 "}}}
@@ -191,4 +200,21 @@ let g:strip_whitespace_on_save=1
 let g:mkdp_refresh_slow=1
 " markdown-preview - custom CSS for github preview
 let g:mkdp_markdown_css='~/.dotfiles/.local/github-markdown-css/gh-md.css'
+"}}}
+
+" Go plugins -----------------------------------------------------------------------------------{{{
+" Run goimports along gofmt on each save
+let g:go_fmt_command = "goimports"
+" Automatically get signature/type info for object under cursor in vim status line
+let g:go_auto_type_info = 1
+" Automatically open auto-complete pop-up when . is typed
+au filetype go inoremap <buffer> . .<C-x><C-o>
+" Syntax highlighting
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+" Highlight variable in all lines when hovering on it
+let g:go_auto_sameids = 1
 "}}}
