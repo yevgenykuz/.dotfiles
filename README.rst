@@ -94,7 +94,7 @@ Manual package installation and configuration
 Install from official sites
 ---------------------------
 * IntelliJ
-* PyCharm
+* Slack
 
 
 Manual system settings configuration
