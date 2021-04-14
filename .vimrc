@@ -66,8 +66,8 @@ map <F5> :setlocal spell!<CR>
 nmap <F6> :set invrelativenumber<CR>
 " Toggle visually showing all white space characters
 noremap <F7> :set list!<CR>
-inoremap <F7> <C-o>:set list!<CR>
-cnoremap <F7> <C-c>:set list!<CR>
+" Re-indent the entire file
+map <F8> gg=G``
 " Toggle navigation tree
 noremap <F10> :NERDTreeToggle<CR>
 "}}}
