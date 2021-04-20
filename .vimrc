@@ -133,6 +133,10 @@ set autowrite
 " Show vim autocomplete pop-up (instead of scratch buffer) and don't auto type
 set completeopt=longest,menuone,popup
 set completepopup=align:menu,border:off
+" Maximize GVim on start
+if has("gui_running")
+  set lines=999 columns=999
+endif
 " Devicons and airline race condition fix: https://github.com/ryanoasis/vim-devicons/issues/266
 set t_RV=
 "}}}
