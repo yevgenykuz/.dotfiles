@@ -38,6 +38,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Use tab for auto-completion
 Plug 'ervandew/supertab'
+" Auto formatter (uses external tools per file type)
+Plug 'Chiel92/vim-autoformat'
 " Icons (load last)
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
