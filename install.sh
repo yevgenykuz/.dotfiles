@@ -62,7 +62,7 @@ function install_packages() {
     xclip traceroute
     silversearcher-ag ack gawk
     htop tree hardinfo blueman
-    dos2unix jq thefuck
+    dos2unix jq thefuck tidy
     ascii screenfetch
     dconf-cli dconf-editor
     tmux freerdp2-x11 dbus-x11
@@ -109,7 +109,7 @@ function install_minimal_packages() {
     xclip traceroute
     silversearcher-ag ack gawk
     htop tree hardinfo
-    dos2unix jq thefuck
+    dos2unix jq thefuck tidy
     ascii screenfetch
     dconf-cli dconf-editor
     tmux freerdp2-x11 dbus-x11
@@ -152,7 +152,7 @@ function install_packages_in_wsl() {
     xclip traceroute
     silversearcher-ag ack gawk
     htop tree hardinfo
-    dos2unix jq thefuck
+    dos2unix jq thefuck tidy
     ascii screenfetch
     dconf-cli xdg-utils
     tmux dbus-x11
