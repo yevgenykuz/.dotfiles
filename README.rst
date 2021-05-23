@@ -3,6 +3,7 @@ Initial setup and configuration
 
 | This is my initial setup procedure of a Linux Mint >20 machine with Cinnamon.
 | Perform the steps in the following order.
+| If used for a virtual machine or WSL, jump to :ref:`install-git`.
 
 -----
 
@@ -53,6 +54,8 @@ Create SSH and GPG keys
 
 See `Appendix: SSH and GPG keys`_.
 
+.. _install-git:
+
 Install git
 ===========
 
@@ -82,6 +85,9 @@ Automatic package installation and configuration
 
 Run install.sh
 --------------
+| Run and select between a full installation for a desktop environment or a minimal installation for a virtual machine.
+| WSL is detected automatically.
+| 
 
 .. code-block:: bash
 
