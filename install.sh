@@ -98,9 +98,9 @@ function install_minimal_packages() {
   echo "-----> Install minimal packages with apt"
   local packages=(
     curl wget
-    git zsh gnome-terminal
-    vim-gtk3 nano man feh
-    build-essential zlib1g-dev x11-utils xz-utils
+    git zsh
+    vim nano man feh
+    build-essential zlib1g-dev xz-utils
     zip unzip unrar p7zip-full p7zip-rar gzip pigz bzip2
     python3-pip python3-dev python3-venv
     pandoc python3-docutils rst2pdf
@@ -112,14 +112,12 @@ function install_minimal_packages() {
     dos2unix jq thefuck tidy
     ascii screenfetch
     dconf-cli dconf-editor
-    tmux freerdp2-x11 dbus-x11
-    flashplugin-installer
+    tmux xdg-utils
     ttf-mscorefonts-installer fonts-symbola
     docker.io docker-compose
     awscli ec2-ami-tools
     fd-find bat fzf
     #ripgrep
-    gparted deluge bleachbit filezilla
   )
 
   sudo apt-get update
@@ -368,6 +366,11 @@ function install_ripgrep() {
   rm -f ripgrep*
 }
 
+# Force generate en_GB and en_US locales
+function generate_locale() {
+  sudo locale-gen en_GB.UTF-8 en_US.UTF-8
+}
+
 # Run script:
 if [[ "$(id -u)" == 0 ]]; then
   echo "$BASH_SOURCE: Please run as non-root" >&2
@@ -456,6 +459,7 @@ else
         install_vim_plugins
         install_tmux_plugins
         install_ripgrep
+        generate_locale
         break
         ;;
       "Exit")
