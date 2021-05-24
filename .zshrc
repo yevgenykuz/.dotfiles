@@ -127,10 +127,10 @@ alias findf='find . -type f -name'
 alias h='history'
 alias hgrep='fc -El 0 | grep'
 alias gdo='git diff @{upstream}'
-alias workrdp='xfreerdp /multimon /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls \
-/audio-mode:1 +fonts -themes -wallpaper -clipboard'
-alias workrdpsm='xfreerdp /f /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls \
-/audio-mode:1 +fonts -themes -wallpaper -clipboard'
+alias workrdp='xfreerdp /multimon /gfx:rfx /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls \
+/audio-mode:1 +fonts -themes -wallpaper -clipboard -compression'
+alias workrdpsm='xfreerdp /f /gfx:rfx /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls \
+/audio-mode:1 +fonts -themes -wallpaper -clipboard -compression'
 
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts \
