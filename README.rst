@@ -85,7 +85,7 @@ Run install.sh
 --------------
 | Run and select between a full installation for a desktop environment or a minimal installation for a virtual machine.
 | WSL is detected automatically.
-| 
+|
 
 .. code-block:: bash
 
@@ -163,10 +163,10 @@ GPG key
     # Leave comment empty
     # Type a pass phrase
     # --> Done (move mouse during key generation)
-    # To use it, get ID for created key (can be found after "sec   4096R/_____ID_____":
+    # To use it, get ID for created key (can be found after "sec   4096R/<KEYID>":
     gpg --list-secret-keys --keyid-format LONG
     # Copy GPG public key to system clipboard:
-    gpg --armor --export _____ID_____ | xclip -sel clip
+    gpg --armor --export <KEYID> | xclip -sel clip
     # Paste into target location
 
 * Current key ID retrieval:
@@ -179,9 +179,11 @@ GPG key
 
 .. code-block:: bash
 
-    # Get current key ID, and then delete the key:
+    # Get current key ID, and then delete the secret key:
     gpg --delete-secret-key <KEYID>
     # Confirm multiple times
+    # Delete the public key too:
+    gpg --delete-keys <KEYID>
 
 * Password testing:
 
