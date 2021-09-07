@@ -192,6 +192,15 @@ GPG key
     # Get current key ID, and then try with the key:
     echo "Test" | gpg --no-use-agent -o /dev/null --local-user <KEYID> -as - && echo "OK"
 
+* Key publishing:
+
+.. code-block:: bash
+
+    # Get current key ID, and upload it to the following key servers:
+    gpg --keyserver keyserver.ubuntu.com --send-keys <KEYID>
+    gpg --keyserver keys.openpgp.org --send-keys <KEYID>
+    gpg --keyserver pgp.mit.edu --send-keys <KEYID>
+
 Meta
 ====
 
