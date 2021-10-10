@@ -1,7 +1,7 @@
 [user]
   name = Yevgeny Kuznetsov
   email = yevgenyku@gmail.com
-  signingkey = 481437397550E1055F3809858C62477EC176B760
+  signingkey = 9B3F053F924F68E895B3A909755A61972E760B05
 [commit]
   gpgsign = true
 [credential]
