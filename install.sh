@@ -258,14 +258,21 @@ function install_go() {
   rm $dwfile
 }
 
-# Beautify ZSH:
-function beautify_shell() {
-  echo "-----> Beautify shell"
+# Copy custom fonts:
+function copy_custom_fonts() {
+  echo "-----> Copy custom fonts"
   # Get shell font
   mkdir -p $HOME/.local/share/fonts
   curl -fLo "$HOME/.local/share/fonts/Sauce Code Pro Nerd Font Complete.ttf" \
 https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete\
 /Sauce%20Code%20Pro%20Nerd%20Font%20Complete.ttf?raw=true
+  yes | cp -fa $HOME/.dotfiles/.local/share/fonts/. $HOME/.local/share/fonts && echo "Done"
+  sudo fc-cache -f -v
+}
+
+# Beautify ZSH:
+function beautify_shell() {
+  echo "-----> Beautify shell"
   # Install oh-my-zsh
   [ ! -d "$HOME/.oh-my-zsh" ] && \
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
@@ -277,14 +284,6 @@ $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting
   # Install powerlevel10k theme
   [ ! -d "$HOME/.oh-my-zsh/themes/powerlevel10k" ] && git clone --depth=1 \
 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/themes/powerlevel10k || true
-}
-
-# Copy custom fonts:
-function copy_custom_fonts() {
-  echo "-----> Copy custom fonts"
-  mkdir -p $HOME/.local/share/fonts
-  yes | cp -fa $HOME/.dotfiles/.local/share/fonts/. $HOME/.local/share/fonts && echo "Done"
-  sudo fc-cache -f -v
 }
 
 # Set ZSH as default shell:
@@ -382,17 +381,10 @@ if [ ! -d $HOME ]; then
   exit 1
 fi
 
-# Check if WSL:
-if [[ "$(</proc/version)" == *[Mm]icrosoft* ]] 2>/dev/null; then
-  readonly WSL=1
-  echo "WSL detected"
-else
-  readonly WSL=0
-fi
-
 umask g-w,o-w
 
-if (( WSL )); then
+if [[ "$(</proc/version)" == *[Mm]icrosoft* ]] 2>/dev/null; then # Check if WSL
+  echo "WSL detected"
   install_packages_in_wsl
   remove_packages
   install_java
@@ -406,7 +398,8 @@ if (( WSL )); then
   install_vim_plugins
   install_tmux_plugins
   install_ripgrep
-else
+elif [[ "$(uname -s)" == *[Ll]inux* ]] 2>/dev/null; then # Check if Linux or Darwin (MacOS)
+  echo "Linux detected"
   # Selection menu:
   COLUMNS=1
   echo "Options:"
@@ -468,6 +461,9 @@ else
       *) echo "Invalid option $REPLY";;
     esac
   done
+else
+  echo "MacOS detected"
+  check_ssh_key
 fi
 
 echo "Success"
