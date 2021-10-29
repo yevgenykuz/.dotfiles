@@ -1,9 +1,16 @@
 Initial setup and configuration
 ###############################
 
-| This is my initial setup procedure of a Linux Mint >20 machine with Cinnamon.
+| This is my initial setup procedure of a my development machine.
+| It supports the following flavours:
+
+* A home box running Linux Mint >20 machine with Cinnamon, including visual aspects like applets and themes, i/o drivers, cinnamon configuration
+* Minimal procedure suitable for virtual machines
+* Minimal procedure suitable for WSL on windows
+* A home box running MacOS
+
 | Perform the steps in the following order.
-| If used for a virtual machine or WSL, start from `Install Git`_.
+| If used for a virtual machine or WSL, skip SSH and GPG keys creation and start from `Install Git`_.
 
 -----
 
@@ -16,50 +23,32 @@ Initial setup and configuration
 Initial configuration
 =====================
 
-Linux Mint OS installation - setup guidelines
----------------------------------------------
+Manual configuration - MacOS
+----------------------------
 
-* Set locale, keyboard, and all language settings to English(US)
-* Set hostname and user information
-* Do not encrypt home directory
-* Set timezone to local timezone
-* Partitioning - use entire disk and set up LVM, set usage amount to 80%
-* Do not set HTTP proxy (if asked)
-* Install GRUB boot loader (if asked)
+See `Appendix: MacOS`_.
 
-Static IP configuration
------------------------
+Manual configuration - Linux Mint
+---------------------------------
 
-* Edit /etc/network/interfaces with sudo (replace "ens32" with actual interface)
-
-.. code-block:: bash
-
-    ...
-    # The primary network interface
-    auto ens32
-    iface ens32 inet static
-    address 192.168.14.202
-    netmask 255.255.255.0
-    gateway 192.168.14.1
-    dns-nameservers 192.168.14.1 1.1.1.1 8.8.8.8 9.9.9.9
-
-* Restart the network manager service
-
-.. code-block:: bash
-
-    sudo service network-manager restart
+See `Appendix: Linux Mint`_.
 
 Create SSH and GPG keys
 -----------------------
 
 See `Appendix: SSH and GPG keys`_.
 
+
 Install git
 ===========
 
 .. code-block:: bash
 
+    # linux:
     sudo apt install -y git
+    # mac:
+    brew install git
+
 
 Sync with dotfiles (this) repo
 ==============================
@@ -74,9 +63,7 @@ Sync with dotfiles (this) repo
     # make sure all .sh files have execute permission. If not, give it with:
     chmod +x ~/.dotfiles/*.sh
     chmod +x -R ~/.dotfiles/scripts
-    # after logging into Mozilla account in Firefox and syncing, move all items from
-    # ~/.dotfiles/.mozilla/firefox/RANDOM_PROFILE_STRING to generated profile folder in
-    # ~/.mozilla/firefox
+
 
 Automatic package installation and configuration
 ================================================
@@ -84,7 +71,7 @@ Automatic package installation and configuration
 Run install.sh
 --------------
 | Run and select between a full installation for a desktop environment or a minimal installation for a virtual machine.
-| WSL is detected automatically.
+| WSL or MacOS is detected automatically.
 |
 
 .. code-block:: bash
@@ -92,14 +79,20 @@ Run install.sh
     bash ~/.dotfiles/install.sh
     # this script may take some time, resulting in multiple requests for sudo password
 
-Manual package installation and configuration
-=============================================
+
+Appendix: MacOS
+===============
+
+TBD
+
+
+Appendix: Linux Mint
+====================
 
 Install from official sites
 ---------------------------
 * IntelliJ
 * Slack
-
 
 Manual system settings configuration
 ------------------------------------
@@ -110,10 +103,10 @@ The following can be found under the relevant category in "System Settings".
 * [Applets/Extensions] Configure applets and extensions
 * [Desktop] Remove "Computer" and "Home" shortcuts from desktop
 
-
 Misc.
 -----
 * Complete Linux Mint system report tasks
+
 
 Appendix: SSH and GPG keys
 ==========================
@@ -200,6 +193,7 @@ GPG key
     gpg --keyserver keyserver.ubuntu.com --send-keys <KEYID>
     gpg --keyserver keys.openpgp.org --send-keys <KEYID>
     gpg --keyserver pgp.mit.edu --send-keys <KEYID>
+
 
 Meta
 ====
