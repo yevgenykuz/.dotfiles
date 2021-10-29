@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Use this script to automate initial environment setup.
 # It is written for an Ubuntu flavored Linux system, and was tested with Linux Mint 20.04.
