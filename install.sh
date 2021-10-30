@@ -172,6 +172,51 @@ Then, run the install.sh script again" && return 1)
   sudo apt-get autoclean
 }
 
+# Install MacOS packages:
+function install_macos_packages() {
+  echo "-----> Install MacOS packages with brew"
+  local packages=(
+    python go
+    curl wget
+    git zsh
+    vim nano tldr
+    zip unzip gzip pigz bzip2
+    pandoc docutils
+    make cmake
+    ruby hugo
+    xclip
+    ack gawk
+    htop tree
+    dos2unix jq thefuck tidy-html5
+    ascii screenfetch
+    tmux
+    ttf-mscorefonts-installer fonts-symbola
+    awscli ec2-ami-tools
+    fd-find bat fzf ripgrep
+    kubernetes-cli helm    
+  )
+
+  local casks=(
+    rar vlc
+    docker intellij-idea
+    virtualbox    
+    gimp deluge    
+  )
+
+  brew update
+  brew upgrade
+  brew install -y "${packages[@]}" || (echo -e " Failed to install packages.\n\
+Run 'brew doctor' to check brew status.\n\
+Try to install failed packages manually.\n\
+Then, run the install.sh script again" && return 1)
+  brew install --cask -y "${casks[@]}" || (echo -e " Failed to install casks.\n\
+Run 'brew doctor' to check brew status.\n\
+Try to install failed packages manually.\n\
+Then, run the install.sh script again" && return 1)
+  brew tap homebrew/cask-fonts && brew install --cask font-source-code-pro
+  brew cleanup
+}
+
 # Remove unused packages:
 function remove_packages() {
   local packages_to_remove=(
@@ -326,7 +371,7 @@ ${src2dest[$key]}"
 function install_nvm_npm_yarn() {
   local node_version=14
   ! command -v node &>/dev/null || [[ "$(node -v)" != *"$node_version"* ]] || return 0
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
   source ~/.nvm/nvm.sh
   nvm install ${node_version}
   nvm alias default
@@ -389,8 +434,8 @@ if [[ "$(</proc/version)" == *[Mm]icrosoft* ]] 2>/dev/null; then # Check if WSL
   remove_packages
   install_java
   install_go
-  beautify_shell
   copy_custom_fonts
+  beautify_shell
   change_shell
   create_links
   install_nvm_npm_yarn
@@ -425,8 +470,8 @@ elif [[ "$(uname -s)" == *[Ll]inux* ]] 2>/dev/null; then # Check if Linux or Dar
         edit_gnome_terminal_shortcuts
         install_java
         install_go
-        beautify_shell
         copy_custom_fonts
+        beautify_shell
         change_shell
         create_links
         install_nvm_npm_yarn
@@ -443,8 +488,8 @@ elif [[ "$(uname -s)" == *[Ll]inux* ]] 2>/dev/null; then # Check if Linux or Dar
         remove_packages
         install_java
         install_go
-        beautify_shell
         copy_custom_fonts
+        beautify_shell
         change_shell
         create_links
         install_nvm_npm_yarn
@@ -464,6 +509,14 @@ elif [[ "$(uname -s)" == *[Ll]inux* ]] 2>/dev/null; then # Check if Linux or Dar
 else
   echo "MacOS detected"
   check_ssh_key
+  install_macos_packages
+  install_java
+  beautify_shell
+  create_links
+  install_nvm_npm_yarn
+  create_vim_undo_dir
+  install_vim_plugins
+  install_tmux_plugins
 fi
 
 echo "Success"
