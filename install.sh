@@ -347,7 +347,6 @@ function create_links() {
   src2dest[".tmux.conf"]="$HOME/.tmux.conf"
   src2dest[".vimrc"]="$HOME/.vimrc"
 
-  dir=$(dirname "$0")
   backup_dir=$HOME/.dotfiles_backup
   rm -rf $backup_dir
   mkdir -p $backup_dir
@@ -359,7 +358,7 @@ function create_links() {
       mkdir -p "$backup_dir/$temp_dir"
       mv -f "${src2dest[$key]}" "$backup_dir/$temp_dir"
     fi
-    ln -sr "$dir/$key" "${src2dest[$key]}" || echo "Can not create symlink. File still exists at \
+    ln -s "$HOME/.dotfiles/$key" "${src2dest[$key]}" || echo "Can not create symlink. File still exists at \
 ${src2dest[$key]}"
   done
   rmdir $backup_dir || echo "Old dotfiles where backed up to $backup_dir"
