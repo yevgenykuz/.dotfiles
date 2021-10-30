@@ -198,7 +198,8 @@ function install_macos_packages() {
   local casks=(
     rar vlc
     docker intellij-idea
-    gimp deluge    
+    gimp deluge
+    zoom
   )
 
   brew update
