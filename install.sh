@@ -178,7 +178,7 @@ function install_macos_packages() {
   local formulae=(
     python go
     curl wget
-    git zsh
+    git svn zsh
     vim nano tldr
     zip unzip gzip pigz bzip2
     pandoc docutils
