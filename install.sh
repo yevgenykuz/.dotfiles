@@ -179,7 +179,7 @@ function install_macos_packages() {
     python go
     curl wget gpg
     git svn zsh
-    vim nano tldr
+    nano tldr
     zip unzip gzip pigz bzip2 p7zip
     pandoc docutils
     make cmake
@@ -196,9 +196,10 @@ function install_macos_packages() {
   )
 
   local casks=(
-    rar vlc
-    docker intellij-idea
-    gimp deluge
+    rar keka kekaexternalhelper
+    iterm2 macvim docker intellij-idea
+    cyberduck
+    vlc gimp deluge
     zoom
   )
 
