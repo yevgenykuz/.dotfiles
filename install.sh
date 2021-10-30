@@ -198,7 +198,6 @@ function install_macos_packages() {
   local casks=(
     rar vlc
     docker intellij-idea
-    virtualbox    
     gimp deluge    
   )
 
