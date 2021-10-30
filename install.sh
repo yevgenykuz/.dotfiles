@@ -175,7 +175,7 @@ Then, run the install.sh script again" && return 1)
 # Install MacOS packages:
 function install_macos_packages() {
   echo "-----> Install MacOS packages with brew"
-  local packages=(
+  local formulae=(
     python go
     curl wget
     git zsh
@@ -190,7 +190,6 @@ function install_macos_packages() {
     dos2unix jq thefuck tidy-html5
     ascii screenfetch
     tmux
-    ttf-mscorefonts-installer fonts-symbola
     awscli ec2-ami-tools
     fd-find bat fzf ripgrep
     kubernetes-cli helm    
@@ -205,7 +204,7 @@ function install_macos_packages() {
 
   brew update
   brew upgrade
-  brew install "${packages[@]}" || (echo -e " Failed to install packages.\n\
+  brew install "${formulae[@]}" || (echo -e " Failed to install packages.\n\
 Run 'brew doctor' to check brew status.\n\
 Try to install failed packages manually.\n\
 Then, run the install.sh script again" && return 1)
