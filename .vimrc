@@ -21,7 +21,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " ripgrep integration
-Plug 'jremmen/vim-ripgrep'
+" Plug 'jremmen/vim-ripgrep' - until https://github.com/jremmen/vim-ripgrep/pull/58 is fixed
 " fzf integration
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " tmux integration
@@ -47,6 +47,7 @@ call plug#end()
 
 " Key mappings ---------------------------------------------------------------------------------{{{
 " Change leader key to space
+nnoremap <Space> <NOP>
 let mapleader = " "
 " Open a new empty buffer
 nmap <leader>t :enew<cr>
@@ -58,20 +59,20 @@ nmap <leader><Left> :bprevious<CR>
 nmap <leader><Down> :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader><Up> :ls<CR>
-" Toggle paste mode to prevent auto indentation and comments
-set pastetoggle=<F3>
+" Toggle navigation tree
+noremap <F1> :NERDTreeToggle<CR>
 " Toggle highlighting on/off for current search matches
-noremap <F4> :set hlsearch! hlsearch?<CR>
+noremap <F2> :set hlsearch! hlsearch?<CR>
+" Toggle relative line numbers and regular line numbers
+nmap <F3> :set invrelativenumber<CR>
+" Toggle paste mode to prevent auto indentation and comments
+set pastetoggle=<F4>
 " Toggle spell check
 map <F5> :setlocal spell!<CR>
-" Toggle relative line numbers and regular line numbers
-nmap <F6> :set invrelativenumber<CR>
 " Toggle visually showing all white space characters
-noremap <F7> :set list!<CR>
+noremap <F6> :set list!<CR>
 " Format the entire file
-noremap <F8> :Autoformat<CR>
-" Toggle navigation tree
-noremap <F10> :NERDTreeToggle<CR>
+noremap <F7> :Autoformat<CR>
 "}}}
 
 " Color ----------------------------------------------------------------------------------------{{{
@@ -124,8 +125,8 @@ set undodir =~/.vim/undodir
 set undofile
 " Allow switching between buffers without writing
 set hidden
-" Integrate system clipboard
-set clipboard=unnamedplus
+" Integrate system clipboard, cross-platform
+set clipboard^=unnamed,unnamedplus
 " Mouse support
 set mouse=a
 " Write contents of file automatically if :make is called
@@ -137,6 +138,8 @@ set completepopup=align:menu,border:off
 if has("gui_running")
   set lines=999 columns=999
 endif
+" Faster mode updates
+set timeoutlen=1000 ttimeoutlen=100
 " Devicons and airline race condition fix: https://github.com/ryanoasis/vim-devicons/issues/266
 set t_RV=
 "}}}
