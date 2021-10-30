@@ -184,7 +184,7 @@ function install_macos_packages() {
     pandoc docutils
     make cmake
     ruby hugo
-    xclip
+    xclip coreutils
     ack gawk
     htop tree
     dos2unix jq thefuck tidy-html5
