@@ -177,7 +177,8 @@ function install_macos_packages() {
   echo "-----> Install MacOS packages with brew"
   local formulae=(
     python go
-    curl wget gpg
+    curl wget
+    gpg pinentry-mac
     git svn zsh
     nano tldr
     zip unzip gzip pigz bzip2 p7zip
