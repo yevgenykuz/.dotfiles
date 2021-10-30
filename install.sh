@@ -180,7 +180,7 @@ function install_macos_packages() {
     curl wget gpg
     git svn zsh
     vim nano tldr
-    zip unzip gzip pigz bzip2
+    zip unzip gzip pigz bzip2 p7zip
     pandoc docutils
     make cmake
     ruby hugo
