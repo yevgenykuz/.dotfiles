@@ -211,7 +211,7 @@ Then, run the install.sh script again" && return 1)
 Run 'brew doctor' to check brew status.\n\
 Try to install failed packages manually.\n\
 Then, run the install.sh script again" && return 1)
-  brew tap homebrew/cask-fonts && brew install --cask font-source-code-pro
+  brew tap homebrew/cask-fonts && brew install --cask font-sauce-code-pro-nerd-font
   brew cleanup
 }
 
