@@ -139,6 +139,19 @@ SSH key
    ssh-add
    # If it was loaded, unload it:
    ssh-add -d
+   
+* MacOS integration:
+
+.. code-block:: bash
+
+   # Add to macos keychain:
+   ssh-add --apple-use-keychain ~/.ssh/id_rsa
+   # Add the following to ~/.ssh/config to persist after reboot
+   Host *
+     ServerAliveInterval 60
+     UseKeychain yes
+     AddKeysToAgent yes
+     IdentityFile ~/.ssh/id_rsa
 
 GPG key
 -------
@@ -193,6 +206,13 @@ GPG key
     gpg --keyserver keyserver.ubuntu.com --send-keys <KEYID>
     gpg --keyserver keys.openpgp.org --send-keys <KEYID>
     gpg --keyserver pgp.mit.edu --send-keys <KEYID>
+
+* MacOS integration:
+
+.. code-block:: bash
+
+   # After installing pinentry-mac add the following to ~/.gnupg/gpg-agent.conf:
+   pinentry-program /usr/local/bin/pinentry-mac
 
 
 Meta
