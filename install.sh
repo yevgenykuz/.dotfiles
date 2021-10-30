@@ -205,11 +205,11 @@ function install_macos_packages() {
 
   brew update
   brew upgrade
-  brew install -y "${packages[@]}" || (echo -e " Failed to install packages.\n\
+  brew install "${packages[@]}" || (echo -e " Failed to install packages.\n\
 Run 'brew doctor' to check brew status.\n\
 Try to install failed packages manually.\n\
 Then, run the install.sh script again" && return 1)
-  brew install --cask -y "${casks[@]}" || (echo -e " Failed to install casks.\n\
+  brew install --cask "${casks[@]}" || (echo -e " Failed to install casks.\n\
 Run 'brew doctor' to check brew status.\n\
 Try to install failed packages manually.\n\
 Then, run the install.sh script again" && return 1)
