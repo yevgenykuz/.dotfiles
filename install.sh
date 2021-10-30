@@ -191,7 +191,7 @@ function install_macos_packages() {
     ascii screenfetch
     tmux
     awscli ec2-ami-tools
-    fd-find bat fzf ripgrep
+    fd bat fzf ripgrep
     kubernetes-cli helm    
   )
 
