@@ -193,7 +193,7 @@ function install_macos_packages() {
     tmux
     awscli ec2-ami-tools
     fd bat fzf ripgrep
-    kubernetes-cli helm    
+    kubernetes-cli helm
   )
 
   local casks=(
@@ -346,7 +346,6 @@ function create_links() {
   src2dest[".zshrc"]="$HOME/.zshrc"
   src2dest[".p10k.zsh"]="$HOME/.p10k.zsh"
   src2dest[".gitconfig"]="$HOME/.gitconfig"
-  src2dest[".ssh/config"]="$HOME/.ssh/config"
   src2dest[".tmux.conf"]="$HOME/.tmux.conf"
   src2dest[".vimrc"]="$HOME/.vimrc"
 
