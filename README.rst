@@ -83,7 +83,72 @@ Run install.sh
 Appendix: MacOS
 ===============
 
-TBD
+Apple ID
+--------
+* Create an Apple ID, login to apple music once to add shipping and payment addresses (without credit card)
+* Login to App Store, update everything
+
+Install from app store
+----------------------
+* Slack
+* Microsoft Remote Desktop
+
+Manual terminal setup
+---------------------
+Install homebrew:
+
+* Get it (accept xcode cmd tools, type pw for sudo): `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
+* Test it `brew doctor`
+
+Bash and iTerm2:
+
+* Update bash before running `install.sh`: `brew install bash`.
+* Install iTerm2: `brew install --cask iterm2`
+
+Manual system settings configuration
+------------------------------------
+Go to "System Preferences":
+
+* [General] Appearance - Dark
+* [Dock & Menu Bar] Automatically hide and show the Dock
+* [Dock & Menu Bar] Battery > Show percentage
+* [Dock & Menu Bar] Siri > Do not show in menu bar
+* [Mission Control] Hot Corners > Disable all
+* [Users & Groups] Disable guest user login
+* [Security & Privacy] Apple advertising and Analytics & improvments > Disable all
+* [Touch ID] Setup new fingerprint, use for all
+* [Keyboard] Key Repeat > Fast
+* [Keyboard] Delay Until Repeat > Short
+* [Keyboard] Press fn key to > Show Emoji & Symbols
+* [Keyboard] Customize control strip > Remove Siri
+* [Trackpad] Point & Click > Tap to click
+* [Displays] Night Shift > Custom > 5:00AM to 4:00AM
+* [Sharing] Edit computer name (make shorter), disable everything except AirPlay
+
+Manual built-in apps configuration
+----------------------------------
+Finder:
+
+* Preferences > General > Set default directory to home directory
+* Preferences > General > Use windows to open new folders
+* Preferences > Advanced > Show all filename extensions
+* View > Show Path Bar
+* Show hidden files, open terminal and: `defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder;`
+
+Screenshot:
+
+* Change screenshot save location - open the app > Options > Select folder under "Save to"
+
+iTerm2:
+
+* Click in menu bar > Make iTerm2 default Term
+* Preferences > General > Startup > Window restoration policy > Only restore hotkey window
+* Preferences > General > Selection > Copy to pasteboard on selection
+* Preferences > Appearance > General > Theme > Minimal
+* Preferences > Profiles > Other Actions... > Import JSON profiles > import from file in ~/.dotfiles/.local/iterm2-profiles
+* Preferences > Keys > Add touch bar item > label `cls`, action `Send Text`, text `cls\n`
+* Preferences > Pointer > General > Three-finger tap emulates middle click
+* Preferences > Pointer > General > Focus follows mouse
 
 
 Appendix: Linux Mint
@@ -96,7 +161,7 @@ Install from official sites
 
 Manual system settings configuration
 ------------------------------------
-The following can be found under the relevant category in "System Settings".
+Go to "System Settings":
 
 * [Keyboard] Add keyboard layouts and set switching shortcut to "Alt+Shift"
 * [Preferred Applications] Configure preferred applications
