@@ -97,13 +97,13 @@ Manual terminal setup
 ---------------------
 Install homebrew:
 
-* Get it (accept xcode cmd tools, type pw for sudo): `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
-* Test it `brew doctor`
+* Get it (accept xcode cmd tools, type password for sudo): ``/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"``
+* Test it: ``brew doctor``
 
 Bash and iTerm2:
 
-* Update bash before running `install.sh`: `brew install bash`.
-* Install iTerm2: `brew install --cask iterm2`
+* Update bash before running ``install.sh``: ``brew install bash``
+* Install iTerm2: ``brew install --cask iterm2``
 
 Manual system settings configuration
 ------------------------------------
@@ -122,7 +122,7 @@ Go to "System Preferences":
 * [Keyboard] Press fn key to > Show Emoji & Symbols
 * [Keyboard] Customize control strip > Remove Siri
 * [Trackpad] Point & Click > Tap to click
-* [Displays] Night Shift > Custom > 5:00AM to 4:00AM
+* [Displays] Night Shift > Custom > ``5:00AM to 4:00AM``
 * [Sharing] Edit computer name (make shorter), disable everything except AirPlay
 
 Manual built-in apps configuration
@@ -133,11 +133,11 @@ Finder:
 * Preferences > General > Use windows to open new folders
 * Preferences > Advanced > Show all filename extensions
 * View > Show Path Bar
-* Show hidden files, open terminal and: `defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder;`
+* Show hidden files, open terminal and: ``defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder;``
 
 Screenshot:
 
-* Change screenshot save location - open the app > Options > Select folder under "Save to"
+* Change screenshot save location - open the app > Options > Select folder under ``Save to``
 
 iTerm2:
 
@@ -145,8 +145,8 @@ iTerm2:
 * Preferences > General > Startup > Window restoration policy > Only restore hotkey window
 * Preferences > General > Selection > Copy to pasteboard on selection
 * Preferences > Appearance > General > Theme > Minimal
-* Preferences > Profiles > Other Actions... > Import JSON profiles > import from file in ~/.dotfiles/.local/iterm2-profiles
-* Preferences > Keys > Add touch bar item > label `cls`, action `Send Text`, text `cls\n`
+* Preferences > Profiles > Other Actions... > Import JSON profiles > import from file in ``~/.dotfiles/.local/iterm2-profiles``
+* Preferences > Keys > Add touch bar item > label ``cls``, action ``Send Text``, text ``cls\n``
 * Preferences > Pointer > General > Three-finger tap emulates middle click
 * Preferences > Pointer > General > Focus follows mouse
 
