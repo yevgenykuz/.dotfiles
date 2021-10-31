@@ -85,38 +85,39 @@ if [ -x /usr/bin/dircolors ]; then
   alias egrep='egrep --color=auto'
 fi
 
-# Aliases
+# Aliases:
+if [[ "$(uname -s)" == *[Dd]arwin* ]] 2>/dev/null; then # Darwin (MacOS)
+  alias ll='gls -lAh --group-directories-first --color=auto'
+  alias p='ps -ax'
+else # Linux
+  alias ll='ls -lAh --group-directories-first'
+  alias p='ps -auxf'
+  alias python='python3'
+  alias bat='batcat'
+  alias fd='fdfind'
+  alias diff='diff --color=auto'
+  alias c='xclip -sel primary -f | xclip -sel clipboard' # usage: echo "COPY_THIS" | c
+  alias v='xclip -o -sel clipboard'
+  alias shutdown='sudo shutdown -h now'
+fi
 alias cls='clear'
-alias l='ls -AlCh'
-alias ll='ls -lAh --group-directories-first'
-alias lo='ls -lAtrh'
-alias shutdown='sudo shutdown -h now'
-alias python='python3'
 alias pip='pip3'
+alias l='ls -AlCh'
+alias lo='ls -lAtrh'
 alias tree='tree -aC -I .git --dirsfirst'
-alias diff='diff --color=auto'
-alias c='xclip -sel primary -f | xclip -sel clipboard' # usage: echo "COPY_THIS" | c
-alias v='xclip -o -sel clipboard'
 alias grep='grep --color'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 alias t='tail -f'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias p='ps -auxf'
 alias dud='du -d 1 -h'
 alias help='man'
-alias bat='batcat'
-alias fd='fdfind'
 alias findd='find . -type d -name'
 alias findf='find . -type f -name'
 alias h='history'
 alias hgrep='fc -El 0 | grep'
 alias gdo='git diff @{upstream}'
-alias workrdp='xfreerdp /multimon /gfx:rfx /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls \
-/audio-mode:1 +fonts -themes -wallpaper -clipboard -compression'
-alias workrdpsm='xfreerdp /f /gfx:rfx /d:DM /u:YevgenyK /v:192.168.14.66 /network:lan /sec:tls \
-/audio-mode:1 +fonts -themes -wallpaper -clipboard -compression'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
