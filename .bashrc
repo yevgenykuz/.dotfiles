@@ -158,7 +158,11 @@ export PATH="$HOME/gems/bin:$PATH"
 
 # Add Go to PATH:
 export GOPATH=$HOME/go
-export GOROOT=/usr/local/go
+if [[ "$(uname -s)" == *[Dd]arwin* ]] 2>/dev/null; then # Darwin (MacOS) - with brew
+  export GOROOT=/usr/local/opt/go/libexec
+else # Linux
+  export GOROOT=/usr/local/go
+fi
 export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 
 export NVM_DIR="$HOME/.nvm"
