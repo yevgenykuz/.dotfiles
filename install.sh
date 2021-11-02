@@ -199,7 +199,7 @@ function install_macos_packages() {
   local casks=(
     rar keka kekaexternalhelper
     iterm2 macvim docker intellij-idea
-    cyberduck
+    cyberduck textmate
     vlc gimp deluge
     zoom
   )
