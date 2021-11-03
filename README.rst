@@ -92,6 +92,7 @@ Install from app store
 ----------------------
 * Slack
 * Microsoft Remote Desktop
+* Quick Camera
 
 Manual terminal setup
 ---------------------
@@ -204,7 +205,7 @@ SSH key
    ssh-add
    # If it was loaded, unload it:
    ssh-add -d
-   
+
 * MacOS integration:
 
 .. code-block:: bash
