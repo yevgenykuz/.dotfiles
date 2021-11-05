@@ -158,8 +158,23 @@ fi
 
 # Source NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # Loads nvm bash_completion
+# These are the Node versions installed by nvm. Add the latest one to the PATH by default.
+node_versions=("$NVM_DIR"/versions/node/*)
+if [ ${#node_versions[@]} -ne 0 ]; then
+    PATH="$PATH:${node_versions[-1]}/bin"
+fi
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+    # Shim out `nvm` with a function that loads the real `nvm` on first use.
+    # Since we already updated our PATH earlier, we don't need to actually load nvm
+    # to get "node" and related binaries to work.
+    nvm() {
+        source "$NVM_DIR/nvm.sh"
+        nvm "$@"
+    }
+fi
+if [[ -s "$NVM_DIR/bash_completion" ]]; then
+    source "$NVM_DIR/bash_completion"
+fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
