@@ -137,6 +137,7 @@ set completepopup=align:menu,border:off
 " Maximize GVim on start
 if has("gui_running")
   set lines=999 columns=999
+  set guifont=SauceCodePro\ Nerd\ Font:h18
 endif
 " Faster mode updates
 set timeoutlen=1000 ttimeoutlen=100
