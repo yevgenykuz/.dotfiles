@@ -202,6 +202,7 @@ function install_macos_packages() {
     cyberduck textmate
     vlc gimp deluge
     zoom
+    camunda-modeler
   )
 
   brew update
