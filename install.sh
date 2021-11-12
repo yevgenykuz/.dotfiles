@@ -186,7 +186,7 @@ function install_macos_packages() {
     make cmake
     ruby hugo
     xclip coreutils
-    ack gawk
+    ack gawk grep
     htop tree
     dos2unix jq thefuck tidy-html5
     ascii screenfetch
@@ -199,7 +199,7 @@ function install_macos_packages() {
   local casks=(
     rar keka kekaexternalhelper
     iterm2 macvim docker intellij-idea
-    cyberduck textmate
+    cyberduck textmate syntax-highlight
     vlc gimp deluge
     zoom
     camunda-modeler
