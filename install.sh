@@ -181,7 +181,7 @@ function install_macos_packages() {
     gpg pinentry-mac
     git svn zsh
     nano tldr
-    zip unzip gzip pigz bzip2 p7zip
+    zip unzip gzip pigz bzip2 p7zip gnu-tar
     pandoc docutils
     make cmake
     ruby hugo
