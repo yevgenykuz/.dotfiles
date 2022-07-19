@@ -144,7 +144,6 @@ Screenshot:
 iTerm2:
 
 * Click in menu bar > Make iTerm2 default Term
-* Preferences > General > Startup > Window restoration policy > Only restore hotkey window
 * Preferences > General > Selection > Copy to pasteboard on selection
 * Preferences > General > Closing > Disable all
 * Preferences > Appearance > General > Theme > Minimal
@@ -152,6 +151,8 @@ iTerm2:
 * Preferences > Keys > Add touch bar item > label ``cls``, action ``Send Text``, text ``cls\n``
 * Preferences > Pointer > General > Three-finger tap emulates middle click
 * Preferences > Pointer > General > Focus follows mouse
+* Now restart iterm2 (click the icon in the dock it the window doesn't show up), and then > Window > Save window arrangement
+* Preferences > General > Startup > Window restoration policy > Open default window arrangement
 
 
 Appendix: Linux Mint
