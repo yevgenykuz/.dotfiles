@@ -146,6 +146,7 @@ iTerm2:
 * Click in menu bar > Make iTerm2 default Term
 * Preferences > General > Startup > Window restoration policy > Only restore hotkey window
 * Preferences > General > Selection > Copy to pasteboard on selection
+* Preferences > General > Closing > Disable all
 * Preferences > Appearance > General > Theme > Minimal
 * Preferences > Profiles > Other Actions... > Import JSON profiles > import from file in ``~/.dotfiles/.local/iterm2-profiles`` after cloning
 * Preferences > Keys > Add touch bar item > label ``cls``, action ``Send Text``, text ``cls\n``
