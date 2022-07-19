@@ -62,7 +62,7 @@ Sync with dotfiles (this) repo
     git clone https://github.com/yevgenykuz/.dotfiles.git ~/.dotfiles
     # make sure all .sh files have execute permission. If not, give it with:
     chmod +x ~/.dotfiles/*.sh
-    chmod +x -R ~/.dotfiles/scripts
+    chmod +x ~/.dotfiles/scripts/*.sh
 
 
 Automatic package installation and configuration
@@ -116,14 +116,15 @@ Go to "System Preferences":
 * [Dock & Menu Bar] Siri > Do not show in menu bar
 * [Mission Control] Hot Corners > Disable all
 * [Users & Groups] Disable guest user login
-* [Security & Privacy] Apple advertising and Analytics & improvments > Disable all
+* [Security & Privacy] Apple advertising > Disable all
+* [Security & Privacy] Analytics & improvments > Disable all
 * [Touch ID] Setup new fingerprint, use for all
 * [Keyboard] Key Repeat > Fast
 * [Keyboard] Delay Until Repeat > Short
 * [Keyboard] Press fn key to > Show Emoji & Symbols
 * [Keyboard] Customize control strip > Remove Siri
 * [Trackpad] Point & Click > Tap to click
-* [Displays] Night Shift > Custom > ``5:00AM to 4:00AM``
+* [Displays] Night Shift > Custom > ``5:01AM to 4:59AM``
 * [Sharing] Edit computer name (make shorter), disable everything except AirPlay
 
 Manual built-in apps configuration
@@ -146,7 +147,7 @@ iTerm2:
 * Preferences > General > Startup > Window restoration policy > Only restore hotkey window
 * Preferences > General > Selection > Copy to pasteboard on selection
 * Preferences > Appearance > General > Theme > Minimal
-* Preferences > Profiles > Other Actions... > Import JSON profiles > import from file in ``~/.dotfiles/.local/iterm2-profiles``
+* Preferences > Profiles > Other Actions... > Import JSON profiles > import from file in ``~/.dotfiles/.local/iterm2-profiles`` after cloning
 * Preferences > Keys > Add touch bar item > label ``cls``, action ``Send Text``, text ``cls\n``
 * Preferences > Pointer > General > Three-finger tap emulates middle click
 * Preferences > Pointer > General > Focus follows mouse
@@ -189,6 +190,8 @@ SSH key
    # --> Done
    # To use it, copy your public key to system clipboard:
    xclip -sel clip < ~/.ssh/id_rsa.pub
+   # or, if xclip complains about "Error: Can't open display: (null)" just cat the contents and copy manually
+   cat ~/.ssh/id_rsa.pub
    # Paste into target location
 
 * Deletion:
@@ -239,6 +242,8 @@ GPG key
     gpg --list-secret-keys --keyid-format LONG
     # Copy GPG public key to system clipboard:
     gpg --armor --export <KEYID> | xclip -sel clip
+    # or, if xclip complains about "Error: Can't open display: (null)" just show the contents and copy manually
+    gpg --armor --export <KEYID>
     # Paste into target location
 
 * Current key ID retrieval:
