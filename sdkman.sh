@@ -6,7 +6,6 @@ curl -s "https://get.sdkman.io?rcupdate=false" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh" || sdk version || echo "Try running \"source \
 \"$HOME/.sdkman/bin/sdkman-init.sh\"\""
 # Install JDKs
-yes | sdk install java 8.0.332-tem || true
 yes | sdk install java 11.0.15-tem || true
 yes | sdk install java 18.0.1-tem || true
 sdk default java 11.0.15-tem || true

@@ -213,6 +213,7 @@ function install_macos_packages() {
 
   brew update
   brew upgrade
+  brew tap homebrew/cask-fonts
   brew install "${formulae[@]}" || (echo -e " Failed to install packages.\n\
 Run 'brew doctor' to check brew status.\n\
 Try to install failed packages manually.\n\
@@ -375,7 +376,7 @@ ${src2dest[$key]}"
 
 # Install nvm and then npm and yarn:
 function install_nvm_npm_yarn() {
-  local node_version=14
+  local node_version=16
   ! command -v node &>/dev/null || [[ "$(node -v)" != *"$node_version"* ]] || return 0
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
   source ~/.nvm/nvm.sh
