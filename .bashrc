@@ -92,7 +92,6 @@ if [[ "$(uname -s)" == *[Dd]arwin* ]] 2>/dev/null; then # Darwin (MacOS)
 else # Linux
   alias ll='ls -lAh --group-directories-first'
   alias p='ps -auxf'
-  alias python='python3'
   alias bat='batcat'
   alias fd='fdfind'
   alias diff='diff --color=auto'
@@ -101,12 +100,14 @@ else # Linux
   alias shutdown='sudo shutdown -h now'
 fi
 alias cls='clear'
+alias python='python3'
 alias pip='pip3'
 alias l='ls -AlCh'
 alias lo='ls -lAtrh'
 alias tree='tree -aC -I .git --dirsfirst'
 alias grep='grep --color'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
+alias rg='rg --smart-case'
 alias t='tail -f'
 alias rm='rm -i'
 alias cp='cp -i'
