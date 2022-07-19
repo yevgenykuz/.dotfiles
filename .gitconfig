@@ -1,13 +1,15 @@
 [user]
   name = Yevgeny Kuznetsov
   email = yevgenyku@gmail.com
-  signingkey = 9B3F053F924F68E895B3A909755A61972E760B05
+  signingkey = D744CA458702283ACC73123F5727F3D056759E32
 [commit]
   gpgsign = true
 [credential]
   helper = cache --timeout=3600
 [core]
   autocrlf = input
+[log]
+  mailmap = true
 [color]
   diff = auto
   status = auto
