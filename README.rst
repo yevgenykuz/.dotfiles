@@ -155,7 +155,7 @@ iTerm2 (do these after running ``install.sh``):
 * Preferences > General > Startup > Window restoration policy > Open default window arrangement
 * To allow touch ID with sudo - edit ``/etc/pam.d/sudo`` and add ``auth sufficient pam_tid.so`` at the top
 * Preferences > Advanced > Allow sessions to survive logging out and back in > set to ``No``
-* Restart iTerm2
+* Restart to apply
 
 
 Appendix: Linux Mint
