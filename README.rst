@@ -232,7 +232,7 @@ GPG key
 .. code-block:: bash
 
     gpg --full-generate-key
-    # Select default key king (RSA and RSA)
+    # Select key kind - RSA and RSA
     # Set key size to 4096
     # Set key expiration 1y
     # Set name to "Yevgeny Kuznetsov"
@@ -240,7 +240,7 @@ GPG key
     # Leave comment empty
     # Type a pass phrase
     # --> Done (move mouse during key generation)
-    # To use it, get ID for created key (can be found after "sec   4096R/<KEYID>":
+    # To use it, get ID for created key (can be found after "sec   rsa4096/<KEYID>":
     gpg --list-secret-keys --keyid-format LONG
     # Copy GPG public key to system clipboard:
     gpg --armor --export <KEYID> | xclip -sel clip
@@ -284,8 +284,10 @@ GPG key
 
 .. code-block:: bash
 
-   # After installing pinentry-mac add the following to ~/.gnupg/gpg-agent.conf:
-   pinentry-program /usr/local/bin/pinentry-mac
+   # After installing pinentry-mac add the following to ~/.gnupg/gpg-agent.conf (validate with "which pinentry-mac"):
+   pinentry-program /opt/homebrew/bin/pinentry-mac
+   # Then run:
+   gpgconf --kill gpg-agent
 
 
 Meta
