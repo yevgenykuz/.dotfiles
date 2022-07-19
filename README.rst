@@ -145,6 +145,7 @@ iTerm2 (do these after running ``install.sh``):
 
 * Click in menu bar > Make iTerm2 default Term
 * Preferences > General > Selection > Copy to pasteboard on selection
+* Preferences > General > Selection > Applications in terminal may access clipboard
 * Preferences > General > Closing > Disable all
 * Preferences > Appearance > General > Theme > Minimal
 * Preferences > Profiles > Other Actions... > Import JSON profiles > import from file in ``~/.dotfiles/.local/iterm2-profiles``
