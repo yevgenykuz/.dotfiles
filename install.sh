@@ -176,7 +176,9 @@ Then, run the install.sh script again" && return 1)
 function install_macos_packages() {
   echo "-----> Install MacOS packages with brew"
   local formulae=(
-    python go
+    python virtualenv virtualenvwrapper poetry black bumpversion
+    go
+    liquibase
     curl wget
     gpg pinentry-mac
     git svn zsh
@@ -184,7 +186,9 @@ function install_macos_packages() {
     zip unzip gzip pigz bzip2 p7zip gnu-tar
     pandoc docutils
     make cmake
+    swig scons icu4c krb5
     ruby hugo
+    perl lua
     xclip coreutils
     ack gawk grep
     htop tree
@@ -193,16 +197,18 @@ function install_macos_packages() {
     tmux
     awscli ec2-ami-tools
     fd bat fzf ripgrep
-    kubernetes-cli helm
+    kubernetes-cli helm k3d k9s
   )
 
   local casks=(
+    font-sauce-code-pro-nerd-font
     rar keka kekaexternalhelper
     iterm2 macvim docker intellij-idea
     cyberduck textmate syntax-highlight
     vlc gimp deluge
+    drawio
     zoom
-    camunda-modeler
+    camunda-modeler postman lens
   )
 
   brew update
