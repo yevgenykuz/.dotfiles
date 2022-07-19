@@ -141,18 +141,21 @@ Screenshot:
 
 * Change screenshot save location - open the app > Options > Select folder under ``Save to``
 
-iTerm2:
+iTerm2 (do these after running ``install.sh``):
 
 * Click in menu bar > Make iTerm2 default Term
 * Preferences > General > Selection > Copy to pasteboard on selection
 * Preferences > General > Closing > Disable all
 * Preferences > Appearance > General > Theme > Minimal
-* Preferences > Profiles > Other Actions... > Import JSON profiles > import from file in ``~/.dotfiles/.local/iterm2-profiles`` after cloning
+* Preferences > Profiles > Other Actions... > Import JSON profiles > import from file in ``~/.dotfiles/.local/iterm2-profiles``
 * Preferences > Keys > Add touch bar item > label ``cls``, action ``Send Text``, text ``cls\n``
 * Preferences > Pointer > General > Three-finger tap emulates middle click
 * Preferences > Pointer > General > Focus follows mouse
 * Now restart iterm2 (click the icon in the dock it the window doesn't show up), and then > Window > Save window arrangement
 * Preferences > General > Startup > Window restoration policy > Open default window arrangement
+* To allow touch ID with sudo - edit ``/etc/pam.d/sudo`` and add ``auth sufficient pam_tid.so`` at the top
+* Preferences > Advanced > Allow sessions to survive logging out and back in > set to ``No``
+* Restart iTerm2
 
 
 Appendix: Linux Mint
