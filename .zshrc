@@ -141,9 +141,9 @@ alias h='history'
 alias hgrep='fc -El 0 | grep'
 alias gdo='git diff @{upstream}'
 # Delete local branches that are no longer on remote and were merged to current branch
-alias gbdu='git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d'
+alias gbdu="git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d 2>/dev/null"
 # Delete local branches that are no longer on remote even if not merged to current branch
-alias gbdu!='git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -D'
+alias gbdu!="git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -D 2>/dev/null"
 
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts \
