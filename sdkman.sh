@@ -7,6 +7,7 @@ source "$HOME/.sdkman/bin/sdkman-init.sh" || sdk version || echo "Try running \"
 \"$HOME/.sdkman/bin/sdkman-init.sh\"\""
 # Install JDKs
 yes | sdk install java 11.0.15-tem || true
+yes | sdk install java 17.0.3-tem || true
 yes | sdk install java 18.0.1-tem || true
 sdk default java 11.0.15-tem || true
 # jdks can be found at: ~/.sdkman/candidates/java
