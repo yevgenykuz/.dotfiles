@@ -33,6 +33,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 " Markdown - live preview with local nodejs server
+" M1 Mac fix - after installing the plugin, run `cd .vim/plugged/markdown-preview.nvim` and then
+" `yarn install && yarn upgrade`
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " Go programming
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -109,7 +111,7 @@ set colorcolumn=100
 " Make navigation tree show hidden files
 let NERDTreeShowHidden=1
 " Show buffer list
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled=1
 "}}}
 
 " System ---------------------------------------------------------------------------------------{{{
@@ -121,7 +123,7 @@ set noerrorbells
 set noswapfile
 set nobackup
 " Define undo directory
-set undodir =~/.vim/undodir
+set undodir=~/.vim/undodir
 set undofile
 " Allow switching between buffers without writing
 set hidden
@@ -168,7 +170,7 @@ if executable('rg')
   let g:rg_derive_root='true'
 endif
 " Search in a pop-up
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+let g:fzf_layout={'window':{'width':0.8,'height':0.8}}
 " Show git files on top
 let $FZF_DEFAULT_OPTS='--reverse'
 "}}}
@@ -191,9 +193,9 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Make sure vim does not open files and other buffers on NerdTree window
 " If more than one window and previous buffer was NERDTree, go back to it.
 autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
-let g:plug_window = 'noautocmd vertical topleft new'
+let g:plug_window='noautocmd vertical topleft new'
 " Close NERDTree after opening a file in it
-let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeQuitOnOpen=1
 " Close vim if the only window left is NERDTree
 autocmd BufEnter
       \ * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -206,6 +208,8 @@ let g:strip_whitespace_on_save=1
 "}}}
 
 " Markdown plugins -----------------------------------------------------------------------------{{{
+" vim-markdown - disable folding
+let g:vim_markdown_folding_disabled=1
 " markdown-preview - refresh slower for less CPU load
 let g:mkdp_refresh_slow=1
 " markdown-preview - custom CSS for github preview
@@ -214,17 +218,17 @@ let g:mkdp_markdown_css='~/.dotfiles/.local/github-markdown-css/gh-md.css'
 
 " Go plugins -----------------------------------------------------------------------------------{{{
 " Run goimports along gofmt on each save
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command="goimports"
 " Automatically get signature/type info for object under cursor in vim status line
-let g:go_auto_type_info = 1
+let g:go_auto_type_info=1
 " Automatically open auto-complete pop-up when . is typed
 au filetype go inoremap <buffer> . .<C-x><C-o>
 " Syntax highlighting
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
+let g:go_highlight_fields=1
+let g:go_highlight_functions=1
+let g:go_highlight_function_calls=1
+let g:go_highlight_extra_types=1
+let g:go_highlight_operators=1
 " Highlight variable in all lines when hovering on it
-let g:go_auto_sameids = 1
+let g:go_auto_sameids=1
 "}}}
