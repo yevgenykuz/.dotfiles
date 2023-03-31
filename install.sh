@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 # Use this script to automate initial environment setup.
-# It is written for an Ubuntu flavored Linux system, and was tested with Linux Mint 20.04.
+# Supports MacOS, Ubuntu flavored Linux, and WSL.
 
 # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
 set -ueE -o pipefail
+#set -euxo pipefail # uncomment for debugging
 
 # Check if SSH key was created
 function check_ssh_key() {
@@ -71,7 +72,7 @@ function install_packages() {
     docker.io docker-compose
     awscli ec2-ami-tools
     fd-find bat fzf
-    #ripgrep
+    ripgrep
     gparted deluge bleachbit filezilla
     remmina remmina-plugin-rdp remmina-plugin-vnc
     vlc
@@ -117,7 +118,7 @@ function install_minimal_packages() {
     docker.io docker-compose
     awscli ec2-ami-tools
     fd-find bat fzf
-    #ripgrep
+    ripgrep
   )
 
   sudo apt-get update
@@ -156,7 +157,7 @@ function install_packages_in_wsl() {
     tmux dbus-x11
     awscli ec2-ami-tools
     fd-find bat fzf
-    #ripgrep
+    ripgrep
   )
 
   sudo apt-get update
@@ -302,7 +303,7 @@ function install_java() {
 
 # Install go:
 function install_go() {
-  local v=1.18.4
+  local v=1.20.2
   ! command -v go &>/dev/null || [[ "$(go version)" != *"$v"* ]] || return 0
   echo "-----> Install Golang $v"
   dwfile="go${v}.linux-amd64.tar.gz"
@@ -376,9 +377,9 @@ ${src2dest[$key]}"
 
 # Install nvm and then npm and yarn:
 function install_nvm_npm_yarn() {
-  local node_version=16
+  local node_version=18
   ! command -v node &>/dev/null || [[ "$(node -v)" != *"$node_version"* ]] || return 0
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
   source ~/.nvm/nvm.sh
   nvm install ${node_version}
   nvm alias default
@@ -435,22 +436,18 @@ fi
 
 umask g-w,o-w
 
-if [[ "$(</proc/version)" == *[Mm]icrosoft* ]] 2>/dev/null; then # Check if WSL
-  echo "WSL detected"
-  install_packages_in_wsl
-  remove_packages
+if [[ "$(uname -s)" == *[Dd]arwin* ]] 2>/dev/null; then # Check if Darwin (MacOS)
+  echo "MacOS detected"
+  check_ssh_key
+  install_macos_packages
   install_java
-  install_go
-  copy_custom_fonts
   beautify_shell
-  change_shell
   create_links
   install_nvm_npm_yarn
   create_vim_undo_dir
   install_vim_plugins
   install_tmux_plugins
-  install_ripgrep
-elif [[ "$(uname -s)" == *[Ll]inux* ]] 2>/dev/null; then # Check if Linux or Darwin (MacOS)
+elif [[ "$(uname -s)" == *[Ll]inux* ]] 2>/dev/null; then # Check if Linux
   echo "Linux detected"
   # Selection menu:
   COLUMNS=1
@@ -513,17 +510,21 @@ elif [[ "$(uname -s)" == *[Ll]inux* ]] 2>/dev/null; then # Check if Linux or Dar
       *) echo "Invalid option $REPLY";;
     esac
   done
-else
-  echo "MacOS detected"
-  check_ssh_key
-  install_macos_packages
+else # Assume WSL
+  echo "WSL detected"
+  install_packages_in_wsl
+  remove_packages
   install_java
+  install_go
+  copy_custom_fonts
   beautify_shell
+  change_shell
   create_links
   install_nvm_npm_yarn
   create_vim_undo_dir
   install_vim_plugins
   install_tmux_plugins
+  install_ripgrep
 fi
 
 echo "Success"
