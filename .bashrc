@@ -160,7 +160,7 @@ export PATH="$HOME/gems/bin:$PATH"
 # Add Go to PATH:
 export GOPATH=$HOME/go
 if [[ "$(uname -s)" == *[Dd]arwin* ]] 2>/dev/null; then # Darwin (MacOS) - with brew
-  export GOROOT=/usr/local/opt/go/libexec
+  export GOROOT="$(brew --prefix golang)/libexec"
 else # Linux
   export GOROOT=/usr/local/go
 fi
