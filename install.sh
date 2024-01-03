@@ -210,6 +210,7 @@ function install_macos_packages() {
     drawio
     zoom
     camunda-modeler postman lens
+    visual-studio-code
   )
 
   brew update
