@@ -303,10 +303,10 @@ function install_java() {
 
 # Install go:
 function install_go() {
-  local v=1.20.2
-  ! command -v go &>/dev/null || [[ "$(go version)" != *"$v"* ]] || return 0
-  echo "-----> Install Golang $v"
-  dwfile="go${v}.linux-amd64.tar.gz"
+  local version=1.21.5
+  ! command -v go &>/dev/null || [[ "$(go version)" != *"$version"* ]] || return 0
+  echo "-----> Install Golang $version"
+  dwfile="go${version}.linux-amd64.tar.gz"
   curl -O "https://storage.googleapis.com/golang/${dwfile}"
   sudo rm -rf /usr/local/go
   sudo tar -C /usr/local -xzf $dwfile
@@ -379,7 +379,7 @@ ${src2dest[$key]}"
 function install_nvm_npm_yarn() {
   local node_version=18
   ! command -v node &>/dev/null || [[ "$(node -v)" != *"$node_version"* ]] || return 0
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
   source ~/.nvm/nvm.sh
   nvm install ${node_version}
   nvm alias default
