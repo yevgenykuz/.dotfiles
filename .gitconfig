@@ -23,3 +23,5 @@
 [merge]
   conflictstyle = diff3
   tool = vimdiff
+[includeIf "gitdir:~/projects/work/"]
+  path = ~/projects/work/.gitconfig
