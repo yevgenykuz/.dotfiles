@@ -99,6 +99,7 @@ plugins=(
   docker
   docker-compose
   kubectl
+  aws
 )
 
 # oh-my-zsh plugin configuration must be set before sourcing oh-my-zsh-sh
