@@ -110,22 +110,30 @@ Manual system settings configuration
 ------------------------------------
 Go to "System Preferences":
 
-* [General] Appearance - Dark
-* [Dock & Menu Bar] Automatically hide and show the Dock
-* [Dock & Menu Bar] Battery > Show percentage
-* [Dock & Menu Bar] Siri > Do not show in menu bar
-* [Mission Control] Hot Corners > Disable all
+* [General] Language & Region > Add your language(s) and update units
+* [General] Date & Time > Set time zone automatically using your current location (enable location services if needed)
+* [General] Sharing > Local hostname > Edit if needed
+* [Appearance] Appearance > Dark
+* [Control Center] Bluetooth > Show in Menu Bar
+* [Control Center] Sound > Always Show in Menu Bar
+* [Control Center] Spotlight > Don't Show in Menu Bar
+* [Privacy & Security] Analytics & Improvments > Disable all
+* [Privacy & Security] Apple Advertising > Disable all
+* [Desktop & Dock] Adjust dock size
+* [Desktop & Dock] Automatically hide and show the Dock
+* [Desktop & Dock] Show suggested and recent apps in Dock - Disable
+* [Desktop & Dock] Shortcuts > Disable all
+* [Desktop & Dock] Hot Corners > Disable all
+* [Displays] Night Shift > Set a custum schedule from 6:00AM to 5:55AM
+* [Touch ID & Password] Setup new fingerprint, use for all
 * [Users & Groups] Disable guest user login
-* [Security & Privacy] Apple advertising > Disable all
-* [Security & Privacy] Analytics & improvments > Disable all
-* [Touch ID] Setup new fingerprint, use for all
 * [Keyboard] Key Repeat > Fast
 * [Keyboard] Delay Until Repeat > Short
 * [Keyboard] Press fn key to > Show Emoji & Symbols
-* [Keyboard] Customize control strip > Remove Siri
+* [Keyboard] Keyboard navigation > Enable
+* [Keyboard] Keyboard shortcuts > Disable all
 * [Trackpad] Point & Click > Tap to click
-* [Displays] Night Shift > Custom > ``5:01AM to 4:59AM``
-* [Sharing] Edit computer name (make shorter), disable everything except AirPlay
+* [Trackpad] More Gestures > Enable all
 
 Manual built-in apps configuration
 ----------------------------------
