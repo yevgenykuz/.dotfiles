@@ -204,13 +204,14 @@ function install_macos_packages() {
   local casks=(
     font-sauce-code-pro-nerd-font
     rar keka kekaexternalhelper
-    iterm2 macvim docker intellij-idea
-    cyberduck textmate syntax-highlight
+    iterm2 docker
+    macvim textmate syntax-highlight
     vlc gimp deluge
     drawio
     zoom
-    camunda-modeler postman lens
-    visual-studio-code
+    camunda-modeler 
+    postman lens cyberduck proxyman
+    intellij-idea goland pycharm webstorm visual-studio-code
   )
 
   brew update
