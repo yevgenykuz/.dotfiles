@@ -155,9 +155,9 @@ iTerm2 (do these after running ``install.sh``):
 * Settings > Pointer > General > Three-finger tap emulates middle click
 * Settings > Pointer > General > Focus follows mouse
 * Now restart iterm2 (click the icon in the dock it the window doesn't show up), and then > Window > Save window arrangement
-* Preferences > General > Startup > Window restoration policy > Open default window arrangement
+* Settings > General > Startup > Window restoration policy > Open default window arrangement
 * To allow touch ID with sudo - edit ``/etc/pam.d/sudo`` and add ``auth sufficient pam_tid.so`` at the top
-* Preferences > Advanced > Allow sessions to survive logging out and back in > set to ``No``
+* Settings > Advanced > Allow sessions to survive logging out and back in > set to ``No``
 * Restart to apply
 
 
