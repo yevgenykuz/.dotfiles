@@ -151,7 +151,7 @@ iTerm2 (do these after running ``install.sh``):
 * Settings > General > Selection > Applications in terminal may access clipboard
 * Settings > General > Closing > Disable all
 * Settings > Appearance > General > Theme > Minimal
-* Settings > Profiles > Other Actions... > Import JSON profiles > import from file in ``~/.dotfiles/.local/iterm2-profiles``
+* Settings > Profiles > Other Actions... > Import JSON profiles > import from file in ``~/.dotfiles/.local/iterm2-profiles`` and set as default (`Command+Shift+.` to show hidden files)
 * Settings > Pointer > General > Three-finger tap emulates middle click
 * Settings > Pointer > General > Focus follows mouse
 * Now restart iterm2 (click the icon in the dock it the window doesn't show up), and then > Window > Save window arrangement
