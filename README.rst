@@ -88,18 +88,12 @@ Apple ID
 * Create an Apple ID, login to apple music once to add shipping and payment addresses (without credit card)
 * Login to App Store, update everything
 
-Install from app store
-----------------------
-* Slack
-* Microsoft Remote Desktop
-* Quick Camera
-
 Manual terminal setup
 ---------------------
 Install homebrew:
 
 * Get it (accept xcode cmd tools, type password for sudo): ``/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"``
-* Test it: ``brew doctor``
+* Follow instructions to add to path and then test it: ``brew doctor``
 
 Bash and iTerm2:
 
@@ -139,9 +133,10 @@ Manual built-in apps configuration
 ----------------------------------
 Finder:
 
-* Preferences > General > Set default directory to home directory
-* Preferences > General > Use windows to open new folders
-* Preferences > Advanced > Show all filename extensions
+* Settings > General > Set default directory to home directory
+* Settings > General > Use windows to open new folders
+* Settings > Sidebar > Edit sidebar items
+* Settings > Advanced > Show all filename extensions
 * View > Show Path Bar
 * Show hidden files, open terminal and: ``defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder;``
 
@@ -152,14 +147,13 @@ Screenshot:
 iTerm2 (do these after running ``install.sh``):
 
 * Click in menu bar > Make iTerm2 default Term
-* Preferences > General > Selection > Copy to pasteboard on selection
-* Preferences > General > Selection > Applications in terminal may access clipboard
-* Preferences > General > Closing > Disable all
-* Preferences > Appearance > General > Theme > Minimal
-* Preferences > Profiles > Other Actions... > Import JSON profiles > import from file in ``~/.dotfiles/.local/iterm2-profiles``
-* Preferences > Keys > Add touch bar item > label ``cls``, action ``Send Text``, text ``cls\n``
-* Preferences > Pointer > General > Three-finger tap emulates middle click
-* Preferences > Pointer > General > Focus follows mouse
+* Settings > General > Selection > Copy to pasteboard on selection
+* Settings > General > Selection > Applications in terminal may access clipboard
+* Settings > General > Closing > Disable all
+* Settings > Appearance > General > Theme > Minimal
+* Settings > Profiles > Other Actions... > Import JSON profiles > import from file in ``~/.dotfiles/.local/iterm2-profiles``
+* Settings > Pointer > General > Three-finger tap emulates middle click
+* Settings > Pointer > General > Focus follows mouse
 * Now restart iterm2 (click the icon in the dock it the window doesn't show up), and then > Window > Save window arrangement
 * Preferences > General > Startup > Window restoration policy > Open default window arrangement
 * To allow touch ID with sudo - edit ``/etc/pam.d/sudo`` and add ``auth sufficient pam_tid.so`` at the top
