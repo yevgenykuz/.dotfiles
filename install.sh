@@ -184,7 +184,7 @@ function install_macos_packages() {
     gpg pinentry-mac
     git svn zsh
     nano tldr
-    zip unzip gzip pigz bzip2 p7zip gnu-tar
+    zip unzip gzip pigz bzip2 p7zip gnu-tar gnu-sed
     pandoc docutils
     make cmake
     swig scons icu4c krb5
@@ -196,7 +196,7 @@ function install_macos_packages() {
     dos2unix jq thefuck tidy-html5
     ascii screenfetch
     tmux
-    awscli ec2-ami-tools
+    awscli ec2-ami-tools Azure/kubelogin/kubelogin
     fd bat fzf ripgrep
     kubernetes-cli helm k3d k9s
   )
