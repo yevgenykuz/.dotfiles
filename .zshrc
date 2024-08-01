@@ -83,8 +83,6 @@ plugins=(
   brew
   git
   git-extras
-  fd
-  ripgrep
   fzf
   thefuck
   sdk
