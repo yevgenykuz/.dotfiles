@@ -21,7 +21,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " ripgrep integration
-" Plug 'jremmen/vim-ripgrep' - until https://github.com/jremmen/vim-ripgrep/pull/58 is fixed
+Plug 'jremmen/vim-ripgrep'
 " fzf integration
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " tmux integration
