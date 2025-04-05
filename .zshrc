@@ -1,3 +1,9 @@
+# Attach to tmux if zsh was not started from tmux itself nor from JetBrains tools
+# Attaching will work because tmux server is started on boot by the 'tmux-continuum' tmux plugin
+if [[ "$TMUX" = "" && "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]]; then
+  tmux -u attach;
+fi
+
 # Enable Powerlevel10k theme instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -156,12 +162,6 @@ fi
 
 # Load Powerlevel10k theme. Edit ~/.p10k.zsh to customize.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Attach to tmux if zsh was not started from tmux itself nor from JetBrains tools
-# Attaching will work because tmux server is started on boot by the 'tmux-continuum' tmux plugin
-if [[ "$TMUX" = "" && "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]]; then
-  tmux -u attach;
-fi
 
 # Source NVM
 export NVM_DIR="$HOME/.nvm"
