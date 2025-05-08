@@ -163,6 +163,17 @@ fi
 # Load Powerlevel10k theme. Edit ~/.p10k.zsh to customize.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Clear AWS env vars when running AWS SSO commands
+aws() {
+  if [[ "$1 $2" == "sso login" ]]; then
+    unset AWS_ACCESS_KEY_ID
+    unset AWS_SECRET_ACCESS_KEY
+    unset AWS_SESSION_TOKEN
+    unset AWS_REGION
+  fi
+  command aws "$@"
+}
+
 # Source NVM
 export NVM_DIR="$HOME/.nvm"
 # These are the Node versions installed by nvm. Add the latest one to the PATH by default.
