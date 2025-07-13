@@ -42,13 +42,14 @@
       anaconda                # conda environment (https://conda.io/)
       pyenv                   # python environment (https://github.com/pyenv/pyenv)
       goenv                   # go environment (https://github.com/syndbg/goenv)
+      go_version              # go version (https://golang.org)
       nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
       nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
       nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
-      # node_version          # node.js version
-      go_version              # go version (https://golang.org)
-      # rust_version          # rustc version (https://www.rust-lang.org)
-      # dotnet_version        # .NET version (https://dotnet.microsoft.com)
+      node_version            # node.js version
+      rust_version            # rust version (https://www.rust-lang.org)
+      java_version            # java version (https://www.java.com)
+      dotnet_version          # .NET version (https://dotnet.microsoft.com)
       rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
       rvm                     # ruby version from rvm (https://rvm.io)
       fvm                     # flutter version management (https://github.com/leoafarias/fvm)
@@ -56,8 +57,8 @@
       terraform               # terraform workspace (https://www.terraform.io)
       aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
       aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
-      # azure                 # azure account name (https://docs.microsoft.com/en-us/cli/azure)
-      # gcloud                # google cloud acccount and project (https://cloud.google.com/)
+      azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+      gcloud                  # google cloud account and project (https://cloud.google.com/)
       nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
       ranger                  # ranger shell (https://github.com/ranger/ranger)
       vim_shell               # vim shell indicator (:sh)
@@ -386,10 +387,10 @@
 
   # Show status of repositories of these types. You can add svn and/or hg if you are
   # using them. If you do, your prompt may become slow even when your current directory
-  # isn't in an svn or hg reposotiry.
+  # isn't in an svn or hg repository.
   typeset -g POWERLEVEL9K_VCS_BACKENDS=(git)
 
-  # These settings are used for respositories other than Git or when gitstatusd fails and
+  # These settings are used for repositories other than Git or when gitstatus fails and
   # Powerlevel10k has to fall back to using vcs_info.
   typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND=14
   typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=13
@@ -506,9 +507,12 @@
 
   ###[ virtualenv: python virtual environment (https://docs.python.org/3/library/venv.html) ]###
   # Python virtual environment color.
-  typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=37
+  typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=220
   # Don't show Python version next to the virtual environment name.
   typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=false
+  # If set to "false", won't show virtualenv if pyenv is already shown.
+  # If set to "if-different", won't show virtualenv if it's the same as pyenv.
+  typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_WITH_PYENV=false
   # Separate environment name from Python version only with a space.
   typeset -g POWERLEVEL9K_VIRTUALENV_{LEFT,RIGHT}_DELIMITER=
   # Custom icon.
@@ -516,7 +520,7 @@
 
   #####################[ anaconda: conda environment (https://conda.io/) ]######################
   # Anaconda environment color.
-  typeset -g POWERLEVEL9K_ANACONDA_FOREGROUND=37
+  typeset -g POWERLEVEL9K_ANACONDA_FOREGROUND=220
   # Don't show Python version next to the anaconda environment name.
   typeset -g POWERLEVEL9K_ANACONDA_SHOW_PYTHON_VERSION=false
   # Separate environment name from Python version only with a space.
@@ -526,7 +530,7 @@
 
   ################[ pyenv: python environment (https://github.com/pyenv/pyenv) ]################
   # Pyenv color.
-  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=37
+  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=220
   # Don't show the current Python version if it's the same as global.
   typeset -g POWERLEVEL9K_PYENV_PROMPT_ALWAYS_SHOW=false
   # Custom icon.
@@ -534,11 +538,19 @@
 
   ################[ goenv: go environment (https://github.com/syndbg/goenv) ]################
   # Goenv color.
-  typeset -g POWERLEVEL9K_GOENV_FOREGROUND=37
+  typeset -g POWERLEVEL9K_GOENV_FOREGROUND=39
   # Don't show the current Go version if it's the same as global.
   typeset -g POWERLEVEL9K_GOENV_PROMPT_ALWAYS_SHOW=false
   # Custom icon.
   # typeset -g POWERLEVEL9K_GOENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+  #######################[ go_version: go version (https://golang.org) ]########################
+  # Go version color.
+  typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=39
+  # Show go version only when in a go project subdirectory.
+  typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ##########[ nodenv: node.js version from nodenv (https://github.com/nodenv/nodenv) ]##########
   # Nodenv color.
@@ -564,6 +576,16 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_NODEENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
+  ####################[ java_version: java version (https://www.java.com/) ]####################
+  # Java version color.
+  typeset -g POWERLEVEL9K_JAVA_VERSION_FOREGROUND=172
+  # Show java version only when in a java project subdirectory.
+  typeset -g POWERLEVEL9K_JAVA_VERSION_PROJECT_ONLY=true
+  # Show brief version.
+  typeset -g POWERLEVEL9K_JAVA_VERSION_FULL=false
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_JAVA_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
   ##############################[ node_version: node.js version ]###############################
   # Node version color.
   typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=70
@@ -572,17 +594,9 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  #######################[ go_version: go version (https://golang.org) ]########################
-  # Go version color.
-  typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=37
-  # Show go version only when in a go project subdirectory.
-  typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
-
-  #################[ rust_version: rustc version (https://www.rust-lang.org) ]##################
+  #################[ rust_version: rust version (https://www.rust-lang.org) ]##################
   # Rust version color.
-  typeset -g POWERLEVEL9K_RUST_VERSION_FOREGROUND=37
+  typeset -g POWERLEVEL9K_RUST_VERSION_FOREGROUND=130
   # Show rust version only when in a rust project subdirectory.
   typeset -g POWERLEVEL9K_RUST_VERSION_PROJECT_ONLY=true
   # Custom icon.
@@ -642,8 +656,8 @@
   #     '*test*'  TEST
   #     '*'       DEFAULT)
   #
-  # If your current kubernetes context is "deathray-testing/default", its class is TEST
-  # because "deathray-testing/default" doesn't match the pattern '*prod*' but does match '*test*'.
+  # If your current kubernetes context is "death-ray-testing/default", its class is TEST
+  # because "death-ray-testing/default" doesn't match the pattern '*prod*' but does match '*test*'.
   #
   # You can define different colors, icons and content expansions for different classes:
   #
@@ -654,7 +668,7 @@
       # '*prod*'  PROD    # These values are examples that are unlikely
       # '*test*'  TEST    # to match your needs. Customize them as needed.
       '*'       DEFAULT)
-  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=134
+  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=75
   # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   # Use POWERLEVEL9K_KUBECONTEXT_CONTENT_EXPANSION to specify the content displayed by kubecontext
@@ -706,7 +720,7 @@
 
   ################[ terraform: terraform workspace (https://www.terraform.io) ]#################
   # Terraform color.
-  typeset -g POWERLEVEL9K_TERRAFORM_FOREGROUND=38
+  typeset -g POWERLEVEL9K_TERRAFORM_FOREGROUND=99
   # Custom icon.
   # typeset -g POWERLEVEL9K_TERRAFORM_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
@@ -754,12 +768,12 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_AZURE_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  ##########[ gcloud: google cloud acccount and project (https://cloud.google.com/) ]###########
+  ##########[ gcloud: google cloud account and project (https://cloud.google.com/) ]###########
   # Google cloud color.
-  typeset -g POWERLEVEL9K_GCLOUD_FOREGROUND=32
+  typeset -g POWERLEVEL9K_GCLOUD_FOREGROUND=35
 
   # Google cloud format. Uncomment and edit the next line if the default is too verbose.
-  # Note: ${X//\%/%%} is the same as $X but with all occurences of % replaced with %%.
+  # Note: ${X//\%/%%} is the same as $X but with all occurrences of % replaced with %%.
   # typeset -g POWERLEVEL9K_GCLOUD_CONTENT_EXPANSION='${P9K_GCLOUD_ACCOUNT//\%/%%}:${P9K_GCLOUD_PROJECT//\%/%%}'
 
   # Custom icon.

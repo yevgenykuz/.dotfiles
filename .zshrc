@@ -82,31 +82,52 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # oh-my-zsh Plugins:
 plugins=(
+  aliases
+  alias-finder
+  colored-man-pages
+  copybuffer
+  copyfile
+  copypath
+  dircycle
   zsh-syntax-highlighting
   command-not-found
   history-substring-search
-  alias-finder
+  fzf
   brew
   git
   git-extras
-  fzf
-  thefuck
+  gitfast
+  git-lfs
+  gh
   sdk
   mvn
   gradle
-  nmap
-  sublime
+  golang
+  node
+  npm
+  nvm
   python
   pip
   virtualenv
-  golang
+  virtualenvwrapper
+  nmap
   docker
   docker-compose
   kubectl
+  helm
+  argocd
   aws
+  azure
+  gcloud
 )
 
 # oh-my-zsh plugin configuration must be set before sourcing oh-my-zsh-sh
+
+# Plugin config - alias-finder - suggest aliases if not used
+zstyle ':omz:plugins:alias-finder' autoload yes
+zstyle ':omz:plugins:alias-finder' longer no
+zstyle ':omz:plugins:alias-finder' exact yes
+zstyle ':omz:plugins:alias-finder' cheaper yes
 
 # Load oh-my-zsh before custom aliases
 source $ZSH/oh-my-zsh.sh

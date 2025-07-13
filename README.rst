@@ -111,14 +111,14 @@ Go to "System Preferences":
 * [Control Center] Bluetooth > Show in Menu Bar
 * [Control Center] Sound > Always Show in Menu Bar
 * [Control Center] Spotlight > Don't Show in Menu Bar
-* [Privacy & Security] Analytics & Improvments > Disable all
+* [Privacy & Security] Analytics & Improvements > Disable all
 * [Privacy & Security] Apple Advertising > Disable all
 * [Desktop & Dock] Adjust dock size
 * [Desktop & Dock] Automatically hide and show the Dock
 * [Desktop & Dock] Show suggested and recent apps in Dock - Disable
 * [Desktop & Dock] Shortcuts > Disable all
 * [Desktop & Dock] Hot Corners > Disable all
-* [Displays] Night Shift > Set a custum schedule from 6:00AM to 5:55AM
+* [Displays] Night Shift > Set a custom schedule from 6:00AM to 5:55AM
 * [Touch ID & Password] Setup new fingerprint, use for all
 * [Users & Groups] Disable guest user login
 * [Keyboard] Key Repeat > Fast

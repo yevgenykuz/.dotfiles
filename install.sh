@@ -15,31 +15,6 @@ function check_ssh_key() {
   fi
 }
 
-# Install Corsair unofficial driver (https://github.com/ckb-next/ckb-next):
-function install_corsair_drivers() {
-  echo "-----> Install Corsair unofficial driver"
-  sudo add-apt-repository -y ppa:tatokis/ckb-next
-  sudo apt-get update
-  sudo apt install -y ckb-next
-}
-
-# Install Logitech unofficial management software (https://github.com/pwr-Solaar/Solaar):
-function install_logitech_software() {
-  echo "-----> Install Logitech unofficial management software"
-  sudo add-apt-repository -y ppa:solaar-unifying/stable
-  sudo apt-get update
-  sudo apt install -y solaar
-}
-
-# Install Spotify (https://www.spotify.com/us/download/linux/):
-function install_spotify() {
-  echo "-----> Install Spotify"
-  curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
-  echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-  sudo apt-get update
-  sudo apt install -y spotify-client
-}
-
 # Accept EULA for Microsoft fonts before installation:
 function accept_ms_eula() {
   echo "-----> Accept EULA for Microsoft fonts"
@@ -63,7 +38,7 @@ function install_packages() {
     xclip traceroute
     silversearcher-ag ack gawk
     htop tree hardinfo blueman
-    dos2unix jq thefuck tidy
+    dos2unix jq tidy
     ascii screenfetch
     dconf-cli dconf-editor
     tmux freerdp2-x11 dbus-x11
@@ -71,8 +46,7 @@ function install_packages() {
     ttf-mscorefonts-installer fonts-symbola
     docker.io docker-compose
     awscli ec2-ami-tools
-    fd-find bat fzf
-    ripgrep
+    fd-find bat fzf ripgrep
     gparted deluge bleachbit filezilla
     remmina remmina-plugin-rdp remmina-plugin-vnc
     vlc
@@ -110,15 +84,14 @@ function install_minimal_packages() {
     xclip traceroute
     silversearcher-ag ack gawk
     htop tree hardinfo
-    dos2unix jq thefuck tidy
+    dos2unix jq tidy
     ascii screenfetch
     dconf-cli dconf-editor
     tmux xdg-utils
     ttf-mscorefonts-installer fonts-symbola
     docker.io docker-compose
     awscli ec2-ami-tools
-    fd-find bat fzf
-    ripgrep
+    fd-find bat fzf ripgrep
   )
 
   sudo apt-get update
@@ -151,13 +124,12 @@ function install_packages_in_wsl() {
     xclip traceroute
     silversearcher-ag ack gawk
     htop tree hardinfo
-    dos2unix jq thefuck tidy
+    dos2unix jq tidy
     ascii screenfetch
     dconf-cli xdg-utils
     tmux dbus-x11
     awscli ec2-ami-tools
-    fd-find bat fzf
-    ripgrep
+    fd-find bat fzf ripgrep
   )
 
   sudo apt-get update
@@ -193,12 +165,12 @@ function install_macos_packages() {
     xclip coreutils
     ack gawk grep
     htop tree
-    dos2unix jq thefuck tidy-html5
+    dos2unix jq tidy-html5
     ascii screenfetch
     tmux
     awscli ec2-ami-tools Azure/kubelogin/kubelogin
     fd bat fzf ripgrep
-    kubernetes-cli helm k3d k9s
+    kubernetes-cli kubectx helm k3d k9s
   )
 
   local casks=(
@@ -211,7 +183,7 @@ function install_macos_packages() {
     zoom
     camunda-modeler 
     postman lens cyberduck proxyman
-    intellij-idea goland pycharm webstorm visual-studio-code
+    visual-studio-code
   )
 
   brew update
@@ -305,7 +277,7 @@ function install_java() {
 
 # Install go:
 function install_go() {
-  local version=1.21.5
+  local version=1.24.5
   ! command -v go &>/dev/null || [[ "$(go version)" != *"$version"* ]] || return 0
   echo "-----> Install Golang $version"
   dwfile="go${version}.linux-amd64.tar.gz"
@@ -379,9 +351,9 @@ ${src2dest[$key]}"
 
 # Install nvm and then npm and yarn:
 function install_nvm_npm_yarn() {
-  local node_version=18
+  local node_version=22
   ! command -v node &>/dev/null || [[ "$(node -v)" != *"$node_version"* ]] || return 0
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
   source ~/.nvm/nvm.sh
   nvm install ${node_version}
   nvm alias default
@@ -411,13 +383,6 @@ function install_tmux_plugins() {
   rm -rf "${TMUX_DIR}/plugins/tpm" 2>/dev/null || true
   git clone --depth=1 https://github.com/tmux-plugins/tpm ${TMUX_DIR}/plugins/tpm && \
 bash ${TMUX_DIR}/plugins/tpm/bin/install_plugins
-}
-
-# Manually install ripgrep until https://bugs.launchpad.net/ubuntu/+source/rust-bat/+bug/1868517 is solved
-function install_ripgrep() {
-  apt-get download ripgrep
-  sudo dpkg --force-overwrite -i ripgrep*.deb
-  rm -f ripgrep*
 }
 
 # Force generate en_GB and en_US locales
@@ -465,9 +430,6 @@ elif [[ "$(uname -s)" == *[Ll]inux* ]] 2>/dev/null; then # Check if Linux
       "Full installation, visual aspects like applets and themes, i/o drivers, cinnamon configuration")
         echo "Full installation"
         check_ssh_key
-        install_corsair_drivers
-        install_logitech_software
-        install_spotify
         accept_ms_eula
         install_packages
         remove_packages
@@ -484,7 +446,6 @@ elif [[ "$(uname -s)" == *[Ll]inux* ]] 2>/dev/null; then # Check if Linux
         create_vim_undo_dir
         install_vim_plugins
         install_tmux_plugins
-        install_ripgrep
         break
         ;;
       "Minimal installation, suitable for virtual machines")
@@ -502,7 +463,6 @@ elif [[ "$(uname -s)" == *[Ll]inux* ]] 2>/dev/null; then # Check if Linux
         create_vim_undo_dir
         install_vim_plugins
         install_tmux_plugins
-        install_ripgrep
         generate_locale
         break
         ;;
@@ -526,7 +486,6 @@ else # Assume WSL
   create_vim_undo_dir
   install_vim_plugins
   install_tmux_plugins
-  install_ripgrep
 fi
 
 echo "Success"
