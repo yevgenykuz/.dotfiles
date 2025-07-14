@@ -119,6 +119,10 @@ alias findf='find . -type f -name'
 alias h='history'
 alias hgrep='fc -El 0 | grep'
 alias gdo='git diff @{upstream}'
+# Delete local branches that are no longer on remote and were merged to current branch
+alias gbdu="git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d 2>/dev/null"
+# Delete local branches that are no longer on remote even if not merged to current branch
+alias gbdu!="git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -D 2>/dev/null"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -134,6 +138,21 @@ if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 
+# Curl cht.sh for a quick terminal based cheat-sheet
+cht() {
+    curl -s "cht.sh/$*" | bat
+}
+# Clear AWS env vars when running AWS SSO commands
+aws() {
+  if [[ "$1 $2" == "sso login" ]]; then
+    unset AWS_ACCESS_KEY_ID
+    unset AWS_SECRET_ACCESS_KEY
+    unset AWS_SESSION_TOKEN
+    unset AWS_REGION
+  fi
+  command aws "$@"
+}
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -144,6 +163,9 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Set theme for batcat
+export BAT_THEME="gruvbox-dark"
 
 # Terminal colors:
 export TERM=xterm-256color

@@ -33,7 +33,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 " Markdown - live preview with local nodejs server
-" M1 Mac fix - after installing the plugin, run `cd .vim/plugged/markdown-preview.nvim` and then
+" M1 Mac fix - after installing the plugin, run `cd ~/.vim/plugged/markdown-preview.nvim` and then
 " `yarn install && yarn upgrade`
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " Go programming

@@ -181,8 +181,16 @@ if [[ -n "$BROWSER" ]]; then
   for ft in $_browser_fts; do alias -s $ft=$BROWSER; done
 fi
 
+# Set theme for batcat
+export BAT_THEME="gruvbox-dark"
+
 # Load Powerlevel10k theme. Edit ~/.p10k.zsh to customize.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Curl cht.sh for a quick terminal based cheat-sheet 
+cht() {
+    curl -s "cht.sh/$*" | bat
+}
 
 # Clear AWS env vars when running AWS SSO commands
 aws() {
