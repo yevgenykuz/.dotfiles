@@ -33,9 +33,11 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 " Markdown - live preview with local nodejs server
-" M1 Mac fix - after installing the plugin, run `cd ~/.vim/plugged/markdown-preview.nvim` and then
-" `yarn install && yarn upgrade`
+" Apple silicon fix - after installing the plugin, run `cd ~/.vim/plugged/markdown-preview.nvim`
+" and then `yarn install && yarn upgrade`
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+" Wiki and TODOs management
+Plug 'vimwiki/vimwiki'
 " Go programming
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Use tab for auto-completion
@@ -65,16 +67,18 @@ nmap <leader><Up> :ls<CR>
 noremap <F1> :NERDTreeToggle<CR>
 " Toggle highlighting on/off for current search matches
 noremap <F2> :set hlsearch! hlsearch?<CR>
-" Toggle relative line numbers and regular line numbers
+" Toggle between relative line numbers and regular line numbers
 nmap <F3> :set invrelativenumber<CR>
 " Toggle paste mode to prevent auto indentation and comments
 set pastetoggle=<F4>
 " Toggle spell check
 map <F5> :setlocal spell!<CR>
+" Toggle visual line wrapping
+map <F6> :set wrap!<CR>
 " Toggle visually showing all white space characters
-noremap <F6> :set list!<CR>
+noremap <F7> :set list!<CR>
 " Format the entire file
-noremap <F7> :Autoformat<CR>
+noremap <F8> :Autoformat<CR>
 "}}}
 
 " Color ----------------------------------------------------------------------------------------{{{
@@ -101,7 +105,7 @@ set smartindent
 
 " Layout ---------------------------------------------------------------------------------------{{{
 " Show line numbers
-set nu
+set number
 " Don't wrap lines when too long (without new line character)
 set nowrap
 " Add new line characters when lines are too long
@@ -125,6 +129,10 @@ set nobackup
 " Define undo directory
 set undodir=~/.vim/undodir
 set undofile
+" Enable filetype detection and filetype specific plugins and indentation
+filetype plugin indent on
+" Disable compatibility with Vi
+set nocompatible
 " Allow switching between buffers without writing
 set hidden
 " Integrate system clipboard, cross-platform
@@ -205,6 +213,32 @@ autocmd BufEnter
 let g:strip_whitespace_confirm=0
 let g:strip_whitelines_at_eof=1
 let g:strip_whitespace_on_save=1
+"}}}
+
+" vimwiki for TODOs ----------------------------------------------------------------------------{{{
+" Set location to `~/projects/todos/`, exclude `README.md`, 
+" and set syntax and and file extension to `Markdown`
+let g:vimwiki_list = [{'path': '~/projects/todos/',
+                      \ 'path_html': '~/projects/todos',
+                      \ 'syntax': 'markdown', 'ext': 'md',
+                      \ 'exclude_files': ['**/README.md']}]
+" Restrict Vimwiki's operation to only those paths listed in g:vimwiki_list
+let g:vimwiki_global_ext = 0
+" Turn off support for other extensions
+let g:vimwiki_ext2syntax = {}
+" TODOs - open a QuickFix window with incomplete tasks that are in a hyphenated (-) list
+function! VimwikiFindIncompleteTasks()
+  lvimgrep /- \[ \]/ %:p
+  lopen
+endfunction
+
+function! VimwikiFindAllIncompleteTasks()
+  VimwikiSearch /- \[ \]/
+  lopen
+endfunction
+
+nmap <Leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
+nmap <Leader>wx :call VimwikiFindIncompleteTasks()<CR>
 "}}}
 
 " Markdown plugins -----------------------------------------------------------------------------{{{
