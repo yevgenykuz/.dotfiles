@@ -79,6 +79,8 @@ map <F6> :set wrap!<CR>
 noremap <F7> :set list!<CR>
 " Format the entire file
 noremap <F8> :Autoformat<CR>
+" Insert date string
+nnoremap <leader>id :<C-u>put =strftime('%F')<CR>
 "}}}
 
 " Color ----------------------------------------------------------------------------------------{{{
@@ -216,13 +218,13 @@ let g:strip_whitespace_on_save=1
 "}}}
 
 " vimwiki for TODOs ----------------------------------------------------------------------------{{{
-" Set location to `~/projects/todos/`, exclude `README.md`, 
-" and set syntax and and file extension to `Markdown`
+" Set location to `~/projects/todos/`, exclude `README.md`,
+" and set syntax  and file extension to `Markdown`
 let g:vimwiki_list = [{'path': '~/projects/todos/',
                       \ 'path_html': '~/projects/todos',
                       \ 'syntax': 'markdown', 'ext': 'md',
                       \ 'exclude_files': ['**/README.md']}]
-" Restrict Vimwiki's operation to only those paths listed in g:vimwiki_list
+" Restrict vimwiki's operation to only those paths listed in g:vimwiki_list
 let g:vimwiki_global_ext = 0
 " Turn off support for other extensions
 let g:vimwiki_ext2syntax = {}
