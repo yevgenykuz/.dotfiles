@@ -81,6 +81,11 @@ noremap <F7> :set list!<CR>
 noremap <F8> :Autoformat<CR>
 " Insert date string
 nnoremap <leader>id :<C-u>put =strftime('%F')<CR>
+" TODOs - vimwiki mappings
+nmap <Leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
+nmap <Leader>wx :call VimwikiFindIncompleteTasks()<CR>
+nmap <Leader>ws :call VimwikiSortCompletedTasks()<CR>
+nmap <Leader>wb :call VimwikiMoveCompletedTasksToNewFile()<CR>
 "}}}
 
 " Color ----------------------------------------------------------------------------------------{{{
@@ -233,14 +238,57 @@ function! VimwikiFindIncompleteTasks()
   lvimgrep /- \[ \]/ %:p
   lopen
 endfunction
-
 function! VimwikiFindAllIncompleteTasks()
   VimwikiSearch /- \[ \]/
   lopen
 endfunction
-
-nmap <Leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
-nmap <Leader>wx :call VimwikiFindIncompleteTasks()<CR>
+" TODOs - sort completed tasks to the bottom of the list
+function! VimwikiSortCompletedTasks()
+  normal! mz
+  silent! g/^- \[X\]/move $
+  normal! `z
+endfunction
+" TODOs - move completed tasks to a new file (YYYY-MM-DD-TODO.md)
+function! VimwikiMoveCompletedTasksToNewFile()
+  let current_file_path = expand('%:p')
+  let current_dir = expand('%:p:h')
+  let todo_header = getline(1)
+  let date_line = getline(3)
+  let date_match = matchstr(date_line, '\d\{4}-\d\{2}-\d\{2}')
+  if empty(date_match)
+    echo "Could not find YYYY-MM-DD date on line 3."
+    return
+  endif
+  let new_filename = date_match . "-TODO.md"
+  let new_file_path = current_dir . "/" . new_filename
+  " Save current view to jump back after
+  let l:original_pos = getcurpos()
+  " Clear register a and yank completed tasks into it
+  let @a = ""
+  silent! g/^- \[X\]/yank A
+  " Prepend the TODO header and date line to register 'a'
+  if empty(@a)
+    echo "No completed tasks found."
+    call setpos('.', l:original_pos)
+    return
+  endif
+  " Old line: let @a = todo_header . "\n" . date_line . "\n" . @a
+  " Delete completed tasks from current buffer
+  silent! g/^- \[X\]/d
+  " Open a new buffer, set its name, put content, and save
+  execute 'enew'
+  execute 'file ' . new_file_path
+  call setline(1, todo_header)
+  call append(1, '')
+  call append(2, date_line)
+  normal! G"ap
+  write
+  " Go back to original buffer and save it
+  execute 'buffer ' . current_file_path
+  write
+  " Return to original cursor position
+  call setpos('.', l:original_pos)
+endfunction
 "}}}
 
 " Markdown plugins -----------------------------------------------------------------------------{{{
