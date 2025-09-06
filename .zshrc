@@ -164,6 +164,7 @@ alias help='man'
 alias findd='find . -type d -name'
 alias findf='find . -type f -name'
 alias h='history'
+alias kc='kubectx'
 alias hgrep='fc -El 0 | grep'
 alias gdo='git diff @{upstream}'
 # Delete local branches that are no longer on remote and were merged to current branch
@@ -187,7 +188,7 @@ export BAT_THEME="gruvbox-dark"
 # Load Powerlevel10k theme. Edit ~/.p10k.zsh to customize.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Curl cht.sh for a quick terminal based cheat-sheet 
+# Curl cht.sh for a quick terminal based cheat-sheet
 cht() {
     curl -s "cht.sh/$*" | bat
 }

@@ -265,16 +265,18 @@ function! VimwikiMoveCompletedTasksToNewFile()
   let l:original_pos = getcurpos()
   " Clear register a and yank completed tasks into it
   let @a = ""
-  silent! g/^- \[X\]/yank A
-  " Prepend the TODO header and date line to register 'a'
+  " Match completed tasks possibly indented (allow leading whitespace) and either X or x
+  " Use very-magic (\v) so \s and character classes behave as expected
+  silent! g/\v^\s*\-\s\[[Xx]\]/yank A
+  " Prepend the TODO header and date line to register a
   if empty(@a)
     echo "No completed tasks found."
     call setpos('.', l:original_pos)
     return
   endif
   " Old line: let @a = todo_header . "\n" . date_line . "\n" . @a
-  " Delete completed tasks from current buffer
-  silent! g/^- \[X\]/d
+  " Delete completed tasks from current buffer (match indented lines too)
+  silent! g/\v^\s*\-\s\[[Xx]\]/d
   " Open a new buffer, set its name, put content, and save
   execute 'enew'
   execute 'file ' . new_file_path
