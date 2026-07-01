@@ -22,12 +22,21 @@ export LC_CTYPE=en_US.UTF-8
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+# Make GPG identify TTY properly
+export GPG_TTY=$(tty)
+
 # Add local custom scripts to PATH:
 export PATH="$HOME/.dotfiles/scripts:$PATH"
+
+# Add .local/bin where claude is installed to PATH:
+export PATH="$HOME/.local/bin:$PATH"
 
 # Install Ruby Gems to ~/gems:
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
+
+# Add istioctl to PATH
+export PATH=$HOME/.istioctl/bin:$PATH
 
 # Add Go to PATH:
 export GOPATH=$HOME/go
@@ -136,6 +145,16 @@ source $ZSH/oh-my-zsh.sh
 if [[ "$(uname -s)" == *[Dd]arwin* ]] 2>/dev/null; then # Darwin (MacOS)
   alias ll='gls -lAh --group-directories-first --color=auto'
   alias p='ps -ax'
+  # Open a path (default: current dir) in a JetBrains IDE, like `code .`.
+  _jetbrains_open() { # $1=app name, rest=paths
+    local app="$1"; shift
+    local target="${1:-.}"
+    open -na "$app" --args "${target:A}" # :A resolves to an absolute path
+  }
+  idea()     { _jetbrains_open "IntelliJ IDEA" "$@"; }
+  pycharm()  { _jetbrains_open "PyCharm" "$@"; }
+  goland()   { _jetbrains_open "GoLand" "$@"; }
+  webstorm() { _jetbrains_open "WebStorm" "$@"; }
 else # Linux
   alias ll='ls -lAh --group-directories-first'
   alias p='ps -auxf'
@@ -200,8 +219,10 @@ aws() {
     unset AWS_SECRET_ACCESS_KEY
     unset AWS_SESSION_TOKEN
     unset AWS_REGION
+    command aws sso login --use-device-code "${@:3}"
+  else
+    command aws "$@"
   fi
-  command aws "$@"
 }
 
 # Source NVM

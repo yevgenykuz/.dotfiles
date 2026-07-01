@@ -149,12 +149,11 @@ Then, run the install.sh script again" && return 1)
 function install_macos_packages() {
   echo "-----> Install MacOS packages with brew"
   local formulae=(
-    python virtualenv virtualenvwrapper poetry black bumpversion
-    go
-    liquibase
+    python virtualenv virtualenvwrapper poetry black bumpversion pipx
+    go go-task
     curl wget
     gpg pinentry-mac
-    git svn zsh
+    git svn zsh bash
     nano tldr
     zip unzip gzip pigz bzip2 p7zip gnu-tar gnu-sed
     pandoc docutils
@@ -164,31 +163,35 @@ function install_macos_packages() {
     perl lua
     xclip coreutils
     ack gawk grep
-    htop tree
-    dos2unix jq tidy-html5
+    htop tree bottom broot
+    dos2unix jq yq tidy-html5
     ascii screenfetch
-    tmux
-    awscli ec2-ami-tools Azure/kubelogin/kubelogin
+    tmux parallel thefuck telnet shellcheck
+    ec2-ami-tools kubelogin
     fd bat fzf ripgrep
-    kubernetes-cli kubectx helm k3d k9s
+    kubernetes-cli kubectx helm k3d k9s eksctl
+    gh git-lfs git-remote-codecommit circleci
+    aws-nuke crane apko dive terragrunt rqlite
+    grype trivy syft
   )
 
   local casks=(
-    font-sauce-code-pro-nerd-font
+    font-sauce-code-pro-nerd-font font-jetbrains-mono-nerd-font
     rar keka kekaexternalhelper
-    iterm2 docker
+    iterm2
     macvim textmate syntax-highlight
     vlc gimp deluge
     drawio
     zoom
-    camunda-modeler 
+    camunda-modeler
     postman lens cyberduck proxyman
     visual-studio-code
+    intellij-idea pycharm goland webstorm
+    devtoys utm
   )
 
   brew update
   brew upgrade
-  brew tap homebrew/cask-fonts
   brew install "${formulae[@]}" || (echo -e " Failed to install packages.\n\
 Run 'brew doctor' to check brew status.\n\
 Try to install failed packages manually.\n\
@@ -197,8 +200,41 @@ Then, run the install.sh script again" && return 1)
 Run 'brew doctor' to check brew status.\n\
 Try to install failed packages manually.\n\
 Then, run the install.sh script again" && return 1)
-  brew tap homebrew/cask-fonts && brew install --cask font-sauce-code-pro-nerd-font
   brew cleanup
+}
+
+# AWS CLI and Docker Desktop are installed via their official (non-brew) installers
+# rather than the brew formula/cask, to match how they are provisioned on this machine.
+function install_macos_non_brew() {
+  echo "-----> Install MacOS non-brew packages (AWS CLI, Docker Desktop)"
+  local tmp
+  tmp="$(mktemp -d)"
+  trap 'rm -rf "${tmp}"' RETURN
+
+  # AWS CLI v2 (official .pkg installer). The .pkg installs over an existing
+  # install, so running it unconditionally upgrades in place to the latest.
+  echo "Installing/updating AWS CLI"
+  curl -fsSL "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "${tmp}/AWSCLIV2.pkg" \
+    && sudo installer -pkg "${tmp}/AWSCLIV2.pkg" -target / \
+    || echo " Failed to install AWS CLI. Install it manually from https://aws.amazon.com/cli/"
+
+  # Docker Desktop (official .dmg installer). Guarded to avoid the large .dmg
+  # download when already present; Docker Desktop self-updates in-app thereafter.
+  if [ ! -d "/Applications/Docker.app" ]; then
+    echo "Installing Docker Desktop"
+    local docker_arch="amd64"
+    [[ "$(uname -m)" == "arm64" ]] && docker_arch="arm64"
+    if curl -fsSL "https://desktop.docker.com/mac/main/${docker_arch}/Docker.dmg" -o "${tmp}/Docker.dmg"; then
+      sudo hdiutil attach "${tmp}/Docker.dmg" \
+        && sudo /Volumes/Docker/Docker.app/Contents/MacOS/install \
+        && sudo hdiutil detach /Volumes/Docker \
+        || echo " Failed to install Docker Desktop. Install it manually from https://www.docker.com/products/docker-desktop/"
+    else
+      echo " Failed to download Docker Desktop. Install it manually from https://www.docker.com/products/docker-desktop/"
+    fi
+  else
+    echo "Docker Desktop already installed, skipping (updates in-app)"
+  fi
 }
 
 # Remove unused packages:
@@ -277,7 +313,7 @@ function install_java() {
 
 # Install go:
 function install_go() {
-  local version=1.24.5
+  local version=1.26.4
   ! command -v go &>/dev/null || [[ "$(go version)" != *"$version"* ]] || return 0
   echo "-----> Install Golang $version"
   dwfile="go${version}.linux-amd64.tar.gz"
@@ -351,9 +387,9 @@ ${src2dest[$key]}"
 
 # Install nvm and then npm and yarn:
 function install_nvm_npm_yarn() {
-  local node_version=22
+  local node_version=24
   ! command -v node &>/dev/null || [[ "$(node -v)" != *"$node_version"* ]] || return 0
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash
   source ~/.nvm/nvm.sh
   nvm install ${node_version}
   nvm alias default
@@ -369,8 +405,9 @@ function create_vim_undo_dir() {
 
 # Run vim :PlugInstall to install vim plugins:
 function install_vim_plugins() {
-  echo "-----> Install vim plugins"
-  vim +PlugInstall +qall!
+  echo "-----> Install/refresh vim plugins"
+  # Upgrade vim-plug itself, install missing, update existing, prune removed.
+  vim +PlugUpgrade +PlugInstall +PlugUpdate +PlugClean! +qall!
 }
 
 # Install tmux plugin manager and plugins on initial setup:
@@ -378,11 +415,13 @@ function install_tmux_plugins() {
   if [[ -v TMUX && "$TMUX" != "" ]]; then
     return 0;
   fi
-  echo "-----> Install tmux plugin manager"
+  echo "-----> Install/refresh tmux plugin manager and plugins"
   TMUX_DIR=${HOME}/.tmux
   rm -rf "${TMUX_DIR}/plugins/tpm" 2>/dev/null || true
   git clone --depth=1 https://github.com/tmux-plugins/tpm ${TMUX_DIR}/plugins/tpm && \
-bash ${TMUX_DIR}/plugins/tpm/bin/install_plugins
+bash ${TMUX_DIR}/plugins/tpm/bin/install_plugins && \
+bash ${TMUX_DIR}/plugins/tpm/bin/update_plugins all && \
+bash ${TMUX_DIR}/plugins/tpm/bin/clean_plugins || true
 }
 
 # Force generate en_GB and en_US locales
@@ -407,6 +446,7 @@ if [[ "$(uname -s)" == *[Dd]arwin* ]] 2>/dev/null; then # Check if Darwin (MacOS
   echo "MacOS detected"
   check_ssh_key
   install_macos_packages
+  install_macos_non_brew
   install_java
   beautify_shell
   create_links

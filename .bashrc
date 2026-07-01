@@ -89,6 +89,22 @@ fi
 if [[ "$(uname -s)" == *[Dd]arwin* ]] 2>/dev/null; then # Darwin (MacOS)
   alias ll='gls -lAh --group-directories-first --color=auto'
   alias p='ps -ax'
+  # Open a path (default: current dir) in a JetBrains IDE, like `code .`.
+  _jetbrains_open() { # $1=app name, rest=paths
+    local app="$1"; shift
+    local target="${1:-.}" abs
+    # Resolve to an absolute path (open --args does not inherit the shell's cwd).
+    if [ -d "$target" ]; then
+      abs="$(cd "$target" && pwd)"
+    else
+      abs="$(cd "$(dirname "$target")" && pwd)/$(basename "$target")"
+    fi
+    open -na "$app" --args "$abs"
+  }
+  idea()     { _jetbrains_open "IntelliJ IDEA" "$@"; }
+  pycharm()  { _jetbrains_open "PyCharm" "$@"; }
+  goland()   { _jetbrains_open "GoLand" "$@"; }
+  webstorm() { _jetbrains_open "WebStorm" "$@"; }
 else # Linux
   alias ll='ls -lAh --group-directories-first'
   alias p='ps -auxf'
